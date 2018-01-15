@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}" SchemaVersion="80">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="footstep" ID="{33E8CAF3-AE6E-4537-8E2A-13B326FB2BB6}">
+					<ChildrenList>
+						<Action Name="" ID="{C56F54D5-4202-4A34-8871-8B371F45066B}" ShortID="230499129">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Footsteps" ID="{1401AEAB-00B8-413A-846C-41E71A024C6E}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="cube_noise" ID="{74E4F961-57F9-46D9-881C-D1E28F5B4EF3}">
+					<ChildrenList>
+						<Action Name="" ID="{D5B0A9A3-8A32-4B10-8B62-2D7832B4FCBE}" ShortID="852266514">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="engine loop" ID="{CA1D9620-730E-4B31-A8FE-26FDD8E776E7}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

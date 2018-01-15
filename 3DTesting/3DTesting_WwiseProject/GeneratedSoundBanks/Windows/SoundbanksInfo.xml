@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="125">
+	<RootPaths>
+		<ProjectRoot>C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\3DTesting\3DTesting_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\3DTesting\3DTesting_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\3DTesting\3DTesting_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\3DTesting\3DTesting_WwiseProject\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="77978275" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Ambient</ObjectPath>
+			<ShortName>Ambient</ShortName>
+			<Path>Ambient.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1858278865" Name="cube_noise" ObjectPath="\Events\Default Work Unit\cube_noise" MaxAttenuation="3.000000"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="227177822" Language="SFX">
+					<ShortName>Audio Assets\engine loop.wav</ShortName>
+					<Path>SFX\Audio Assets\engine loop_F17FB28C.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="2385628198" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Footsteps</ObjectPath>
+			<ShortName>Footsteps</ShortName>
+			<Path>Footsteps.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1866025847" Name="footstep" ObjectPath="\Events\Default Work Unit\footstep"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="198547508" Language="SFX">
+					<ShortName>Audio Assets\hard-female-footstep-1.wav</ShortName>
+					<Path>SFX\Audio Assets\hard-female-footstep-1_1C9C67B2.wem</Path>
+				</File>
+				<File Id="369604225" Language="SFX">
+					<ShortName>Audio Assets\hard-female-footstep-2.wav</ShortName>
+					<Path>SFX\Audio Assets\hard-female-footstep-2_1C9C67B2.wem</Path>
+				</File>
+				<File Id="434871207" Language="SFX">
+					<ShortName>Audio Assets\hard-female-footstep-3.wav</ShortName>
+					<Path>SFX\Audio Assets\hard-female-footstep-3_1C9C67B2.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>
