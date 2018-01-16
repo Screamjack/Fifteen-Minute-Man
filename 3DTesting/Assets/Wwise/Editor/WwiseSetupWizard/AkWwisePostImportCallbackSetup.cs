@@ -133,19 +133,7 @@ public class AkWwisePostImportCallbackSetup
 		if (File.Exists(Path.Combine(Application.dataPath, WwiseSettings.WwiseSettingsFilename)))
 		{
 			AkPluginActivator.Update();
-			AkPluginActivator.RefreshPlugins();
-
-			// Check if platform is supported and installed. PluginImporter might contain
-			// erroneous data when application is compiling or updating, so skip this if
-			// that is the case.
-			if (!EditorApplication.isCompiling && !EditorApplication.isUpdating)
-			{
-				string Msg;
-				if (!CheckPlatform(out Msg))
-				{
-					EditorUtility.DisplayDialog("Warning", Msg, "OK");
-				}
-			}
+			AkPluginActivator.ActivatePluginsForEditor();
 		}
 	}
 
@@ -185,46 +173,6 @@ public class AkWwisePostImportCallbackSetup
 		CheckWwiseGlobalExistance();
 	}
 
-	private static bool CheckPlatform(out string Msg)
-	{
-		Msg = string.Empty;
-#if UNITY_WSA_8_0
-        Msg = "The Wwise Unity integration does not support the Windows Store 8.0 SDK.";
-        return false;
-#else
-		// Start by checking if the integration supports the platform
-		switch (EditorUserBuildSettings.activeBuildTarget)
-		{
-			case BuildTarget.PSM:
-			case BuildTarget.SamsungTV:
-			case BuildTarget.Tizen:
-			case BuildTarget.WebGL:
-				Msg = "The Wwise Unity integration does not support this platform.";
-				return false;
-		}
-
-		// Then check if the integration is installed for this platform
-		PluginImporter[] importers = PluginImporter.GetImporters(EditorUserBuildSettings.activeBuildTarget);
-		bool found = false;
-		foreach (PluginImporter imp in importers)
-		{
-			if (imp.assetPath.Contains("AkSoundEngine"))
-			{
-				found = true;
-				break;
-			}
-		}
-
-		if (!found)
-		{
-			Msg = "The Wwise Unity integration for the " + EditorUserBuildSettings.activeBuildTarget.ToString() + " platform is currently not installed.";
-			return false;
-		}
-
-		return true;
-#endif
-	}
-
 	private static void RefreshPlugins()
 	{
 		if (string.IsNullOrEmpty(AkWwiseProjectInfo.GetData().CurrentPluginConfig))
@@ -232,7 +180,7 @@ public class AkWwisePostImportCallbackSetup
 			AkWwiseProjectInfo.GetData().CurrentPluginConfig = AkPluginActivator.CONFIG_PROFILE;
 		}
 
-		AkPluginActivator.RefreshPlugins();
+		AkPluginActivator.ActivatePluginsForEditor();
 	}
 
 	private static void ClearConsole()
@@ -242,9 +190,11 @@ public class AkWwisePostImportCallbackSetup
 #else
 		var logEntries = System.Type.GetType("UnityEditorInternal.LogEntries,UnityEditor.dll");
 #endif
-
-		var clearMethod = logEntries.GetMethod("Clear", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
-		clearMethod.Invoke(null, null);
+        if (logEntries != null)
+        {
+		    var clearMethod = logEntries.GetMethod("Clear", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
+		    clearMethod.Invoke(null, null);
+        }
 	}
 
 	public static void CheckPicker()

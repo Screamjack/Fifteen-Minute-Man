@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkObjectInfo : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkObjectInfo(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkObjectInfo(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkObjectInfo obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkObjectInfo obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkObjectInfo() {
@@ -30,55 +35,27 @@ public class AkObjectInfo : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkObjectInfo(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public uint objID {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkObjectInfo_objID_set(swigCPtr, value);
-
-    } 
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkObjectInfo_objID_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint objID { set { AkSoundEnginePINVOKE.CSharp_AkObjectInfo_objID_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkObjectInfo_objID_get(swigCPtr); } 
   }
 
-  public uint parentID {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkObjectInfo_parentID_set(swigCPtr, value);
-
-    } 
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkObjectInfo_parentID_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint parentID { set { AkSoundEnginePINVOKE.CSharp_AkObjectInfo_parentID_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkObjectInfo_parentID_get(swigCPtr); } 
   }
 
-  public int iDepth {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkObjectInfo_iDepth_set(swigCPtr, value);
-
-    } 
-    get {
-      int ret = AkSoundEnginePINVOKE.CSharp_AkObjectInfo_iDepth_get(swigCPtr);
-
-      return ret;
-    } 
+  public int iDepth { set { AkSoundEnginePINVOKE.CSharp_AkObjectInfo_iDepth_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkObjectInfo_iDepth_get(swigCPtr); } 
   }
 
   public AkObjectInfo() : this(AkSoundEnginePINVOKE.CSharp_new_AkObjectInfo(), true) {
-
   }
 
 }

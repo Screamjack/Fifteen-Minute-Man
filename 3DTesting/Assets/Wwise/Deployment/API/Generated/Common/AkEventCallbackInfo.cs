@@ -12,14 +12,19 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkEventCallbackInfo : AkCallbackInfo {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
 
-  internal AkEventCallbackInfo(IntPtr cPtr, bool cMemoryOwn) : base(AkSoundEnginePINVOKE.CSharp_AkEventCallbackInfo_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal AkEventCallbackInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(AkSoundEnginePINVOKE.CSharp_AkEventCallbackInfo_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkEventCallbackInfo obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkEventCallbackInfo obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal override void setCPtr(global::System.IntPtr cPtr) {
+    base.setCPtr(AkSoundEnginePINVOKE.CSharp_AkEventCallbackInfo_SWIGUpcast(cPtr));
+    swigCPtr = cPtr;
   }
 
   ~AkEventCallbackInfo() {
@@ -28,36 +33,25 @@ public class AkEventCallbackInfo : AkCallbackInfo {
 
   public override void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkEventCallbackInfo(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
       base.Dispose();
     }
   }
 
-  public uint playingID {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkEventCallbackInfo_playingID_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint playingID { get { return AkSoundEnginePINVOKE.CSharp_AkEventCallbackInfo_playingID_get(swigCPtr); } 
   }
 
-  public uint eventID {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkEventCallbackInfo_eventID_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint eventID { get { return AkSoundEnginePINVOKE.CSharp_AkEventCallbackInfo_eventID_get(swigCPtr); } 
   }
 
   public AkEventCallbackInfo() : this(AkSoundEnginePINVOKE.CSharp_new_AkEventCallbackInfo(), true) {
-
   }
 
 }

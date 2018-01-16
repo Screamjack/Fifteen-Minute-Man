@@ -13,8 +13,6 @@ public enum AkPluginType {
   AkPluginTypeCodec = 1,
   AkPluginTypeSource = 2,
   AkPluginTypeEffect = 3,
-  AkPluginTypeMotionDevice = 4,
-  AkPluginTypeMotionSource = 5,
   AkPluginTypeMixer = 6,
   AkPluginTypeSink = 7,
   AkPluginTypeMask = 0xf

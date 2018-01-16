@@ -98,7 +98,7 @@ public class AkAmbientInspector : AkEventInspector
 		}
 	}
 
-	public override void OnChildInspectorGUI()
+    public override void OnChildInspectorGUI()
 	{
 		//Save trigger mask to know when it chages
 		triggerList = m_AkAmbient.triggerList;
@@ -233,6 +233,8 @@ public class AkAmbientInspector : AkEventInspector
 #else
 			bool isEventUsedBeforeHandle = (Event.current.type == EventType.used);
 #endif
+
+
 			Handles.color = Color.green;
 #if UNITY_5_6_OR_NEWER
 			Handles.CapFunction capFunc = Handles.SphereHandleCap;
@@ -253,6 +255,8 @@ public class AkAmbientInspector : AkEventInspector
 #else
 			bool isEventUsedByHandle = !isEventUsedBeforeHandle && (Event.current.type == EventType.used);
 #endif
+
+
 			if ((controlIDBeforeHandle < GUIUtility.hotControl && GUIUtility.hotControl < controlIDAfterHandle) ||
 				 isEventUsedByHandle)
 			{
@@ -355,6 +359,7 @@ public class AkAmbientInspector : AkEventInspector
 #else
             Handles.SphereHandleCap(0, in_position, Quaternion.identity, in_radius*2.0f, EventType.repaint);
 #endif
+
 #else
 			Handles.SphereCap(0, in_position, Quaternion.identity, in_radius * 2.0f);
 #endif

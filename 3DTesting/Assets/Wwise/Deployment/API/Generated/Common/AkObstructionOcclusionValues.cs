@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkObstructionOcclusionValues : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkObstructionOcclusionValues(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkObstructionOcclusionValues(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkObstructionOcclusionValues obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkObstructionOcclusionValues obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkObstructionOcclusionValues() {
@@ -30,39 +35,24 @@ public class AkObstructionOcclusionValues : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkObstructionOcclusionValues(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public float occlusion {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkObstructionOcclusionValues_occlusion_set(swigCPtr, value);
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkObstructionOcclusionValues_occlusion_get(swigCPtr);
-      return ret;
-    } 
+  public float occlusion { set { AkSoundEnginePINVOKE.CSharp_AkObstructionOcclusionValues_occlusion_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkObstructionOcclusionValues_occlusion_get(swigCPtr); } 
   }
 
-  public float obstruction {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkObstructionOcclusionValues_obstruction_set(swigCPtr, value);
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkObstructionOcclusionValues_obstruction_get(swigCPtr);
-      return ret;
-    } 
+  public float obstruction { set { AkSoundEnginePINVOKE.CSharp_AkObstructionOcclusionValues_obstruction_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkObstructionOcclusionValues_obstruction_get(swigCPtr); } 
   }
 
   public AkObstructionOcclusionValues() : this(AkSoundEnginePINVOKE.CSharp_new_AkObstructionOcclusionValues(), true) {
-
   }
 
 }

@@ -6,7 +6,6 @@
 //////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 
 
@@ -59,6 +58,12 @@ public class AkAudioListener : MonoBehaviour
 	{
 		// @todo: Use HashSet<ulong> and CopyTo() with a private ulong[]
 		private List<ulong> listenerIdList = new List<ulong>();
+		private List<AkAudioListener> listenerList = new List<AkAudioListener>();
+
+		public List<AkAudioListener> ListenerList
+		{
+			get { return listenerList; }
+		}
 
 		protected bool changed = false;
 
@@ -77,6 +82,7 @@ public class AkAudioListener : MonoBehaviour
 				return false;
 
 			listenerIdList.Add(gameObjectId);
+			listenerList.Add(listener);
 			changed = true;
 			return true;
 		}
@@ -96,6 +102,7 @@ public class AkAudioListener : MonoBehaviour
 				return false;
 
 			listenerIdList.Remove(gameObjectId);
+			listenerList.Remove(listener);
 			changed = true;
 			return true;
 		}

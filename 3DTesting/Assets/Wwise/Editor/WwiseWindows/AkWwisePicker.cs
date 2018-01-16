@@ -116,9 +116,10 @@ class AkWwisePicker : EditorWindow
         treeView.PopulateItem(treeView.RootItem, "States", AkWwiseProjectInfo.GetData().StateWwu);
 		treeView.PopulateItem(treeView.RootItem, "SoundBanks", AkWwiseProjectInfo.GetData().BankWwu);
         treeView.PopulateItem(treeView.RootItem, "Auxiliary Busses", AkWwiseProjectInfo.GetData().AuxBusWwu);
-		//treeView.PopulateItem(treeView.RootItem, "Game Parameters", AkWwiseProjectInfo.GetData().RtpcWwu);
-		//treeView.PopulateItem(treeView.RootItem, "Triggers", AkWwiseProjectInfo.GetData().TriggerWwu);
-	}
+        //treeView.PopulateItem(treeView.RootItem, "Game Parameters", AkWwiseProjectInfo.GetData().RtpcWwu);
+        //treeView.PopulateItem(treeView.RootItem, "Triggers", AkWwiseProjectInfo.GetData().TriggerWwu);
+        treeView.PopulateItem(treeView.RootItem, "Virtual Acoustics", AkWwiseProjectInfo.GetData().AcousticTextureWwu);
+    }
 
 }
 #endif

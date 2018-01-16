@@ -2,7 +2,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1866025847	footstep			\Default Work Unit\footstep	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	198547508	hard-female-footstep-1	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\3DTesting\3DTesting_WwiseProject\.cache\Windows\SFX\Audio Assets\hard-female-footstep-1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\hard-female-footstep-1		51264
-	369604225	hard-female-footstep-2	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\3DTesting\3DTesting_WwiseProject\.cache\Windows\SFX\Audio Assets\hard-female-footstep-2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\hard-female-footstep-2		43072
-	434871207	hard-female-footstep-3	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\3DTesting\3DTesting_WwiseProject\.cache\Windows\SFX\Audio Assets\hard-female-footstep-3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\hard-female-footstep-3		51264
+	198547508	hard-female-footstep-1	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Windows\SFX\Audio Assets\hard-female-footstep-1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\hard-female-footstep-1		51264
+	369604225	hard-female-footstep-2	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Windows\SFX\Audio Assets\hard-female-footstep-2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\hard-female-footstep-2		43072
+	434871207	hard-female-footstep-3	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Windows\SFX\Audio Assets\hard-female-footstep-3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\hard-female-footstep-3		51264
 

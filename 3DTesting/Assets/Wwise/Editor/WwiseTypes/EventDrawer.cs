@@ -28,7 +28,7 @@ namespace AK.Wwise.Editor
 		public override void SetupSerializedProperties(SerializedProperty property)
 		{
 			m_objectType = AkWwiseProjectData.WwiseObjectType.EVENT;
-			m_typeName = "Event";
+            m_typeName = "Event";
 
 			m_IDProperty = new SerializedProperty[1];
 			m_IDProperty[0] = property.FindPropertyRelative("ID");

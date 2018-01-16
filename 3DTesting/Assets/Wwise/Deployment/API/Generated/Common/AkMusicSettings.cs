@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkMusicSettings : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkMusicSettings(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkMusicSettings(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkMusicSettings obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkMusicSettings obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkMusicSettings() {
@@ -30,31 +35,21 @@ public class AkMusicSettings : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkMusicSettings(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public float fStreamingLookAheadRatio {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkMusicSettings_fStreamingLookAheadRatio_set(swigCPtr, value);
-
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkMusicSettings_fStreamingLookAheadRatio_get(swigCPtr);
-
-      return ret;
-    } 
+  public float fStreamingLookAheadRatio { set { AkSoundEnginePINVOKE.CSharp_AkMusicSettings_fStreamingLookAheadRatio_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkMusicSettings_fStreamingLookAheadRatio_get(swigCPtr); } 
   }
 
   public AkMusicSettings() : this(AkSoundEnginePINVOKE.CSharp_new_AkMusicSettings(), true) {
-
   }
 
 }

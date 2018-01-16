@@ -82,6 +82,10 @@ public class AkWwiseComponentPicker : EditorWindow
             {
                 s_componentPicker.m_treeView.PopulateItem(s_componentPicker.m_treeView.RootItem, "Triggers", AkWwiseProjectInfo.GetData().TriggerWwu);
             }
+            else if (in_type == AkWwiseProjectData.WwiseObjectType.ACOUSTICTEXTURE)
+            {
+                s_componentPicker.m_treeView.PopulateItem(s_componentPicker.m_treeView.RootItem, "Virtual Acoustics", AkWwiseProjectInfo.GetData().AcousticTextureWwu);
+            }
 
             TreeViewItem item = null;
 
@@ -159,6 +163,7 @@ public class AkWwiseComponentPicker : EditorWindow
 #else
 				else if(Event.current.type == EventType.used && m_treeView.LastDoubleClickedItem != null && m_type == (m_treeView.LastDoubleClickedItem.DataContext as AkWwiseTreeView.AkTreeInfo).ObjectType)
 #endif
+
 				{
 					SetGuid(m_treeView.LastDoubleClickedItem);
 					m_close = true;

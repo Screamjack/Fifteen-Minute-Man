@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkCallbackInfo : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkCallbackInfo(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkCallbackInfo(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkCallbackInfo obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkCallbackInfo obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkCallbackInfo() {
@@ -30,27 +35,24 @@ public class AkCallbackInfo : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkCallbackInfo(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public IntPtr pCookie { get { return AkSoundEnginePINVOKE.CSharp_AkCallbackInfo_pCookie_get(swigCPtr);
- }
+  public global::System.IntPtr pCookie { get { return AkSoundEnginePINVOKE.CSharp_AkCallbackInfo_pCookie_get(swigCPtr); }
   }
 
-  public ulong gameObjID { get { return AkSoundEnginePINVOKE.CSharp_AkCallbackInfo_gameObjID_get(swigCPtr);
- } 
+  public ulong gameObjID { get { return AkSoundEnginePINVOKE.CSharp_AkCallbackInfo_gameObjID_get(swigCPtr); } 
   }
 
   public AkCallbackInfo() : this(AkSoundEnginePINVOKE.CSharp_new_AkCallbackInfo(), true) {
-
   }
 
 }

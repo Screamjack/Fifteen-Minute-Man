@@ -12,14 +12,19 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkDurationCallbackInfo : AkEventCallbackInfo {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
 
-  internal AkDurationCallbackInfo(IntPtr cPtr, bool cMemoryOwn) : base(AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal AkDurationCallbackInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkDurationCallbackInfo obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkDurationCallbackInfo obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal override void setCPtr(global::System.IntPtr cPtr) {
+    base.setCPtr(AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_SWIGUpcast(cPtr));
+    swigCPtr = cPtr;
   }
 
   ~AkDurationCallbackInfo() {
@@ -28,60 +33,34 @@ public class AkDurationCallbackInfo : AkEventCallbackInfo {
 
   public override void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkDurationCallbackInfo(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
       base.Dispose();
     }
   }
 
-  public float fDuration {
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_fDuration_get(swigCPtr);
-
-      return ret;
-    } 
+  public float fDuration { get { return AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_fDuration_get(swigCPtr); } 
   }
 
-  public float fEstimatedDuration {
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_fEstimatedDuration_get(swigCPtr);
-
-      return ret;
-    } 
+  public float fEstimatedDuration { get { return AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_fEstimatedDuration_get(swigCPtr); } 
   }
 
-  public uint audioNodeID {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_audioNodeID_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint audioNodeID { get { return AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_audioNodeID_get(swigCPtr); } 
   }
 
-  public uint mediaID {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_mediaID_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint mediaID { get { return AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_mediaID_get(swigCPtr); } 
   }
 
-  public bool bStreaming {
-    get {
-      bool ret = AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_bStreaming_get(swigCPtr);
-
-      return ret;
-    } 
+  public bool bStreaming { get { return AkSoundEnginePINVOKE.CSharp_AkDurationCallbackInfo_bStreaming_get(swigCPtr); } 
   }
 
   public AkDurationCallbackInfo() : this(AkSoundEnginePINVOKE.CSharp_new_AkDurationCallbackInfo(), true) {
-
   }
 
 }

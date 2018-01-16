@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkBankCallbackInfo : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkBankCallbackInfo(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkBankCallbackInfo(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkBankCallbackInfo obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkBankCallbackInfo obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkBankCallbackInfo() {
@@ -30,47 +35,30 @@ public class AkBankCallbackInfo : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkBankCallbackInfo(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public uint bankID {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkBankCallbackInfo_bankID_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint bankID { get { return AkSoundEnginePINVOKE.CSharp_AkBankCallbackInfo_bankID_get(swigCPtr); } 
   }
 
-  public IntPtr inMemoryBankPtr { get { return AkSoundEnginePINVOKE.CSharp_AkBankCallbackInfo_inMemoryBankPtr_get(swigCPtr);
- }
+  public global::System.IntPtr inMemoryBankPtr { get { return AkSoundEnginePINVOKE.CSharp_AkBankCallbackInfo_inMemoryBankPtr_get(swigCPtr); }
   }
 
-  public AKRESULT loadResult {
-    get {
-      AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_AkBankCallbackInfo_loadResult_get(swigCPtr);
-
-      return ret;
-    } 
+  public AKRESULT loadResult { get { return (AKRESULT)AkSoundEnginePINVOKE.CSharp_AkBankCallbackInfo_loadResult_get(swigCPtr); } 
   }
 
-  public int memPoolId {
-    get {
-      int ret = AkSoundEnginePINVOKE.CSharp_AkBankCallbackInfo_memPoolId_get(swigCPtr);
-
-      return ret;
-    } 
+  public int memPoolId { get { return AkSoundEnginePINVOKE.CSharp_AkBankCallbackInfo_memPoolId_get(swigCPtr); } 
   }
 
   public AkBankCallbackInfo() : this(AkSoundEnginePINVOKE.CSharp_new_AkBankCallbackInfo(), true) {
-
   }
 
 }

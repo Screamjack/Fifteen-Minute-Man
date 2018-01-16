@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkAudioSettings : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkAudioSettings(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkAudioSettings(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkAudioSettings obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkAudioSettings obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkAudioSettings() {
@@ -30,43 +35,24 @@ public class AkAudioSettings : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkAudioSettings(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public uint uNumSamplesPerFrame {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkAudioSettings_uNumSamplesPerFrame_set(swigCPtr, value);
-
-    } 
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkAudioSettings_uNumSamplesPerFrame_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint uNumSamplesPerFrame { set { AkSoundEnginePINVOKE.CSharp_AkAudioSettings_uNumSamplesPerFrame_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkAudioSettings_uNumSamplesPerFrame_get(swigCPtr); } 
   }
 
-  public uint uNumSamplesPerSecond {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkAudioSettings_uNumSamplesPerSecond_set(swigCPtr, value);
-
-    } 
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkAudioSettings_uNumSamplesPerSecond_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint uNumSamplesPerSecond { set { AkSoundEnginePINVOKE.CSharp_AkAudioSettings_uNumSamplesPerSecond_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkAudioSettings_uNumSamplesPerSecond_get(swigCPtr); } 
   }
 
   public AkAudioSettings() : this(AkSoundEnginePINVOKE.CSharp_new_AkAudioSettings(), true) {
-
   }
 
 }

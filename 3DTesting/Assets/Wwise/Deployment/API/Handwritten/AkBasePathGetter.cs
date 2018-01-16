@@ -57,19 +57,17 @@ public partial class AkBasePathGetter
 	/// Returns the full base path
 	public static string GetPlatformBasePath()
 	{
-		string platformBasePath = string.Empty;
+		string platformName = GetPlatformName();
+
 #if UNITY_EDITOR
-		platformBasePath = GetPlatformBasePathEditor();
-		if (!string.IsNullOrEmpty(platformBasePath))
-		{
-			return platformBasePath;
-		}
+		string platformBasePathEditor = GetPlatformBasePathEditor(platformName);
+		if (!string.IsNullOrEmpty(platformBasePathEditor))
+			return platformBasePathEditor;
 #endif
+
 		// Combine base path with platform sub-folder
-		platformBasePath = Path.Combine(GetFullSoundBankPath(), GetPlatformName());
-
+		string platformBasePath = Path.Combine(GetFullSoundBankPath(), platformName);
 		FixSlashes(ref platformBasePath);
-
 		return platformBasePath;
 	}
 
@@ -91,39 +89,40 @@ public partial class AkBasePathGetter
 	}
 
 #if UNITY_EDITOR
-	static string GetPlatformBasePathEditor()
+	public static string GetPlatformBasePathEditor(string platformName)
 	{
-		try
+		WwiseSettings Settings = WwiseSettings.LoadSettings();
+		string WwiseProjectFullPath = AkUtilities.GetFullPath(Application.dataPath, Settings.WwiseProjectPath);
+		string SoundBankDest = AkUtilities.GetWwiseSoundBankDestinationFolder(platformName, WwiseProjectFullPath);
+		if (Path.GetPathRoot(SoundBankDest) == "")
 		{
-			WwiseSettings Settings = WwiseSettings.LoadSettings();
-			string platformSubDir = GetPlatformName();
-			string WwiseProjectFullPath = AkUtilities.GetFullPath(Application.dataPath, Settings.WwiseProjectPath);
-			string SoundBankDest = AkUtilities.GetWwiseSoundBankDestinationFolder(platformSubDir, WwiseProjectFullPath);
-			if (Path.GetPathRoot(SoundBankDest) == "")
-			{
-				// Path is relative, make it full
-				SoundBankDest = AkUtilities.GetFullPath(Path.GetDirectoryName(WwiseProjectFullPath), SoundBankDest);
-			}
+			// Path is relative, make it full
+			SoundBankDest = AkUtilities.GetFullPath(Path.GetDirectoryName(WwiseProjectFullPath), SoundBankDest);
+		}
 
-			// Verify if there are banks in there
-			DirectoryInfo di = new DirectoryInfo(SoundBankDest);
-			FileInfo[] foundBanks = di.GetFiles("*.bnk", SearchOption.AllDirectories);
-			if (foundBanks.Length == 0)
+		if (string.IsNullOrEmpty(SoundBankDest))
+		{
+			Debug.LogWarning("WwiseUnity: The SoundBank folder could not be determined.");
+		}
+		else
+		{
+			try
+			{
+				// Verify if there are banks in there
+				DirectoryInfo di = new DirectoryInfo(SoundBankDest);
+				FileInfo[] foundBanks = di.GetFiles("*.bnk", SearchOption.AllDirectories);
+				if (foundBanks.Length == 0)
+					SoundBankDest = string.Empty;
+				else if (!SoundBankDest.Contains(platformName))
+					Debug.LogWarning("WwiseUnity: The platform SoundBank subfolder does not match your platform name. You will need to create a custom platform name getter for your game. See section \"Using Wwise Custom Platforms in Unity\" of the Wwise Unity integration documentation for more information");
+			}
+			catch
 			{
 				SoundBankDest = string.Empty;
 			}
-
-			if (!SoundBankDest.Contains(GetPlatformName()))
-			{
-				Debug.LogWarning("WwiseUnity: The platform SoundBank subfolder does not match your platform name. You will need to create a custom platform name getter for your game. See section \"Using Wwise Custom Platforms in Unity\" of the Wwise Unity integration documentation for more information");
-			}
-
-			return SoundBankDest;
 		}
-		catch
-		{
-			return string.Empty;
-		}
+
+		return SoundBankDest;
 	}
 #endif
 

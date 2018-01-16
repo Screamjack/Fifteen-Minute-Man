@@ -12,14 +12,19 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkChannelEmitterEx : AkChannelEmitter {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
 
-  internal AkChannelEmitterEx(IntPtr cPtr, bool cMemoryOwn) : base(AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal AkChannelEmitterEx(global::System.IntPtr cPtr, bool cMemoryOwn) : base(AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkChannelEmitterEx obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkChannelEmitterEx obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal override void setCPtr(global::System.IntPtr cPtr) {
+    base.setCPtr(AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_SWIGUpcast(cPtr));
+    swigCPtr = cPtr;
   }
 
   ~AkChannelEmitterEx() {
@@ -28,14 +33,14 @@ public class AkChannelEmitterEx : AkChannelEmitter {
 
   public override void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkChannelEmitterEx(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
       base.Dispose();
     }
   }
@@ -43,24 +48,16 @@ public class AkChannelEmitterEx : AkChannelEmitter {
   public AkChannelEmitterEx() : this(AkSoundEnginePINVOKE.CSharp_new_AkChannelEmitterEx(), true) {
   }
 
-  public float occlusion {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_occlusion_set(swigCPtr, value);
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_occlusion_get(swigCPtr);
-      return ret;
-    } 
+  public float occlusion { set { AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_occlusion_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_occlusion_get(swigCPtr); } 
   }
 
-  public float obstruction {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_obstruction_set(swigCPtr, value);
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_obstruction_get(swigCPtr);
-      return ret;
-    } 
+  public float obstruction { set { AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_obstruction_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_obstruction_get(swigCPtr); } 
+  }
+
+  public float spread { set { AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_spread_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_spread_get(swigCPtr); } 
+  }
+
+  public float focus { set { AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_focus_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkChannelEmitterEx_focus_get(swigCPtr); } 
   }
 
 }

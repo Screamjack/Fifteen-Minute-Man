@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <BankMemory>
-	<Timestamp>131602913370000000</Timestamp>
+	<Timestamp>1516130318</Timestamp>
 	<DataSize>145600</DataSize>
 	<FileSize>145954</FileSize>
 	<DecodedSize>145600</DecodedSize>
@@ -13,8 +13,5 @@
 	<VoicePreFetchSize>0</VoicePreFetchSize>
 	<VoiceInMemorySize>0</VoiceInMemorySize>
 	<VoiceMissingFiles>0</VoiceMissingFiles>
-	<MotionPreFetchSize>0</MotionPreFetchSize>
-	<MotionInMemorySize>0</MotionInMemorySize>
-	<MotionMissingFiles>0</MotionMissingFiles>
 	<ReplacedFiles>0</ReplacedFiles>
 </BankMemory>

@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkThreadProperties : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkThreadProperties(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkThreadProperties(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkThreadProperties obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkThreadProperties obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkThreadProperties() {
@@ -30,34 +35,21 @@ public class AkThreadProperties : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkThreadProperties(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public int nPriority {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkThreadProperties_nPriority_set(swigCPtr, value);
-
-    } 
-    get {
-      int ret = AkSoundEnginePINVOKE.CSharp_AkThreadProperties_nPriority_get(swigCPtr);
-
-      return ret;
-    } 
+  public int nPriority { set { AkSoundEnginePINVOKE.CSharp_AkThreadProperties_nPriority_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkThreadProperties_nPriority_get(swigCPtr); } 
   }
 
-  public uint uStackSize {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkThreadProperties_uStackSize_set(swigCPtr, value);
-
-    } 
+  public uint uStackSize { set { AkSoundEnginePINVOKE.CSharp_AkThreadProperties_uStackSize_set(swigCPtr, value); } 
     get {
       uint ret = AkSoundEnginePINVOKE.CSharp_AkThreadProperties_uStackSize_get(swigCPtr);
 
@@ -65,32 +57,13 @@ public class AkThreadProperties : IDisposable {
     } 
   }
 
-  public int uSchedPolicy {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkThreadProperties_uSchedPolicy_set(swigCPtr, value);
-
-    } 
-    get {
-      int ret = AkSoundEnginePINVOKE.CSharp_AkThreadProperties_uSchedPolicy_get(swigCPtr);
-
-      return ret;
-    } 
+  public int uSchedPolicy { set { AkSoundEnginePINVOKE.CSharp_AkThreadProperties_uSchedPolicy_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkThreadProperties_uSchedPolicy_get(swigCPtr); } 
   }
 
-  public uint dwAffinityMask {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkThreadProperties_dwAffinityMask_set(swigCPtr, value);
-
-    } 
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkThreadProperties_dwAffinityMask_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint dwAffinityMask { set { AkSoundEnginePINVOKE.CSharp_AkThreadProperties_dwAffinityMask_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkThreadProperties_dwAffinityMask_get(swigCPtr); } 
   }
 
   public AkThreadProperties() : this(AkSoundEnginePINVOKE.CSharp_new_AkThreadProperties(), true) {
-
   }
 
 }

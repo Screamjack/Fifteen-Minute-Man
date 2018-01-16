@@ -82,9 +82,15 @@ namespace AK.Wwise.Editor
 					currentEvent.Use();
 				}
 			}
-		}
+        }
 
-		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        protected virtual void SetEmptyComponentName(ref string componentName, ref GUIStyle style)
+        {
+            componentName = "No " + m_typeName + " is currently selected";
+            style.normal.textColor = Color.red;
+        }
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
 			// Using BeginProperty / EndProperty on the parent property means that
 			// prefab override logic works on the entire property.
@@ -114,9 +120,8 @@ namespace AK.Wwise.Editor
 
 			if (string.IsNullOrEmpty(componentName))
 			{
-				componentName = "No " + m_typeName + " is currently selected";
-				style.normal.textColor = Color.red;
-			}
+                SetEmptyComponentName(ref componentName, ref style);
+            }
 
 			if (GUI.Button(position, componentName, style))
 			{

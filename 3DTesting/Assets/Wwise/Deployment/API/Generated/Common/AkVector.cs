@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkVector : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkVector(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkVector(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkVector obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkVector obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkVector() {
@@ -30,49 +35,29 @@ public class AkVector : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkVector(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public float X {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkVector_X_set(swigCPtr, value);
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkVector_X_get(swigCPtr);
-      return ret;
-    } 
+  public void Zero() { AkSoundEnginePINVOKE.CSharp_AkVector_Zero(swigCPtr); }
+
+  public float X { set { AkSoundEnginePINVOKE.CSharp_AkVector_X_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkVector_X_get(swigCPtr); } 
   }
 
-  public float Y {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkVector_Y_set(swigCPtr, value);
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkVector_Y_get(swigCPtr);
-      return ret;
-    } 
+  public float Y { set { AkSoundEnginePINVOKE.CSharp_AkVector_Y_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkVector_Y_get(swigCPtr); } 
   }
 
-  public float Z {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkVector_Z_set(swigCPtr, value);
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkVector_Z_get(swigCPtr);
-      return ret;
-    } 
+  public float Z { set { AkSoundEnginePINVOKE.CSharp_AkVector_Z_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkVector_Z_get(swigCPtr); } 
   }
 
   public AkVector() : this(AkSoundEnginePINVOKE.CSharp_new_AkVector(), true) {
-
   }
 
 }

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 
 
 [AddComponentMenu("Wwise/AkGameObj")]
+[DisallowMultipleComponent]
 [ExecuteInEditMode] //ExecuteInEditMode necessary to maintain proper state of isStaticObject.
 ///@brief This component represents a sound object in your scene tracking its position and other game syncs such as Switches, RTPC and environment values. You can add this to any object that will emit sound, and it will be added to any object that an AkAudioListener is attached to. Note that if it is not present, Wwise will add it automatically, with the default values, to any Unity Game Object that is passed to Wwise.
 /// \sa
@@ -40,6 +41,14 @@ public class AkGameObj : MonoBehaviour
 	[SerializeField]
 	private AkGameObjListenerList m_listeners = new AkGameObjListenerList();
 
+    public List<AkAudioListener> ListenerList
+    {
+        get
+        {
+			return (m_listeners.ListenerList.Count > 0) ? m_listeners.ListenerList : AkAudioListener.DefaultListeners.ListenerList;
+        }
+    }
+
 	/// <summary>
 	/// Adds an AkAudioListener to the container of listeners listening to this gameobject.
 	/// </summary>
@@ -60,20 +69,30 @@ public class AkGameObj : MonoBehaviour
 		return m_listeners.Remove(listener);
 	}
 
-	void Awake()
+#if UNITY_EDITOR
+    /// <summary>
+	/// Refreshes audio listener list.
+	/// </summary>
+    public void RefreshListeners()
+    {
+        m_listeners.Refresh(gameObject);
+    }
+#endif
+
+    void Awake()
 	{
 #if UNITY_EDITOR
-		if (AkUtilities.IsMigrating)
+        if (AkUtilities.IsMigrating)
 			return;
 
-		// If the object was marked as static, don't update its position to save cycles.
 		if (!UnityEditor.EditorApplication.isPlaying)
 		{
 			UnityEditor.EditorApplication.update += this.CheckStaticStatus;
-			return;
 		}
 #endif
-		if (!isStaticObject)
+
+        // If the object was marked as static, don't update its position to save cycles.
+        if (!isStaticObject)
 			m_posData = new AkGameObjPositionData();
 
 		// Cache the bounds to avoid calls to GetComponent()
@@ -81,28 +100,24 @@ public class AkGameObj : MonoBehaviour
 
 		//Register a Game Object in the sound engine, with its name.
 		AKRESULT res = AkSoundEngine.RegisterGameObj(gameObject, gameObject.name);
-		if (res == AKRESULT.AK_Success)
-		{
+        if (res == AKRESULT.AK_Success)
+        {
 			// Get position with offset or custom position and orientation.
-			Vector3 position = GetPosition ();
-			Vector3	forward = GetForward ();
-			Vector3	up = GetUpward ();
+            //Set the original position
+            AkSoundEngine.SetObjectPosition(gameObject, GetPosition(), GetForward(), GetUpward());
 
-			//Set the original position
-			AkSoundEngine.SetObjectPosition(
-				gameObject,
-				position.x, position.y, position.z,
-				forward.x, forward.y, forward.z,
-				up.x, up.y, up.z);
+            if (isEnvironmentAware && m_Collider)
+            {
+                m_envData = new AkGameObjEnvironmentData();
+                //Check if this object is also an environment.
+                m_envData.AddAkEnvironment(m_Collider, m_Collider);
 
-			if (isEnvironmentAware && m_Collider)
-			{
-				m_envData = new AkGameObjEnvironmentData();
-				//Check if this object is also an environment.
-				m_envData.AddAkEnvironment(m_Collider, m_Collider);
-			}
+                m_envData.UpdateAuxSend(gameObject, transform.position);
+            }
 
-			m_listeners.Initialize();
+            int Count = m_listeners.initialListenerList.Count;
+            for (int ii = 0; ii < Count; ++ii)
+				AddListener(m_listeners.initialListenerList[ii]);
 		}
 	}
 
@@ -178,7 +193,6 @@ public class AkGameObj : MonoBehaviour
 		Vector3	forward = GetForward();
 		Vector3	up = GetUpward();
 
-
 		//Didn't move.  Do nothing.
 		if (m_posData.position == position && m_posData.forward == forward && m_posData.up == up)
 			return;
@@ -188,18 +202,14 @@ public class AkGameObj : MonoBehaviour
 		m_posData.up = up;
 
 		//Update position
-		AkSoundEngine.SetObjectPosition (
-			gameObject,
-			position.x, position.y, position.z,
-			forward.x, forward.y, forward.z,
-			up.x, up.y, up.z);
+		AkSoundEngine.SetObjectPosition(gameObject, position, forward, up);
 	}
 
 	/// Gets the position including the position offset, if applyPositionOffset is enabled. User can also override this method to calculate an arbitrary position.
 	/// \return  The position.
-	public virtual Vector3 GetPosition ()
+	public virtual Vector3 GetPosition()
 	{
-		if (m_positionOffsetData != null) 
+		if (m_positionOffsetData != null)
 		{
 			// Get offset in world space
 			Vector3 worldOffset = transform.rotation * m_positionOffsetData.positionOffset;
@@ -213,14 +223,14 @@ public class AkGameObj : MonoBehaviour
 
 	/// Gets the orientation forward vector. User can also override this method to calculate an arbitrary vector.
 	/// \return  The forward vector of orientation.
-	public virtual Vector3 GetForward ()
+	public virtual Vector3 GetForward()
 	{
 		return transform.forward;
 	}
 
 	/// Gets the orientation upward vector. User can also override this method to calculate an arbitrary vector.
 	/// \return  The upward vector of orientation.
-	public virtual Vector3 GetUpward ()
+	public virtual Vector3 GetUpward()
 	{
 		return transform.up;
 	}

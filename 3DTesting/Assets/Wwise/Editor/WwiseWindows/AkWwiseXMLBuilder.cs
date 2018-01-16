@@ -69,7 +69,7 @@ public class AkWwiseXMLBuilder
             XmlNodeList events = includedEvents[i].SelectNodes("Event");
             for (int j = 0; j < events.Count; j++)
             {
-                bChanged = SerialiseMaxAttenuation(events[j]) || bChanged;
+                bChanged = SerialiseMaxAttenuation(events[j]) || SerialiseEstimatedDuration(events[j]) || bChanged;
             }
         }
         return bChanged;
@@ -93,6 +93,47 @@ public class AkWwiseXMLBuilder
             	    break;
             	}
 			}
+        }
+        return bChanged;
+    }
+
+    static bool SerialiseEstimatedDuration(XmlNode node)
+    {
+        bool bChanged = false;
+        for (int i = 0; i < AkWwiseProjectInfo.GetData().EventWwu.Count; i++)
+        {
+            for (int j = 0; j < AkWwiseProjectInfo.GetData().EventWwu[i].List.Count; j++)
+            {
+                if (node.Attributes["Name"].InnerText == AkWwiseProjectInfo.GetData().EventWwu[i].List[j].Name)
+                {
+                    if (node.Attributes["DurationMin"] != null)
+                    {
+						float minDuration = Mathf.Infinity;
+						if (string.Compare(node.Attributes["DurationMin"].InnerText, "Infinite") != 0)
+							minDuration = float.Parse(node.Attributes["DurationMin"].InnerText);
+
+                        if (AkWwiseProjectInfo.GetData().EventWwu[i].List[j].minDuration != minDuration)
+                        {
+                            AkWwiseProjectInfo.GetData().EventWwu[i].List[j].minDuration = minDuration;
+                            bChanged = true;
+                        }
+                    }
+
+					if (node.Attributes["DurationMax"] != null)
+                    {
+						float maxDuration = Mathf.Infinity;
+						if (string.Compare(node.Attributes["DurationMax"].InnerText, "Infinite") != 0)
+							maxDuration = float.Parse(node.Attributes["DurationMax"].InnerText);
+
+						if (AkWwiseProjectInfo.GetData().EventWwu[i].List[j].maxDuration != maxDuration)
+                        {
+                            AkWwiseProjectInfo.GetData().EventWwu[i].List[j].maxDuration = maxDuration;
+                            bChanged = true;
+                        }
+                    }
+                    break;
+                }
+            }
         }
         return bChanged;
     }

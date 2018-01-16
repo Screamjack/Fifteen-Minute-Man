@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: c9eb3174a1fbfb542b4b253b4d051705
 folderAsset: yes
-timeCreated: 1514150364
+timeCreated: 1516126138
 licenseType: Free
 PluginImporter:
   externalObjects: {}
@@ -31,7 +31,9 @@ PluginImporter:
     second:
       enabled: 1
       settings:
+        CPU: AnyCPU
         DefaultValueInitialized: true
+        OS: OSX
   - first:
       Standalone: OSXUniversal
     second:

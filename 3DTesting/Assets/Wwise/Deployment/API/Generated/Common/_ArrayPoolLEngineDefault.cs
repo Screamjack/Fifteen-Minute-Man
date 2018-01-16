@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class _ArrayPoolLEngineDefault : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal _ArrayPoolLEngineDefault(IntPtr cPtr, bool cMemoryOwn) {
+  internal _ArrayPoolLEngineDefault(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(_ArrayPoolLEngineDefault obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(_ArrayPoolLEngineDefault obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~_ArrayPoolLEngineDefault() {
@@ -30,25 +35,20 @@ public class _ArrayPoolLEngineDefault : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete__ArrayPoolLEngineDefault(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public static int Get() {
-    int ret = AkSoundEnginePINVOKE.CSharp__ArrayPoolLEngineDefault_Get();
-
-    return ret;
-  }
+  public static int Get() { return AkSoundEnginePINVOKE.CSharp__ArrayPoolLEngineDefault_Get(); }
 
   public _ArrayPoolLEngineDefault() : this(AkSoundEnginePINVOKE.CSharp_new__ArrayPoolLEngineDefault(), true) {
-
   }
 
 }

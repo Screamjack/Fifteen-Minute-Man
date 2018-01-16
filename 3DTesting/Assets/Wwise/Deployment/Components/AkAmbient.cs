@@ -32,6 +32,7 @@ public class AkMultiPosEvent
 [AddComponentMenu("Wwise/AkAmbient")]
 /// @brief Use this component to attach a Wwise Event to any object in a scene.
 /// The sound can be started at various moments, dependent on the selected Unity trigger. This component is more useful for ambient sounds (sounds related to scene-bound objects) but could also be used for other purposes.
+/// Since AkAmbient has AkEvent as its base class, it features the play/stop, play multiple, stop multiple and stop all buttons for previewing the associated Wwise event.
 /// \sa
 /// - \ref unity_use_AkEvent_AkAmbient
 /// - \ref AkGameObj
@@ -42,9 +43,10 @@ public class AkAmbient : AkEvent
 	public MultiPositionTypeLabel multiPositionTypeLabel = MultiPositionTypeLabel.Simple_Mode;
 	public List<Vector3> multiPositionArray = new List<Vector3>();
 	public AkAmbient ParentAkAmbience { get; set; } 
+	public AK.SoundEngine.MultiPositionType MultiPositionType = AK.SoundEngine.MultiPositionType.MultiPositionType_MultiSources;
 	
 	static public Dictionary<int, AkMultiPosEvent> multiPosEventTree = new Dictionary<int, AkMultiPosEvent>();
-	
+
 	void OnEnable()
 	{
 		if (multiPositionTypeLabel == MultiPositionTypeLabel.Simple_Mode)
@@ -61,7 +63,7 @@ public class AkAmbient : AkEvent
 
 			AkPositionArray positionArray = BuildAkPositionArray();			
 			
-			AkSoundEngine.SetMultiplePositions(gameObject, positionArray, (ushort)positionArray.Count, MultiPositionType.MultiPositionType_MultiSources);
+			AkSoundEngine.SetMultiplePositions(gameObject, positionArray, (ushort)positionArray.Count, MultiPositionType);
 		}
 		else if (multiPositionTypeLabel == MultiPositionTypeLabel.MultiPosition_Mode)
 		{
@@ -89,7 +91,7 @@ public class AkAmbient : AkEvent
 			AkPositionArray positionArray = BuildMultiDirectionArray(eventPosList);
 			
 			//Set multiple positions
-			AkSoundEngine.SetMultiplePositions(eventPosList.list[0].gameObject, positionArray, (ushort)positionArray.Count, MultiPositionType.MultiPositionType_MultiSources);
+			AkSoundEngine.SetMultiplePositions(eventPosList.list[0].gameObject, positionArray, (ushort)positionArray.Count, MultiPositionType);
 		}
 	}
 	
@@ -112,7 +114,7 @@ public class AkAmbient : AkEvent
 				AkPositionArray positionArray = BuildMultiDirectionArray(eventPosList);
 				
 				//Set multiple positions
-				AkSoundEngine.SetMultiplePositions(eventPosList.list[0].gameObject, positionArray, (ushort)positionArray.Count, MultiPositionType.MultiPositionType_MultiSources);
+				AkSoundEngine.SetMultiplePositions(eventPosList.list[0].gameObject, positionArray, (ushort)positionArray.Count, MultiPositionType);
 			}
 		}
 	}

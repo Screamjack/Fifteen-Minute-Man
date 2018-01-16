@@ -24,7 +24,7 @@ public class AkWwiseWWUBuilder
 	int		m_totWwuCnt 		= 1;
     HashSet<string> m_WwuToProcess = new HashSet<string>();
 
-    static string[] FoldersOfInterest = new string[] { "Events", "States", "Switches", "SoundBanks", "Master-Mixer Hierarchy", "Game Parameters", "Triggers" };
+    static string[] FoldersOfInterest = new string[] { "Events", "States", "Switches", "SoundBanks", "Master-Mixer Hierarchy", "Game Parameters", "Triggers", "Virtual Acoustics" };
     static DateTime s_lastFileCheck = DateTime.Now.AddSeconds(-s_SecondsBetweenChecks);
     const int s_SecondsBetweenChecks = 3;    
 	
@@ -495,9 +495,13 @@ public class AkWwiseWWUBuilder
         {
             ArrayList.Adapter(AkWwiseProjectInfo.GetData().TriggerWwu[in_wwuIndex].List).Sort(AkWwiseProjectData.s_compareAkInformationByName);
         }
-	}	
+        else if (String.Equals(in_type, "Virtual Acoustics", StringComparison.OrdinalIgnoreCase))
+        {
+            ArrayList.Adapter(AkWwiseProjectInfo.GetData().AcousticTextureWwu[in_wwuIndex].List).Sort(AkWwiseProjectData.s_compareAkInformationByName);
+        }
+    }
 
-	static void ReplaceWwuEntry(string in_currentPhysicalPath, AssetType in_type, out AkWwiseProjectData.WorkUnit out_wwu, out int out_wwuIndex)
+    static void ReplaceWwuEntry(string in_currentPhysicalPath, AssetType in_type, out AkWwiseProjectData.WorkUnit out_wwu, out int out_wwuIndex)
 	{
 		ArrayList list 	= AkWwiseProjectInfo.GetData ().GetWwuListByString (in_type.RootDirectoryName);
 		out_wwuIndex 	= list.BinarySearch (new AkWwiseProjectData.WorkUnit (in_currentPhysicalPath), AkWwiseProjectData.s_compareByPhysicalPath);
@@ -516,7 +520,7 @@ public class AkWwiseWWUBuilder
 	
 	static void AddElementToList(string in_currentPathInProj, XmlReader in_reader, AssetType in_type, LinkedList<AkWwiseProjectData.PathElement> in_pathAndIcons, int in_wwuIndex)
 	{
-		if (in_type.RootDirectoryName == "Events" || in_type.RootDirectoryName == "Master-Mixer Hierarchy" || in_type.RootDirectoryName == "SoundBanks" || in_type.RootDirectoryName == "Game Parameters" || in_type.RootDirectoryName == "Triggers")
+		if (in_type.RootDirectoryName == "Events" || in_type.RootDirectoryName == "Master-Mixer Hierarchy" || in_type.RootDirectoryName == "SoundBanks" || in_type.RootDirectoryName == "Game Parameters" || in_type.RootDirectoryName == "Triggers" || in_type.RootDirectoryName == "Virtual Acoustics")
 		{
 			AkWwiseProjectData.Event valueToAdd = new AkWwiseProjectData.Event();
 			
@@ -525,37 +529,45 @@ public class AkWwiseWWUBuilder
 			valueToAdd.ID = (int)AkUtilities.ShortIDGenerator.Compute(valueToAdd.Name);
 			valueToAdd.PathAndIcons = new List<AkWwiseProjectData.PathElement>(in_pathAndIcons);
 			
-			if (in_type.RootDirectoryName == "Events")
-			{
-                valueToAdd.Path = Path.Combine(in_currentPathInProj, valueToAdd.Name);
-				valueToAdd.PathAndIcons.Add(new AkWwiseProjectData.PathElement(valueToAdd.Name, AkWwiseProjectData.WwiseObjectType.EVENT));
-				AkWwiseProjectInfo.GetData().EventWwu[in_wwuIndex].List.Add(valueToAdd);
-			}
-			else if (in_type.RootDirectoryName == "SoundBanks")
-			{
-                valueToAdd.Path = Path.Combine(in_currentPathInProj, valueToAdd.Name);
-				valueToAdd.PathAndIcons.Add(new AkWwiseProjectData.PathElement(valueToAdd.Name, AkWwiseProjectData.WwiseObjectType.SOUNDBANK));
-				AkWwiseProjectInfo.GetData().BankWwu[in_wwuIndex].List.Add(valueToAdd);
-			}
-			else if (in_type.RootDirectoryName == "Master-Mixer Hierarchy")
-			{
-                valueToAdd.Path = in_currentPathInProj;
-				AkWwiseProjectInfo.GetData().AuxBusWwu[in_wwuIndex].List.Add(valueToAdd);
-			}
-            else if (in_type.RootDirectoryName == "Game Parameters")
+            switch (in_type.RootDirectoryName)
             {
-                valueToAdd.Path = Path.Combine(in_currentPathInProj, valueToAdd.Name);
-                valueToAdd.PathAndIcons.Add(new AkWwiseProjectData.PathElement(valueToAdd.Name, AkWwiseProjectData.WwiseObjectType.GAMEPARAMETER));
-                AkWwiseProjectInfo.GetData().RtpcWwu[in_wwuIndex].List.Add(valueToAdd);
+                case "Events":
+                    valueToAdd.Path = Path.Combine(in_currentPathInProj, valueToAdd.Name);
+                    valueToAdd.PathAndIcons.Add(new AkWwiseProjectData.PathElement(valueToAdd.Name, AkWwiseProjectData.WwiseObjectType.EVENT));
+                    AkWwiseProjectInfo.GetData().EventWwu[in_wwuIndex].List.Add(valueToAdd);
+                    break;
+
+                case "SoundBanks":
+                    valueToAdd.Path = Path.Combine(in_currentPathInProj, valueToAdd.Name);
+                    valueToAdd.PathAndIcons.Add(new AkWwiseProjectData.PathElement(valueToAdd.Name, AkWwiseProjectData.WwiseObjectType.SOUNDBANK));
+                    AkWwiseProjectInfo.GetData().BankWwu[in_wwuIndex].List.Add(valueToAdd);
+                    break;
+
+                case "Master-Mixer Hierarchy":
+                    valueToAdd.Path = in_currentPathInProj;
+                    AkWwiseProjectInfo.GetData().AuxBusWwu[in_wwuIndex].List.Add(valueToAdd);
+                    break;
+
+                case "Game Parameters":
+                    valueToAdd.Path = Path.Combine(in_currentPathInProj, valueToAdd.Name);
+                    valueToAdd.PathAndIcons.Add(new AkWwiseProjectData.PathElement(valueToAdd.Name, AkWwiseProjectData.WwiseObjectType.GAMEPARAMETER));
+                    AkWwiseProjectInfo.GetData().RtpcWwu[in_wwuIndex].List.Add(valueToAdd);
+                    break;
+
+                case "Triggers":
+                    valueToAdd.Path = Path.Combine(in_currentPathInProj, valueToAdd.Name);
+                    valueToAdd.PathAndIcons.Add(new AkWwiseProjectData.PathElement(valueToAdd.Name, AkWwiseProjectData.WwiseObjectType.TRIGGER));
+                    AkWwiseProjectInfo.GetData().TriggerWwu[in_wwuIndex].List.Add(valueToAdd);
+                    break;
+
+                case "Virtual Acoustics":
+                    valueToAdd.Path = Path.Combine(in_currentPathInProj, valueToAdd.Name);
+                    valueToAdd.PathAndIcons.Add(new AkWwiseProjectData.PathElement(valueToAdd.Name, AkWwiseProjectData.WwiseObjectType.ACOUSTICTEXTURE));
+                    AkWwiseProjectInfo.GetData().AcousticTextureWwu[in_wwuIndex].List.Add(valueToAdd);
+                    break;
             }
-			else
-			{
-                valueToAdd.Path = Path.Combine(in_currentPathInProj, valueToAdd.Name);
-                valueToAdd.PathAndIcons.Add(new AkWwiseProjectData.PathElement(valueToAdd.Name, AkWwiseProjectData.WwiseObjectType.TRIGGER));
-                AkWwiseProjectInfo.GetData().TriggerWwu[in_wwuIndex].List.Add(valueToAdd);
-			}
-			
-			in_reader.Read();
+
+            in_reader.Read();
 		}
 		else if (in_type.RootDirectoryName == "States" || in_type.RootDirectoryName == "Switches")
 		{
@@ -739,8 +751,12 @@ public class AkWwiseWWUBuilder
         {
             return new AssetType("Triggers", "Trigger", "");
         }
-	
-		return null;
+        else if (String.Equals(in_rootDir, "Virtual Acoustics", StringComparison.OrdinalIgnoreCase))
+        {
+            return new AssetType("Virtual Acoustics", "AcousticTexture", "");
+        }
+
+        return null;
 	}
 }
 #endif

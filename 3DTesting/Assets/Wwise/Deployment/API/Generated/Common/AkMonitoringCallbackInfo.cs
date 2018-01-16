@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkMonitoringCallbackInfo : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkMonitoringCallbackInfo(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkMonitoringCallbackInfo(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkMonitoringCallbackInfo obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkMonitoringCallbackInfo obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkMonitoringCallbackInfo() {
@@ -30,51 +35,33 @@ public class AkMonitoringCallbackInfo : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkMonitoringCallbackInfo(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public ErrorCode errorCode {
-    get {
-      ErrorCode ret = (ErrorCode)AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_errorCode_get(swigCPtr);
-
-      return ret;
-    } 
+  public AK.Monitor.ErrorCode errorCode { get { return (AK.Monitor.ErrorCode)AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_errorCode_get(swigCPtr); } 
   }
 
-  public ErrorLevel errorLevel {
-    get {
-      ErrorLevel ret = (ErrorLevel)AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_errorLevel_get(swigCPtr);
-
-      return ret;
-    } 
+  public AK.Monitor.ErrorLevel errorLevel { get { return (AK.Monitor.ErrorLevel)AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_errorLevel_get(swigCPtr); } 
   }
 
-  public uint playingID {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_playingID_get(swigCPtr);
-
-      return ret;
-    } 
+  public uint playingID { get { return AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_playingID_get(swigCPtr); } 
   }
 
-  public ulong gameObjID { get { return AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_gameObjID_get(swigCPtr);
- } 
+  public ulong gameObjID { get { return AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_gameObjID_get(swigCPtr); } 
   }
 
-  public string message { get { return AkSoundEngine.StringFromIntPtrOSString(AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_message_get(swigCPtr));
- } 
+  public string message { get { return AkSoundEngine.StringFromIntPtrOSString(AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_message_get(swigCPtr)); } 
   }
 
   public AkMonitoringCallbackInfo() : this(AkSoundEnginePINVOKE.CSharp_new_AkMonitoringCallbackInfo(), true) {
-
   }
 
 }

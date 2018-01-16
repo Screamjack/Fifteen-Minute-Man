@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkRamp : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkRamp(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkRamp(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkRamp obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkRamp obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkRamp() {
@@ -30,14 +35,14 @@ public class AkRamp : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkRamp(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
@@ -47,24 +52,10 @@ public class AkRamp : IDisposable {
   public AkRamp(float in_fPrev, float in_fNext) : this(AkSoundEnginePINVOKE.CSharp_new_AkRamp__SWIG_1(in_fPrev, in_fNext), true) {
   }
 
-  public float fPrev {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkRamp_fPrev_set(swigCPtr, value);
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkRamp_fPrev_get(swigCPtr);
-      return ret;
-    } 
+  public float fPrev { set { AkSoundEnginePINVOKE.CSharp_AkRamp_fPrev_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkRamp_fPrev_get(swigCPtr); } 
   }
 
-  public float fNext {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkRamp_fNext_set(swigCPtr, value);
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkRamp_fNext_get(swigCPtr);
-      return ret;
-    } 
+  public float fNext { set { AkSoundEnginePINVOKE.CSharp_AkRamp_fNext_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkRamp_fNext_get(swigCPtr); } 
   }
 
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{0245D6B3-D0FC-4503-8497-D3194FD0EDF8}" SchemaVersion="80">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{0245D6B3-D0FC-4503-8497-D3194FD0EDF8}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="Footsteps" ID="{F8EC0D13-678E-498D-92A8-378D6B405F8D}">
+					<ObjectInclusionList>
+						<ObjectRef Name="footstep" ID="{33E8CAF3-AE6E-4537-8E2A-13B326FB2BB6}" WorkUnitID="{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="Ambient" ID="{EE941EE7-A6A2-4D2C-8370-BB847C1DC9C2}">
+					<ObjectInclusionList>
+						<ObjectRef Name="cube_noise" ID="{74E4F961-57F9-46D9-881C-D1E28F5B4EF3}" WorkUnitID="{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

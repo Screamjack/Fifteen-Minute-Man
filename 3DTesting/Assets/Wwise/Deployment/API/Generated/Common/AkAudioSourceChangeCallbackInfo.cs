@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkAudioSourceChangeCallbackInfo : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkAudioSourceChangeCallbackInfo(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkAudioSourceChangeCallbackInfo(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkAudioSourceChangeCallbackInfo obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkAudioSourceChangeCallbackInfo obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkAudioSourceChangeCallbackInfo() {
@@ -30,27 +35,21 @@ public class AkAudioSourceChangeCallbackInfo : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkAudioSourceChangeCallbackInfo(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public bool bOtherAudioPlaying {
-    get {
-      bool ret = AkSoundEnginePINVOKE.CSharp_AkAudioSourceChangeCallbackInfo_bOtherAudioPlaying_get(swigCPtr);
-
-      return ret;
-    } 
+  public bool bOtherAudioPlaying { get { return AkSoundEnginePINVOKE.CSharp_AkAudioSourceChangeCallbackInfo_bOtherAudioPlaying_get(swigCPtr); } 
   }
 
   public AkAudioSourceChangeCallbackInfo() : this(AkSoundEnginePINVOKE.CSharp_new_AkAudioSourceChangeCallbackInfo(), true) {
-
   }
 
 }

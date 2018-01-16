@@ -12,16 +12,21 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkSegmentInfo : IDisposable {
-  private IntPtr swigCPtr;
+  private global::System.IntPtr swigCPtr;
   protected bool swigCMemOwn;
 
-  internal AkSegmentInfo(IntPtr cPtr, bool cMemoryOwn) {
+  internal AkSegmentInfo(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  internal static IntPtr getCPtr(AkSegmentInfo obj) {
-    return (obj == null) ? IntPtr.Zero : obj.swigCPtr;
+  internal static global::System.IntPtr getCPtr(AkSegmentInfo obj) {
+    return (obj == null) ? global::System.IntPtr.Zero : obj.swigCPtr;
+  }
+
+  internal virtual void setCPtr(global::System.IntPtr cPtr) {
+    Dispose();
+    swigCPtr = cPtr;
   }
 
   ~AkSegmentInfo() {
@@ -30,127 +35,45 @@ public class AkSegmentInfo : IDisposable {
 
   public virtual void Dispose() {
     lock(this) {
-      if (swigCPtr != IntPtr.Zero) {
+      if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
           AkSoundEnginePINVOKE.CSharp_delete_AkSegmentInfo(swigCPtr);
         }
-        swigCPtr = IntPtr.Zero;
+        swigCPtr = global::System.IntPtr.Zero;
       }
-      GC.SuppressFinalize(this);
+      global::System.GC.SuppressFinalize(this);
     }
   }
 
-  public int iCurrentPosition {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iCurrentPosition_set(swigCPtr, value);
-
-    } 
-    get {
-      int ret = AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iCurrentPosition_get(swigCPtr);
-
-      return ret;
-    } 
+  public int iCurrentPosition { set { AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iCurrentPosition_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iCurrentPosition_get(swigCPtr); } 
   }
 
-  public int iPreEntryDuration {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iPreEntryDuration_set(swigCPtr, value);
-
-    } 
-    get {
-      int ret = AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iPreEntryDuration_get(swigCPtr);
-
-      return ret;
-    } 
+  public int iPreEntryDuration { set { AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iPreEntryDuration_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iPreEntryDuration_get(swigCPtr); } 
   }
 
-  public int iActiveDuration {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iActiveDuration_set(swigCPtr, value);
-
-    } 
-    get {
-      int ret = AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iActiveDuration_get(swigCPtr);
-
-      return ret;
-    } 
+  public int iActiveDuration { set { AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iActiveDuration_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iActiveDuration_get(swigCPtr); } 
   }
 
-  public int iPostExitDuration {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iPostExitDuration_set(swigCPtr, value);
-
-    } 
-    get {
-      int ret = AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iPostExitDuration_get(swigCPtr);
-
-      return ret;
-    } 
+  public int iPostExitDuration { set { AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iPostExitDuration_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iPostExitDuration_get(swigCPtr); } 
   }
 
-  public int iRemainingLookAheadTime {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iRemainingLookAheadTime_set(swigCPtr, value);
-
-    } 
-    get {
-      int ret = AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iRemainingLookAheadTime_get(swigCPtr);
-
-      return ret;
-    } 
+  public int iRemainingLookAheadTime { set { AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iRemainingLookAheadTime_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_iRemainingLookAheadTime_get(swigCPtr); } 
   }
 
-  public float fBeatDuration {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fBeatDuration_set(swigCPtr, value);
-
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fBeatDuration_get(swigCPtr);
-
-      return ret;
-    } 
+  public float fBeatDuration { set { AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fBeatDuration_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fBeatDuration_get(swigCPtr); } 
   }
 
-  public float fBarDuration {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fBarDuration_set(swigCPtr, value);
-
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fBarDuration_get(swigCPtr);
-
-      return ret;
-    } 
+  public float fBarDuration { set { AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fBarDuration_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fBarDuration_get(swigCPtr); } 
   }
 
-  public float fGridDuration {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fGridDuration_set(swigCPtr, value);
-
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fGridDuration_get(swigCPtr);
-
-      return ret;
-    } 
+  public float fGridDuration { set { AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fGridDuration_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fGridDuration_get(swigCPtr); } 
   }
 
-  public float fGridOffset {
-    set {
-      AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fGridOffset_set(swigCPtr, value);
-
-    } 
-    get {
-      float ret = AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fGridOffset_get(swigCPtr);
-
-      return ret;
-    } 
+  public float fGridOffset { set { AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fGridOffset_set(swigCPtr, value); }  get { return AkSoundEnginePINVOKE.CSharp_AkSegmentInfo_fGridOffset_get(swigCPtr); } 
   }
 
   public AkSegmentInfo() : this(AkSoundEnginePINVOKE.CSharp_new_AkSegmentInfo(), true) {
-
   }
 
 }

@@ -235,7 +235,7 @@ public class WwiseSetupWizard
 
         AkPluginActivator.DeactivateAllPlugins();
         AkPluginActivator.Update();
-        AkPluginActivator.ActivatePlugins(AkPluginActivator.CONFIG_PROFILE, true);
+        AkPluginActivator.ActivatePluginsForEditor();
 
         // Get the name of the currently opened scene.
         string currentScene = AkSceneUtils.GetCurrentScene().Replace('/', '\\');
@@ -295,7 +295,7 @@ public class WwiseSetupWizard
 
         AkPluginActivator.DeactivateAllPlugins();
         AkPluginActivator.Update();
-        AkPluginActivator.ActivatePlugins(currentConfig, true);
+        AkPluginActivator.ActivatePluginsForEditor();
     }
 
     // Perform all necessary steps to use the Wwise Unity integration.
@@ -327,7 +327,7 @@ public class WwiseSetupWizard
         PlayerSettings.runInBackground = true;
 
         AkPluginActivator.Update();
-        AkPluginActivator.ActivatePlugins(AkPluginActivator.CONFIG_PROFILE, true);
+        AkPluginActivator.ActivatePluginsForEditor();
 
         // 9. Activate WwiseIDs file generation, and point Wwise to the Assets/Wwise folder
         // 10. Change the SoundBanks options so it adds Max Radius information in the Wwise project

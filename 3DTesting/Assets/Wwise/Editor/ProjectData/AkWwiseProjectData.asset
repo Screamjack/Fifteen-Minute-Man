@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}'
-    m_lastTimePsrt1: 957383804
-    m_lastTimePart2: -1999283703
+    m_lastTimePsrt1: -494152851
+    m_lastTimePart2: -1999282923
     List:
     - Name: cube_noise
       Path: Default Work Unit\cube_noise
@@ -28,7 +28,9 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1858278865
       Guid: 61f9e474f957d946881cd1e28f5b4ef3
-      maxAttenuation: 3
+      minDuration: 0
+      maxDuration: 0
+      maxAttenuation: 0
     - Name: footstep
       Path: Default Work Unit\footstep
       PathAndIcons:
@@ -38,34 +40,36 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1866025847
       Guid: f3cae8336eae37458e2a13b326fb2bb6
+      minDuration: 0
+      maxDuration: 0
       maxAttenuation: 0
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{7CC787C4-A834-4070-8420-8DE55E36CBB6}'
-    m_lastTimePsrt1: 420319462
-    m_lastTimePart2: -1999287532
+    m_lastTimePsrt1: -494282943
+    m_lastTimePart2: -1999282923
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{5C012531-C6A2-4249-BD42-E62C619CC9C1}'
-    m_lastTimePsrt1: 420669702
-    m_lastTimePart2: -1999287532
+    m_lastTimePsrt1: -492551277
+    m_lastTimePart2: -1999282923
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{A2673887-125A-4954-8F46-B7421F1B1AB7}'
-    m_lastTimePsrt1: 420289461
-    m_lastTimePart2: -1999287532
+    m_lastTimePsrt1: -493592455
+    m_lastTimePart2: -1999282923
     List: []
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{0245D6B3-D0FC-4503-8497-D3194FD0EDF8}'
-    m_lastTimePsrt1: 37788647
-    m_lastTimePart2: -1999284039
+    m_lastTimePsrt1: -491734132
+    m_lastTimePart2: -1999282923
     List:
     - Name: Ambient
       Path: Default Work Unit\Ambient
@@ -89,15 +93,22 @@ MonoBehaviour:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{8BFCCF38-7275-4927-A94B-0FC9645CB4EA}'
-    m_lastTimePsrt1: 420269419
-    m_lastTimePart2: -1999287532
+    m_lastTimePsrt1: -491278820
+    m_lastTimePart2: -1999282923
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{D246A297-EF12-4D56-B645-B700B1092295}'
-    m_lastTimePsrt1: 420699720
-    m_lastTimePart2: -1999287532
+    m_lastTimePsrt1: -491073673
+    m_lastTimePart2: -1999282923
+    List: []
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{9D386570-03FF-43F3-BF6A-3D61BFC469D8}'
+    m_lastTimePsrt1: -491383892
+    m_lastTimePart2: -1999282923
     List: []
   ExpandedItems:
   - /3DTesting_WwiseProject

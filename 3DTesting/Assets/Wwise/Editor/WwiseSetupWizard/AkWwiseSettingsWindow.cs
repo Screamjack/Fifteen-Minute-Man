@@ -176,6 +176,18 @@ public class AkWwiseSettingsWindow : EditorWindow
 		}
 
 		GUILayout.EndHorizontal();
+
+		description = "Enable copying of soundbanks at pre-Build step";
+		tooltip = "Copies the soundbanks in the appropriate location for building and deployment. It is recommended to leave this box checked.";
+		WwiseSetupWizard.Settings.CopySoundBanksAsPreBuildStep = GUILayout.Toggle(WwiseSetupWizard.Settings.CopySoundBanksAsPreBuildStep, new GUIContent(description, tooltip));
+
+		if (WwiseSetupWizard.Settings.CopySoundBanksAsPreBuildStep)
+		{
+			description = "Enable soundbank generation at pre-Build step";
+			tooltip = "Generates the soundbanks before copying them during pre-Build step. It is recommended to leave this box unchecked if soundbanks are generated on a specific build machine.";
+			WwiseSetupWizard.Settings.GenerateSoundBanksAsPreBuildStep = GUILayout.Toggle(WwiseSetupWizard.Settings.GenerateSoundBanksAsPreBuildStep, new GUIContent(description, tooltip));
+		}
+
 		description = "Create WwiseGlobal GameObject";
 		tooltip = "The WwiseGlobal object is a GameObject that contains the Initializing and Terminating scripts for the Wwise Sound Engine. In the Editor workflow, it is added to every scene, so that it can be properly be previewed in the Editor. In the game, only one instance is created, in the first scene, and it is persisted throughout the game. It is recommended to leave this box checked.";
 		WwiseSetupWizard.Settings.CreateWwiseGlobal = GUILayout.Toggle(WwiseSetupWizard.Settings.CreateWwiseGlobal, new GUIContent(description, tooltip));
@@ -190,7 +202,7 @@ public class AkWwiseSettingsWindow : EditorWindow
 
 		GUILayout.BeginVertical("box");
 		description = "Show Warning for Missing RigidBody";
-		tooltip = "AkGameObj-AkEnvironment interactions require a Rigidbody component on the object or the environment. It is recommended to leave this box checked.";
+		tooltip = "Interactions between AkGameObj and AkEnvironment or AkRoom require a Rigidbody component on the object or the environment/room. It is recommended to leave this box checked.";
 		WwiseSetupWizard.Settings.ShowMissingRigidBodyWarning = GUILayout.Toggle(WwiseSetupWizard.Settings.ShowMissingRigidBodyWarning, new GUIContent(description, tooltip));
 		GUILayout.EndVertical();
 
@@ -209,7 +221,7 @@ public class AkWwiseSettingsWindow : EditorWindow
 		// Get existing open window or if none, make a new one:
 		EditorWindow window = EditorWindow.GetWindow(typeof(AkWwiseSettingsWindow));
 
-		window.position = new Rect(100, 100, 850, 330);
+		window.position = new Rect(100, 100, 850, 360);
 
 		window.titleContent = new GUIContent("Wwise Settings");
 
