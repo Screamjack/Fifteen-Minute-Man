@@ -32,3 +32,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Wwise
+/3DTesting_WwiseProject/Originals/SFX/*.akd
+/3DTesting_WwiseProject/.cache/
+
