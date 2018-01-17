@@ -15,9 +15,11 @@ public class PlayerController : MonoBehaviour {
     public float rotateSpeed = 1f;
 
     private float distancetoGround = 0.1f;
+    private float moddedGroundDist;
     private bool running = false;
     private bool inAir = false;
     private bool grounded;
+    private bool canMove = true;
     private Quaternion currentRotation;
 
 
@@ -35,46 +37,54 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
         Debug.Log("Grounded: " + grounded);
         movement = Vector3.zero;
-        if (Input.GetKey(KeyCode.W))
+        if (canMove)
         {
-            if(Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.W)) //Forward
             {
-                movement = transform.forward * runspeed * Time.fixedDeltaTime;
-                if (!running)
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    anim.SetBool("running", true);
-                    running = true;
+                    movement = transform.forward * runspeed * Time.fixedDeltaTime;
+                    if (!running)
+                    {
+                        anim.SetBool("running", true);
+                        running = true;
+                    }
                 }
+                else
+                {
+                    movement = transform.forward * walkspeed * Time.fixedDeltaTime;
+                    if (running)
+                    {
+                        anim.SetBool("running", false);
+                        running = false;
+                    }
+                }
+                rb.MovePosition(rb.position + movement);
             }
-            else
+            else if(Input.GetKey(KeyCode.S))
             {
-                movement = transform.forward * walkspeed * Time.fixedDeltaTime;
-                if(running)
-                {
-                    anim.SetBool("running", false);
-                    running = false;
-                }
+                movement = -transform.forward * walkspeed * Time.fixedDeltaTime;
+                rb.MovePosition(rb.position + movement);
             }
-            rb.MovePosition(rb.position + movement);
-        }
 
-        if(Input.GetKey(KeyCode.D))
-        {
-            currentRotation = Quaternion.Euler(currentRotation.eulerAngles + Vector3.up * rotateSpeed);
-            rb.MoveRotation(currentRotation);
+            if (Input.GetKey(KeyCode.D)) //Right
+            {
+                currentRotation = Quaternion.Euler(currentRotation.eulerAngles + Vector3.up * rotateSpeed);
+                rb.MoveRotation(currentRotation);
+            }
+            else if (Input.GetKey(KeyCode.A)) //Left
+            {
+                currentRotation = Quaternion.Euler(currentRotation.eulerAngles - Vector3.up * rotateSpeed);
+                rb.MoveRotation(currentRotation);
+            }
         }
-        else if(Input.GetKey(KeyCode.A))
-        {
-            currentRotation = Quaternion.Euler(currentRotation.eulerAngles - Vector3.up * rotateSpeed);
-            rb.MoveRotation(currentRotation);
-        }
-
         if(grounded)
         {
             if (inAir)
             {
-                inAir = false;
                 anim.SetBool("jump", false);
+                canMove = false;
+                StartCoroutine(EndJump());
             }
 
             if (Input.GetKey(KeyCode.Space))
@@ -94,11 +104,20 @@ public class PlayerController : MonoBehaviour {
         anim.SetFloat("movement", movement.sqrMagnitude);
 	}
 
+    IEnumerator EndJump()
+    {
+        yield return new WaitForSeconds(0.53f); //Stupid fucking magic numbers because imported animations are awful.
+        canMove = true;
+        inAir = false;
+    }
 
 
     void LateUpdate()
     {
-        grounded = Physics.Raycast(transform.position + new Vector3(0, 0.05f, 0), Vector3.down, distancetoGround);
-        Debug.DrawRay(transform.position + new Vector3(0, 0.05f, 0), Vector3.down * distancetoGround, Color.red);
+        moddedGroundDist = -rb.velocity.y + distancetoGround;
+        moddedGroundDist = Mathf.Clamp(moddedGroundDist, -distancetoGround * 2, distancetoGround - (distancetoGround * rb.velocity.y));
+        Debug.Log(rb.velocity.y);
+        grounded = Physics.Raycast(transform.position + new Vector3(0, 0.05f, 0), Vector3.down, moddedGroundDist);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.05f, 0), Vector3.down * moddedGroundDist, Color.red);
     }
 }

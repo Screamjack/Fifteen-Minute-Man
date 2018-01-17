@@ -40,6 +40,7 @@ public class RotationMaster : MonoBehaviour {
 
     void OnApplicationFocus(bool focus)
     {
+        return;
         if(focus)
         {
             Cursor.lockState = CursorLockMode.Locked;
