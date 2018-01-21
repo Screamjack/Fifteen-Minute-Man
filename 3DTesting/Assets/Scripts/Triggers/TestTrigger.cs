@@ -16,23 +16,28 @@ public class TestTrigger : MonoBehaviour, TriggerInterface {
     }
 
     [SerializeField]
-    List<TriggerInterface> preReqs;
+    List<TestTrigger> preReqs;
 
     public bool CheckTrigger()
     {
+        if (preReqs.Count == 0) return true;
         bool retVal = true;
         foreach(TriggerInterface t in preReqs)
         {
             if (!t.completed)
                 retVal = false;
         }
+        Debug.Log("Prereqs Done? " + retVal);
         return retVal;
     }
 
     public void ActivateTrigger()
     {
-        triggerStarted = true;
-        StartCoroutine(LiftBlock(1));
+        if (CheckTrigger())
+        {
+            triggerStarted = true;
+            StartCoroutine(LiftBlock(1));
+        }
     }
 
     IEnumerator LiftBlock(float duration)
