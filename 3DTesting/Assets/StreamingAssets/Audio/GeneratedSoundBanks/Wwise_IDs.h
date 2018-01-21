@@ -15,7 +15,24 @@ namespace AK
     {
         static const AkUniqueID CUBE_NOISE = 1858278865U;
         static const AkUniqueID FOOTSTEP = 1866025847U;
+        static const AkUniqueID JUMP = 3833651337U;
+        static const AkUniqueID LAND = 674522502U;
     } // namespace EVENTS
+
+    namespace SWITCHES
+    {
+        namespace FOOTSTEPS
+        {
+            static const AkUniqueID GROUP = 2385628198U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID GRASS = 4248645337U;
+                static const AkUniqueID HARD = 3599861390U;
+            } // namespace SWITCH
+        } // namespace FOOTSTEPS
+
+    } // namespace SWITCHES
 
     namespace BANKS
     {
@@ -29,6 +46,11 @@ namespace AK
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MASTER_SECONDARY_BUS = 805203703U;
     } // namespace BUSSES
+
+    namespace AUX_BUSSES
+    {
+        static const AkUniqueID REVERB = 348963605U;
+    } // namespace AUX_BUSSES
 
     namespace AUDIO_DEVICES
     {

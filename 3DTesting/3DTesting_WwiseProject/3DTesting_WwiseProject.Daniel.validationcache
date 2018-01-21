@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ValidationCache Version="1" SchemaVersion="85">
-	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\3DTesting_WwiseProject.Daniel.wsettings" DateLow="1516130372" DateHigh="0"/>
-	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\3DTesting_WwiseProject.wproj" DateLow="1516130289" DateHigh="0"/>
-	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1516130291" DateHigh="0"/>
+	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\3DTesting_WwiseProject.Daniel.wsettings" DateLow="1516261435" DateHigh="0"/>
+	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\3DTesting_WwiseProject.wproj" DateLow="1516145484" DateHigh="0"/>
+	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1516484462" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Attenuations\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Audio Devices\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Control Surface Sessions\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
@@ -10,20 +10,20 @@
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Conversion Settings\Factory Conversion Settings.wwu" DateLow="1516130291" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Dynamic Dialogue\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Effects\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
-	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Effects\Factory Effects.wwu" DateLow="1516130292" DateHigh="0"/>
-	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Events\Default Work Unit.wwu" DateLow="1516130291" DateHigh="0"/>
+	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Effects\Factory Effects.wwu" DateLow="1516484462" DateHigh="0"/>
+	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Events\Default Work Unit.wwu" DateLow="1516480678" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Game Parameters\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
-	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1516130291" DateHigh="0"/>
+	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1516484462" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Mixing Sessions\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Modulators\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Presets\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Queries\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Queries\Factory Queries.wwu" DateLow="1516130292" DateHigh="0"/>
-	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\SoundBanks\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
+	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\SoundBanks\Default Work Unit.wwu" DateLow="1516481347" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\States\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
-	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Switches\Default Work Unit.wwu" DateLow="1516130291" DateHigh="0"/>
+	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Switches\Default Work Unit.wwu" DateLow="1516236703" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Triggers\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 	<ValidationCacheItem File="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\Virtual Acoustics\Default Work Unit.wwu" DateLow="1516130292" DateHigh="0"/>
 </ValidationCache>

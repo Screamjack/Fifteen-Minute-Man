@@ -6,6 +6,8 @@
 				<SoundBank Name="Footsteps" ID="{F8EC0D13-678E-498D-92A8-378D6B405F8D}">
 					<ObjectInclusionList>
 						<ObjectRef Name="footstep" ID="{33E8CAF3-AE6E-4537-8E2A-13B326FB2BB6}" WorkUnitID="{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="jump" ID="{522783A2-EB8A-4866-B18D-E07FF3CFF6FA}" WorkUnitID="{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="land" ID="{493108DB-E93D-4982-8153-2BF805AD1914}" WorkUnitID="{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}" Filter="7" Origin="Manual"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

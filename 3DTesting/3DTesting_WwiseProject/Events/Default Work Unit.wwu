@@ -11,7 +11,7 @@
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Footsteps" ID="{1401AEAB-00B8-413A-846C-41E71A024C6E}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
+									<ObjectRef Name="Footsteps" ID="{5B154133-E619-461B-A7CC-F779EEC7A46B}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -26,6 +26,54 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="engine loop" ID="{CA1D9620-730E-4B31-A8FE-26FDD8E776E7}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="jump" ID="{522783A2-EB8A-4866-B18D-E07FF3CFF6FA}">
+					<ChildrenList>
+						<Action Name="" ID="{187AB5A1-B661-468C-8DDB-C37AD31C3759}" ShortID="282485194">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Footsteps_Jump" ID="{4060508C-E7A9-4564-97BD-8DFF3C9E5C07}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{40AC77C7-726F-4798-BB73-EF74EA0FD693}" ShortID="460819326">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="4"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Footsteps" ID="{5B154133-E619-461B-A7CC-F779EEC7A46B}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="land" ID="{493108DB-E93D-4982-8153-2BF805AD1914}">
+					<ChildrenList>
+						<Action Name="" ID="{DDF07E54-EC66-42A1-9E0A-DE9AC95652DE}" ShortID="888832039">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Footsteps_Landing" ID="{9B9102AD-64A5-415E-8988-D1908739195C}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{AE1F7963-0465-416A-9291-B470B5E69DC7}" ShortID="978708565">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Footsteps" ID="{5B154133-E619-461B-A7CC-F779EEC7A46B}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

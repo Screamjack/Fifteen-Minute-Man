@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="Project" SchemaVersion="85" WwiseVersion="v2017.1.4" WwiseBuild="6407">
+<WwiseDocument Type="Project" SchemaVersion="85" WwiseVersion="v2017.2.0" WwiseBuild="6500">
 	<ProjectInfo>
 		<Project Name="3DTesting_WwiseProject" ID="{7B6A33ED-4077-4C6A-9FCD-139689B1F9D8}">
 			<Platforms>
@@ -15,8 +15,8 @@
 			<PropertyList>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
-						<Value Platform="Mac"/>
-						<Value Platform="Windows"/>
+						<Value Platform="Mac"></Value>
+						<Value Platform="Windows"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="ExternalSourcesOutputPath" Type="string">
@@ -25,7 +25,9 @@
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
 					</ValueList>
 				</Property>
-				<Property Name="SoundBankGenerateHeaderFile" Type="bool" Value="True"/><Property Name="SoundBankGenerateMaxAttenuationInfo" Type="bool" Value="True"/><Property Name="SoundBankHeaderFilePath" Type="string" Value="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\Assets\StreamingAssets\Audio\GeneratedSoundBanks"/>
+				<Property Name="SoundBankGenerateHeaderFile" Type="bool" Value="True"/>
+				<Property Name="SoundBankGenerateMaxAttenuationInfo" Type="bool" Value="True"/>
+				<Property Name="SoundBankHeaderFilePath" Type="string" Value="C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\Assets\StreamingAssets\Audio\GeneratedSoundBanks"/>
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>
 						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
@@ -46,14 +48,14 @@
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdDescription" Type="string">
 					<ValueList>
-						<Value Platform="Mac"/>
-						<Value Platform="Windows"/>
+						<Value Platform="Mac"></Value>
+						<Value Platform="Windows"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdLines" Type="string">
 					<ValueList>
-						<Value Platform="Mac"/>
-						<Value Platform="Windows"/>
+						<Value Platform="Mac"></Value>
+						<Value Platform="Windows"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="WwiseVersionWhenCreated" Type="string" Value="Branch=wwise_v2017.1|Build=6407|VersionName=v2017.1.4|Config=Release"/>
@@ -211,6 +213,16 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
@@ -361,8 +373,6 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
-						
 						<Property Name="OutputBusHighpass" Type="int16">
 							<ValueList>
 								<Value>0</Value>
@@ -423,7 +433,6 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="OverrideOutput" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -512,6 +521,46 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -722,12 +771,12 @@
 						</Property>
 						<Property Name="ExternalSourcesInputPath" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="ExternalSourcesOutputPath" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="FrequencyWeighting" Type="int16">
@@ -762,7 +811,12 @@
 						</Property>
 						<Property Name="LicenseKey" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
+							</ValueList>
+						</Property>
+						<Property Name="MaxDangerousVirtualVoices" Type="Uint32">
+							<ValueList>
+								<Value>50</Value>
 							</ValueList>
 						</Property>
 						<Property Name="MaxMessagesPerMessageId" Type="Uint32">
@@ -807,7 +861,7 @@
 						</Property>
 						<Property Name="SoundBankHeaderFilePath" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankIncludeSoundbankNamesStrings" Type="bool">
@@ -817,27 +871,27 @@
 						</Property>
 						<Property Name="SoundBankPaths" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankPostGenerateCustomCmdDescription" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankPostGenerateCustomCmdLines" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankPreGenerateCustomCmdDescription" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankPreGenerateCustomCmdLines" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankUpdateAudioFiles" Type="bool">
@@ -855,6 +909,11 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="UseMaxDangerousVirtualVoices" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
 						<Property Name="UseMaxMessagesPerMessageId" Type="bool">
 							<ValueList>
 								<Value>True</Value>
@@ -867,7 +926,7 @@
 						</Property>
 						<Property Name="WwiseVersionWhenCreated" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -1583,6 +1642,16 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
@@ -1693,8 +1762,6 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
-						
 						<Property Name="OutputBusHighpass" Type="int16">
 							<ValueList>
 								<Value>0</Value>
@@ -1755,7 +1822,6 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="OverrideOutput" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -1839,6 +1905,46 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -1943,6 +2049,16 @@
 						<Property Name="FollowListenerOrientation" Type="bool">
 							<ValueList>
 								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
@@ -2065,8 +2181,6 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
-						
 						<Property Name="NormalOrShuffle" Type="int16">
 							<ValueList>
 								<Value>1</Value>
@@ -2132,7 +2246,6 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="OverrideOutput" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -2276,6 +2389,46 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -2610,6 +2763,16 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
@@ -2725,8 +2888,6 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
-						
 						<Property Name="OutputBusHighpass" Type="int16">
 							<ValueList>
 								<Value>0</Value>
@@ -2787,7 +2948,6 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="OverrideOutput" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -2876,6 +3036,46 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -3131,6 +3331,16 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
@@ -3206,12 +3416,26 @@
 								<Value>50</Value>
 							</ValueList>
 						</Property>
+						<Property Name="OutputBusHighpass" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OutputBusLowpass" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OutputBusVolume" Type="Real64">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="OverLimitBehavior" Type="int16">
 							<ValueList>
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="Pitch" Type="int32">
 							<ValueList>
 								<Value>0</Value>
@@ -3245,6 +3469,46 @@
 						<Property Name="UsedForBackgroundMusic" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -3439,6 +3703,16 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
@@ -3519,8 +3793,6 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
-						
 						<Property Name="OutputBusHighpass" Type="int16">
 							<ValueList>
 								<Value>0</Value>
@@ -3586,7 +3858,6 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="OverrideOutput" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -3685,6 +3956,46 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -3786,6 +4097,16 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
@@ -3871,8 +4192,6 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
-						
 						<Property Name="MusicTrackType" Type="int16">
 							<ValueList>
 								<Value>0</Value>
@@ -3938,7 +4257,6 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="OverrideOutput" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -4022,6 +4340,46 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -4131,6 +4489,16 @@
 						<Property Name="FollowListenerOrientation" Type="bool">
 							<ValueList>
 								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
@@ -4248,8 +4616,6 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
-						
 						<Property Name="OutputBusHighpass" Type="int16">
 							<ValueList>
 								<Value>0</Value>
@@ -4310,7 +4676,6 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="OverrideOutput" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -4394,6 +4759,46 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -4486,7 +4891,7 @@
 						</Property>
 						<Property Name="StartFromHereObject" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -4495,7 +4900,7 @@
 					<PropertyList>
 						<Property Name="Attenuation" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="ConditionalOperator" Type="int16">
@@ -4505,7 +4910,7 @@
 						</Property>
 						<Property Name="Conversion" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="CurveType" Type="int16">
@@ -4520,17 +4925,17 @@
 						</Property>
 						<Property Name="DefaultSwitchState" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="Effect" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="EffectClassID" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="EventsReferencedInOperator" Type="int16">
@@ -4540,7 +4945,7 @@
 						</Property>
 						<Property Name="GameParameter" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="HasEmptyAssignation" Type="bool">
@@ -4593,14 +4998,9 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						<Property Name="MotionDevice" Type="string">
-							<ValueList>
-								<Value/>
-							</ValueList>
-						</Property>
 						<Property Name="MusicSegment" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="NumericOperator" Type="int16">
@@ -4610,17 +5010,17 @@
 						</Property>
 						<Property Name="ObjectReferenced" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="OutputBus" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="PropertyName" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="RTPCOperator" Type="int16">
@@ -4655,7 +5055,7 @@
 						</Property>
 						<Property Name="SourceAudioFormat" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SourceChannelsLFEOption" Type="int32">
@@ -4675,22 +5075,22 @@
 						</Property>
 						<Property Name="SourceLanguage" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SourceType" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="State" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="StateGroup" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="StatePropertyUsage" Type="int16">
@@ -4700,7 +5100,7 @@
 						</Property>
 						<Property Name="SwitchGroup" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SwitchingOperator" Type="int16">
@@ -4710,7 +5110,7 @@
 						</Property>
 						<Property Name="Trigger" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="UIntValue" Type="Uint32">
@@ -4720,7 +5120,7 @@
 						</Property>
 						<Property Name="UserString" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="UsingOperator" Type="int16">
@@ -4795,6 +5195,16 @@
 						<Property Name="FollowListenerOrientation" Type="bool">
 							<ValueList>
 								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
@@ -4877,8 +5287,6 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
-						
 						<Property Name="OutputBusHighpass" Type="int16">
 							<ValueList>
 								<Value>0</Value>
@@ -4944,7 +5352,6 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="OverrideOutput" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -5043,6 +5450,46 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -5149,6 +5596,16 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
@@ -5234,8 +5691,6 @@
 								<Value>0</Value>
 							</ValueList>
 						</Property>
-						
-						
 						<Property Name="OutputBusHighpass" Type="int16">
 							<ValueList>
 								<Value>0</Value>
@@ -5301,7 +5756,6 @@
 								<Value>False</Value>
 							</ValueList>
 						</Property>
-						
 						<Property Name="OverrideOutput" Type="bool">
 							<ValueList>
 								<Value>False</Value>
@@ -5400,6 +5854,46 @@
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -5507,7 +6001,7 @@
 						</Property>
 						<Property Name="ExitSourceCustomCueMatchName" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="IsFolder" Type="bool">
@@ -5522,7 +6016,7 @@
 						</Property>
 						<Property Name="JumpToCustomCueMatchName" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="PlayDestinationPreEntry" Type="bool">
@@ -5561,7 +6055,7 @@
 					<PropertyList>
 						<Property Name="CustomCueMatchName" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="DontPlayAgainTime" Type="Real64">
@@ -5673,9 +6167,6 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				
-				
-				
 				<SharedPropertyList ClassName="UserProjectSettings" PluginType="0" CompanyID="1" PluginID="51">
 					<PropertyList>
 						<Property Name="ConvertExternalSources" Type="bool">
@@ -5715,12 +6206,12 @@
 						</Property>
 						<Property Name="ExternalSourcesInputPath" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="ExternalSourcesOutputPath" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="ExternalSourcesOverrideInputPath" Type="bool">
@@ -5810,7 +6301,7 @@
 						</Property>
 						<Property Name="SoundBankHeaderFilePath" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankIncludeSoundbankNamesStrings" Type="bool">
@@ -5825,27 +6316,27 @@
 						</Property>
 						<Property Name="SoundBankPaths" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankPostGenerateCustomCmdDescription" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankPostGenerateCustomCmdLines" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankPreGenerateCustomCmdDescription" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankPreGenerateCustomCmdLines" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="SoundBankUpdateAudioFiles" Type="bool">
@@ -5865,7 +6356,7 @@
 					<PropertyList>
 						<Property Name="DataFileName" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -6085,6 +6576,16 @@
 								<Value>True</Value>
 							</ValueList>
 						</Property>
+						<Property Name="GameAuxSendHPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GameAuxSendLPF" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
 						<Property Name="GameAuxSendVolume" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
@@ -6096,6 +6597,21 @@
 							</ValueList>
 						</Property>
 						<Property Name="Lowpass" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OutputBusHighpass" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OutputBusLowpass" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="OutputBusVolume" Type="Real64">
 							<ValueList>
 								<Value>0</Value>
 							</ValueList>
@@ -6118,6 +6634,46 @@
 						<Property Name="UseGameAuxSends" Type="bool">
 							<ValueList>
 								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendHPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF0" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF1" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF2" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UserAuxSendLPF3" Type="int16">
+							<ValueList>
+								<Value>0</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UserAuxSendVolume0" Type="Real64">
@@ -6161,7 +6717,7 @@
 						</Property>
 						<Property Name="MidiFileName" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="PlayAt" Type="Real64">
@@ -6283,7 +6839,7 @@
 					<PropertyList>
 						<Property Name="HardwareControllerKey" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="ObjectIndexInView" Type="int32">
@@ -6298,7 +6854,7 @@
 						</Property>
 						<Property Name="TargetName" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="TargetType" Type="int16">
@@ -6317,7 +6873,7 @@
 						</Property>
 						<Property Name="HardwareControllerKey" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="ObjectIndexInView" Type="int32">
@@ -6332,7 +6888,7 @@
 						</Property>
 						<Property Name="TargetName" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="TargetType" Type="int16">
@@ -8097,6 +8653,170 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
+				<SharedPropertyList ClassName="Wwise Convolution Reverb" PluginType="3" CompanyID="0" PluginID="127">
+					<PropertyList>
+						<Property Name="AlgoTypeSelect" Type="int32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="CenterLevel" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="ChannelConfigOverride" Type="int64">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="DryLevel" Type="Real32">
+							<ValueList>
+								<Value>-96.3</Value>
+							</ValueList>
+						</Property>
+						<Property Name="FrontLevel" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="FrontRearDelay" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRChannelSelect" Type="int32">
+							<ValueList>
+								<Value>4</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRConvolutionSmooth" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRConvolutionSmoothMax" Type="Real32">
+							<ValueList>
+								<Value>100</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRConvolutionStart" Type="Real64">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRConvolutionStop" Type="Real64">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRConvolutionThreshold" Type="Real32">
+							<ValueList>
+								<Value>-144</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRGraphicEQAutomate" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRLPFAutomate" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRLPFSlope" Type="int32">
+							<ValueList>
+								<Value>6</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRLRMix" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRLevel" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRLevelAutomate" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IRStretch" Type="Real32">
+							<ValueList>
+								<Value>100</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="InputCenterLevel" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="InputLFELevel" Type="Real32">
+							<ValueList>
+								<Value>-96.3</Value>
+							</ValueList>
+						</Property>
+						<Property Name="InputStereoWidth" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="LFELevel" Type="Real32">
+							<ValueList>
+								<Value>-96.3</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PreDelay" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="RearLevel" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SoundEngineBlockSizeDefault" Type="int32">
+							<ValueList>
+								<Value>1024</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SoundEngineSampleRateDefault" Type="int32">
+							<ValueList>
+								<Value>48000</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SoundEngineSampleRateMac" Type="int32">
+							<ValueList>
+								<Value>48000</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SoundEngineSampleRateiOS" Type="int32">
+							<ValueList>
+								<Value>48000</Value>
+							</ValueList>
+						</Property>
+						<Property Name="StereoWidth" Type="Real32">
+							<ValueList>
+								<Value>180</Value>
+							</ValueList>
+						</Property>
+						<Property Name="WetLevel" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
 				<SharedPropertyList ClassName="Wwise Meter" PluginType="3" CompanyID="0" PluginID="129">
 					<PropertyList>
 						<Property Name="ApplyDownstreamVolume" Type="bool">
@@ -8273,7 +8993,7 @@
 						</Property>
 						<Property Name="GameFilename" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="Inclusion" Type="bool">
@@ -8732,6 +9452,74 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
+				<SharedPropertyList ClassName="System" PluginType="7" CompanyID="0" PluginID="174">
+					<PropertyList>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="DVR Bypass" PluginType="7" CompanyID="0" PluginID="175">
+					<PropertyList>
+						<Property Name="DVRRecordable" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="Communication" PluginType="7" CompanyID="0" PluginID="176">
+					<PropertyList>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="Controller Headphones" PluginType="7" CompanyID="0" PluginID="177">
+					<PropertyList>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="Controller Speaker" PluginType="7" CompanyID="0" PluginID="179">
+					<PropertyList>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="Auxiliary" PluginType="7" CompanyID="0" PluginID="180">
+					<PropertyList>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="No Output" PluginType="7" CompanyID="0" PluginID="181">
+					<PropertyList>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
 				<SharedPropertyList ClassName="Wwise Audio Input" PluginType="2" CompanyID="0" PluginID="200">
 					<PropertyList>
 						<Property Name="AudioInputGain" Type="Real32">
@@ -8741,7 +9529,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="Tone Generator - Motion" PluginType="5" CompanyID="0" PluginID="403">
+				<SharedPropertyList ClassName="" PluginType="5" CompanyID="0" PluginID="403">
 					<PropertyList>
 						<Property Name="AttackTime" Type="Real32">
 							<ValueList>
@@ -8835,7 +9623,7 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="Silence - Motion" PluginType="5" CompanyID="0" PluginID="404">
+				<SharedPropertyList ClassName="" PluginType="5" CompanyID="0" PluginID="404">
 					<PropertyList>
 						<Property Name="Length" Type="Real32">
 							<ValueList>
@@ -8850,6 +9638,55 @@
 						<Property Name="LengthMin" Type="Real32">
 							<ValueList>
 								<Value>0</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="Wwise Motion Generator" PluginType="2" CompanyID="0" PluginID="405">
+					<PropertyList>
+						<Property Name="AttackTime" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="DecayTime" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Duration" Type="Real32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="DurationType" Type="int16">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Period" Type="Real32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PeriodMultiplier" Type="Real32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="ReleaseTime" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SustainLevel" Type="Real32">
+							<ValueList>
+								<Value>-12</Value>
+							</ValueList>
+						</Property>
+						<Property Name="SustainTime" Type="Real32">
+							<ValueList>
+								<Value>1</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -8903,7 +9740,257 @@
 						</Property>
 					</PropertyList>
 				</SharedPropertyList>
-				<SharedPropertyList ClassName="Controller" PluginType="4" CompanyID="0" PluginID="406"/>
+				<SharedPropertyList ClassName="CrankcaseAudio REV" PluginType="2" CompanyID="261" PluginID="416">
+					<PropertyList>
+						<Property Name="EnableShifting" Type="int32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Gain" Type="Real32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Gear" Type="int32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="RPM" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="RPMGameParameter" Type="string">
+							<ValueList>
+								<Value></Value>
+							</ValueList>
+						</Property>
+						<Property Name="Throttle" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Velocity" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="EngineSimulationControlData" PluginType="0" CompanyID="261" PluginID="417">
+					<PropertyList>
+						<Property Name="ClutchRPMMergeTime" Type="Real32">
+							<ValueList>
+								<Value>0.6</Value>
+							</ValueList>
+						</Property>
+						<Property Name="ClutchRPMSpike" Type="Real32">
+							<ValueList>
+								<Value>0.6</Value>
+							</ValueList>
+						</Property>
+						<Property Name="ClutchRPMSpikeDuration" Type="Real32">
+							<ValueList>
+								<Value>0.5</Value>
+							</ValueList>
+						</Property>
+						<Property Name="DownShiftDuration" Type="Real32">
+							<ValueList>
+								<Value>0.3</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PopDuration" Type="Real32">
+							<ValueList>
+								<Value>0.7</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftAttackDuration" Type="Real32">
+							<ValueList>
+								<Value>0.05</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftAttackRPM" Type="Real32">
+							<ValueList>
+								<Value>0.25</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftAttackThrottleTime" Type="Real32">
+							<ValueList>
+								<Value>0.02</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftAttackVolumeSpike" Type="Real32">
+							<ValueList>
+								<Value>1.5</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftDuration" Type="Real32">
+							<ValueList>
+								<Value>0.2</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftWobbleDuration" Type="Real32">
+							<ValueList>
+								<Value>0.3</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftWobbleEnabled" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftWobblePitchAmp" Type="Real32">
+							<ValueList>
+								<Value>0.2</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftWobblePitchFreq" Type="Real32">
+							<ValueList>
+								<Value>8</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftWobbleVolAmp" Type="Real32">
+							<ValueList>
+								<Value>0.2</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UpShiftWobbleVolFreq" Type="Real32">
+							<ValueList>
+								<Value>12</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="AccelDecelModelControlData" PluginType="0" CompanyID="261" PluginID="418">
+					<PropertyList>
+						<Property Name="AccelVolume_Off" Type="Real32">
+							<ValueList>
+								<Value>0.7</Value>
+							</ValueList>
+						</Property>
+						<Property Name="AccelVolume_On" Type="Real32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="CrossfadeDuration" Type="int32">
+							<ValueList>
+								<Value>20</Value>
+							</ValueList>
+						</Property>
+						<Property Name="DecelVolume_Off" Type="Real32">
+							<ValueList>
+								<Value>0.8</Value>
+							</ValueList>
+						</Property>
+						<Property Name="DecelVolume_On" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="FilterDepth" Type="Real32">
+							<ValueList>
+								<Value>0.7</Value>
+							</ValueList>
+						</Property>
+						<Property Name="GrainWidth" Type="int32">
+							<ValueList>
+								<Value>2</Value>
+							</ValueList>
+						</Property>
+						<Property Name="HarmonicToTrack" Type="int32">
+							<ValueList>
+								<Value>100</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IdleRampIn" Type="Real32">
+							<ValueList>
+								<Value>0.1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IdleTechnique" Type="int32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="IdleVolume" Type="Real32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="LowPassEnabled" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+						<Property Name="MasterVolume" Type="Real32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PopDuration" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PopRange" Type="int32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PopsEngineDuck" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PopsFreqMax" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PopsFreqMin" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PopsVolumeMax" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="PopsVolumeMin" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="QFactor" Type="Real32">
+							<ValueList>
+								<Value>0</Value>
+							</ValueList>
+						</Property>
+						<Property Name="RPMSmoothness" Type="Real32">
+							<ValueList>
+								<Value>3</Value>
+							</ValueList>
+						</Property>
+						<Property Name="VolumeSmoothness" Type="Real32">
+							<ValueList>
+								<Value>6</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
+				<SharedPropertyList ClassName="Wwise Motion" PluginType="7" CompanyID="0" PluginID="507">
+					<PropertyList>
+						<Property Name="Inclusion" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+				</SharedPropertyList>
 				<SharedPropertyList ClassName="BatchRenameSettings" PluginType="0" CompanyID="0" PluginID="992">
 					<PropertyList>
 						<Property Name="ApplyOn" Type="int16">
@@ -8938,7 +10025,7 @@
 						</Property>
 						<Property Name="InsertToInsert" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="InsertWhat" Type="int16">
@@ -8978,12 +10065,12 @@
 						</Property>
 						<Property Name="ReplaceFindWhat" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="ReplaceReplaceWith" Type="string">
 							<ValueList>
-								<Value/>
+								<Value></Value>
 							</ValueList>
 						</Property>
 						<Property Name="insertFrom" Type="int16">
@@ -9212,7 +10299,7 @@
 			</SharedValues>
 			<EnvironmentalSettings>
 				<ObsOccCurves>
-					<Comment/>
+					<Comment></Comment>
 					<ObsOccCurve CurveXType="Obstruction" CurveYType="Volume">
 						<PlatformCurve Platform="Linked" EnableCurve="true">
 							<Curve Name="" ID="{58F6C6CC-0700-47F6-8A91-BA0B91A6448E}">
@@ -9341,7 +10428,6 @@
 					</ObsOccCurve>
 				</ObsOccCurves>
 			</EnvironmentalSettings>
-			
 			<DefaultConversion Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}"/>
 			<PhysicalFolderList>
 				<PhysicalFolder Path="Actor-Mixer Hierarchy">

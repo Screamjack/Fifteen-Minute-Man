@@ -1,8 +1,21 @@
 Event	ID	Name			Wwise Object Path	Notes
+	674522502	land			\Default Work Unit\land	
 	1866025847	footstep			\Default Work Unit\footstep	
+	3833651337	jump			\Default Work Unit\jump	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	2385628198	Footsteps			\Default Work Unit\Footsteps	
+
+Switch	ID	Name	Switch Group			Notes
+	3599861390	Hard	Footsteps			
+	4248645337	Grass	Footsteps			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	198547508	hard-female-footstep-1	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\hard-female-footstep-1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\hard-female-footstep-1		51264
-	369604225	hard-female-footstep-2	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\hard-female-footstep-2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\hard-female-footstep-2		43072
-	434871207	hard-female-footstep-3	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\hard-female-footstep-3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\hard-female-footstep-3		51264
+	24605169	grassy-footstep-4	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\grassy-footstep-4_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Grass\grassy-footstep-4		88480
+	198547508	hard-female-footstep-1	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\hard-female-footstep-1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Hard\hard-female-footstep-1		51264
+	203980639	grassy-footstep-1	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\grassy-footstep-1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Grass\grassy-footstep-1		100616
+	232382394	grassy-footstep-2	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\grassy-footstep-2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Grass\grassy-footstep-2		73072
+	369604225	hard-female-footstep-2	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\hard-female-footstep-2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Hard\hard-female-footstep-2		43072
+	434871207	hard-female-footstep-3	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\hard-female-footstep-3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Hard\hard-female-footstep-3		51264
+	451137566	grassy-footstep-3	C:\Users\Daniel\Desktop\15 MINUTES TO SAVE THE WORLD\Fifteen-Minute-Man\3DTesting\3DTesting_WwiseProject\.cache\Mac\SFX\Audio Assets\grassy-footstep-3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Grass\grassy-footstep-3		87908
 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8ec435dceac549743a70b1f20a5e8c9c
-timeCreated: 1516126119
+timeCreated: 1516481594
 licenseType: Free
 PluginImporter:
   externalObjects: {}
@@ -20,7 +20,9 @@ PluginImporter:
     second:
       enabled: 0
       settings:
+        CPU: x86_64
         DefaultValueInitialized: true
+        OS: Windows
   userData: 
   assetBundleName: 
   assetBundleVariant: 

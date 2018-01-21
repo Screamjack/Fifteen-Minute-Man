@@ -36,11 +36,25 @@
 			<Path>Footsteps.bnk</Path>
 			<IncludedEvents>
 				<Event Id="1866025847" Name="footstep" ObjectPath="\Events\Default Work Unit\footstep"/>
+				<Event Id="3833651337" Name="jump" ObjectPath="\Events\Default Work Unit\jump"/>
+				<Event Id="674522502" Name="land" ObjectPath="\Events\Default Work Unit\land"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="24605169" Language="SFX">
+					<ShortName>Audio Assets\grassy-footstep-4.wav</ShortName>
+					<Path>SFX\Audio Assets\grassy-footstep-4_1C9C67B2.wem</Path>
+				</File>
 				<File Id="198547508" Language="SFX">
 					<ShortName>Audio Assets\hard-female-footstep-1.wav</ShortName>
 					<Path>SFX\Audio Assets\hard-female-footstep-1_1C9C67B2.wem</Path>
+				</File>
+				<File Id="203980639" Language="SFX">
+					<ShortName>Audio Assets\grassy-footstep-1.wav</ShortName>
+					<Path>SFX\Audio Assets\grassy-footstep-1_1C9C67B2.wem</Path>
+				</File>
+				<File Id="232382394" Language="SFX">
+					<ShortName>Audio Assets\grassy-footstep-2.wav</ShortName>
+					<Path>SFX\Audio Assets\grassy-footstep-2_1C9C67B2.wem</Path>
 				</File>
 				<File Id="369604225" Language="SFX">
 					<ShortName>Audio Assets\hard-female-footstep-2.wav</ShortName>
@@ -49,6 +63,10 @@
 				<File Id="434871207" Language="SFX">
 					<ShortName>Audio Assets\hard-female-footstep-3.wav</ShortName>
 					<Path>SFX\Audio Assets\hard-female-footstep-3_1C9C67B2.wem</Path>
+				</File>
+				<File Id="451137566" Language="SFX">
+					<ShortName>Audio Assets\grassy-footstep-3.wav</ShortName>
+					<Path>SFX\Audio Assets\grassy-footstep-3_1C9C67B2.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

@@ -8,5 +8,15 @@ public class Footsteps : MonoBehaviour {
     public void doStep() {
         AkSoundEngine.PostEvent("footstep", gameObject);
     }
+
+    public void jump()
+    {
+        AkSoundEngine.PostEvent("jump", gameObject);
+    }
+
+    public void land()
+    {
+        AkSoundEngine.PostEvent("land", gameObject);
+    }
 	
 }
