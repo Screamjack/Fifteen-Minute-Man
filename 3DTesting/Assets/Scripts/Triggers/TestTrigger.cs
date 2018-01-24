@@ -2,29 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestTrigger : MonoBehaviour, TriggerInterface {
+public class TestTrigger : AbstractTrigger{
 
     [SerializeField]
     Transform block;
-
-    bool triggerStarted = false;
-    bool triggerDone = false;
-
-    public bool completed
-    {
-        get { return triggerDone; }
-    }
-
-    [SerializeField]
-    List<TestTrigger> preReqs;
 
     public bool CheckTrigger()
     {
         if (preReqs.Count == 0) return true;
         bool retVal = true;
-        foreach(TriggerInterface t in preReqs)
+        foreach(AbstractTrigger t in preReqs)
         {
-            if (!t.completed)
+            if (!t.Completed)
                 retVal = false;
         }
         Debug.Log("Prereqs Done? " + retVal);
@@ -35,7 +24,7 @@ public class TestTrigger : MonoBehaviour, TriggerInterface {
     {
         if (CheckTrigger())
         {
-            triggerStarted = true;
+            activated = true;
             StartCoroutine(LiftBlock(1));
         }
     }
@@ -47,12 +36,12 @@ public class TestTrigger : MonoBehaviour, TriggerInterface {
             block.transform.position += Vector3.up * 0.01f;
             yield return null;
         }
-        triggerDone = true;
+        completed = true;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(!triggerStarted && !triggerDone)
+        if(!activated && !completed)
         {
             ActivateTrigger();
         }
