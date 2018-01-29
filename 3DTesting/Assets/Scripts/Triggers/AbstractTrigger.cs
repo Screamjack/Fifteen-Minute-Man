@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractTrigger : MonoBehaviour {
+public abstract class AbstractTrigger : MonoBehaviour {
 
     protected bool completed;
     /// <summary>
@@ -24,6 +24,9 @@ public class AbstractTrigger : MonoBehaviour {
 
     [SerializeField]
     protected List<AbstractTrigger> preReqs;
+    /// <summary>
+    /// All the previous triggers that must be completed to allow for this trigger to activate.
+    /// </summary>
     public List<AbstractTrigger> Requirements
     {
         get { return preReqs; }
@@ -32,7 +35,7 @@ public class AbstractTrigger : MonoBehaviour {
     /// <summary>
     /// The actual method for applying the trigger.
     /// </summary>
-    void ActivateTrigger()
+    public virtual void ActivateTrigger()
     {
         Debug.LogError("There is no default ActivateTrigger method. Please override it.");
         return;
@@ -42,9 +45,17 @@ public class AbstractTrigger : MonoBehaviour {
     /// A means of checking whether or not the trigger can be activated. 
     /// </summary>
     /// <returns>True if the trigger can be activated</returns>
-    bool CheckTrigger()
+    public virtual bool CheckTrigger()
     {
         Debug.LogError("There is no default CheckTrigger method. Please override it.");
         return false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (!activated && !completed)
+        {
+            ActivateTrigger();
+        }
     }
 }

@@ -7,7 +7,7 @@ public class TestTrigger : AbstractTrigger{
     [SerializeField]
     Transform block;
 
-    public bool CheckTrigger()
+    public override bool CheckTrigger()
     {
         if (preReqs.Count == 0) return true;
         bool retVal = true;
@@ -20,7 +20,7 @@ public class TestTrigger : AbstractTrigger{
         return retVal;
     }
 
-    public void ActivateTrigger()
+    public override void ActivateTrigger()
     {
         if (CheckTrigger())
         {
@@ -39,11 +39,5 @@ public class TestTrigger : AbstractTrigger{
         completed = true;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if(!activated && !completed)
-        {
-            ActivateTrigger();
-        }
-    }
+
 }

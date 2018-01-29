@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     private bool grounded;
     private bool canMove = true;
     private Quaternion currentRotation;
-
+    private uint mask;
 
 	// Use this for initialization
     void Awake()
@@ -116,8 +116,7 @@ public class PlayerController : MonoBehaviour {
     {
         moddedGroundDist = -rb.velocity.y + distancetoGround;
         moddedGroundDist = Mathf.Clamp(moddedGroundDist, -distancetoGround * 2, distancetoGround - (distancetoGround * rb.velocity.y));
-        Debug.Log(rb.velocity.y);
-        grounded = Physics.Raycast(transform.position + new Vector3(0, 0.05f, 0), Vector3.down, moddedGroundDist);
+        grounded = Physics.Raycast(transform.position + new Vector3(0, 0.05f, 0), Vector3.down, moddedGroundDist,~4); // ~4 is all but ignore raycast layer
         Debug.DrawRay(transform.position + new Vector3(0, 0.05f, 0), Vector3.down * moddedGroundDist, Color.red);
     }
 }
