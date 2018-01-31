@@ -9,9 +9,12 @@ public class RotationMaster : MonoBehaviour {
 
     private float xRot, yRot;
 
+    CameraControllerAlt camMaster;
+
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        camMaster = Camera.main.GetComponent<CameraControllerAlt>();
     }
 
     void FixedUpdate()
@@ -36,11 +39,15 @@ public class RotationMaster : MonoBehaviour {
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
+       if(Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            camMaster.AdjustDistance(-Input.GetAxis("Mouse ScrollWheel"));
+        }
     }
 
     void OnApplicationFocus(bool focus)
     {
-        return;
+        //return;
         if(focus)
         {
             Cursor.lockState = CursorLockMode.Locked;

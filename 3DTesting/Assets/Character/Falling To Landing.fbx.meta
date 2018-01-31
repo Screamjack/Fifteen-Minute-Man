@@ -119,17 +119,18 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
-        functionName: EndJump
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.31396517
         functionName: land
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 21ac2729f2bf67545ba8fb396a35b7e1,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9205021
+        functionName: AnimationEndJump
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4c5b38a61e54d644995ef9e560c454e7,
           type: 3}
         floatParameter: 0
         intParameter: 0

@@ -1657,7 +1657,7 @@ MonoBehaviour:
   distance: 1
   height: 0.3
   damping: 5
-  smoothRotation: 1
+  smoothRotation: 0
   rotationDamping: 10
   targetLookAtOffset: {x: 0, y: 0, z: 0}
   bumperDistanceCheck: 1

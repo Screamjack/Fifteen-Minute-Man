@@ -23,6 +23,12 @@ public class PlayerController : MonoBehaviour {
     private Quaternion currentRotation;
     private uint mask;
 
+    private List<Item> inventory;
+    public List<Item> Inventory
+    {
+        get { return inventory; }
+    }
+
 	// Use this for initialization
     void Awake()
     {
@@ -35,7 +41,6 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-        Debug.Log("Grounded: " + grounded);
         movement = Vector3.zero;
         if (canMove)
         {
@@ -84,10 +89,10 @@ public class PlayerController : MonoBehaviour {
             {
                 anim.SetBool("jump", false);
                 canMove = false;
-                StartCoroutine(EndJump());
+                //StartCoroutine(EndJump());
             }
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && canMove)
             {
                 rb.AddForce(Vector3.up * jumpMod, ForceMode.Acceleration);
                 anim.SetBool("jump", true);
@@ -110,7 +115,11 @@ public class PlayerController : MonoBehaviour {
         canMove = true;
         inAir = false;
     }
-
+    public void AnimationEndJump()
+    {
+        canMove = true;
+        inAir = false;
+    }
 
     void LateUpdate()
     {

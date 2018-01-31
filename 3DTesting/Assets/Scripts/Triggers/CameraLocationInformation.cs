@@ -10,6 +10,8 @@ public sealed class CameraLocationInformation : MonoBehaviour {
     void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position, transform.position + transform.forward);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position, 0.1f);
     }
 
 }

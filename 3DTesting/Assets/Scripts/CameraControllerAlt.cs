@@ -36,6 +36,12 @@ public class CameraControllerAlt : MonoBehaviour
         GetComponent<Camera>().transform.parent = target;
     }
 
+    public void AdjustDistance(float additive)
+    {
+        distance += additive;
+        distance = Mathf.Clamp(distance, 0.5f, 2f);
+    }
+
     private void FixedUpdate()
     {
         Vector3 wantedPosition = target.TransformPoint(0, height, -distance);
