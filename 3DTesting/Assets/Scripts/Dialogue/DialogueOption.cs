@@ -4,34 +4,24 @@ using UnityEngine;
 
 public class DialogueOption {
 
-    static PlayerController player;
+    protected static PlayerController player;
 
-    List<AbstractTrigger> preReqs;
+    protected List<AbstractTrigger> preReqs;
     public List<AbstractTrigger> Requirements
     {
         get { return preReqs; }
     }
-    AbstractTrigger trigger;
-    public AbstractTrigger Trigger
-    {
-        get { return trigger; }
-    }
-    bool canDo;
+    protected bool canDo;
     public bool CanProgress
     {
         get { return canDo; }
     }
-    string optionText;
+    protected string optionText;
     public string Rebuttal
     {
         get { return optionText; }
     }
-    OptionType type;
-    public OptionType DialogueType //Needed in node to check if available.
-    {
-        get { return type; }
-    }
-    DialogueNode nextNode;
+    protected DialogueNode nextNode;
     public DialogueNode NextNode
     {
         get { return nextNode; }
@@ -41,21 +31,22 @@ public class DialogueOption {
     {
         optionText = "YOU FUCKED UP THE DIALOGUE MY DUDE";
         preReqs = new List<AbstractTrigger>();
-        trigger = null;
         canDo = false;
-        type = OptionType.Basic;
     }
-    public DialogueOption(string text,List<AbstractTrigger> ptriggers = null, AbstractTrigger toTrigger = null, OptionType tType = OptionType.Basic)
+    public DialogueOption(string text,DialogueNode next = null,List<AbstractTrigger> ptriggers = null)
     {
         optionText = text;
+        nextNode = next;
         preReqs = ptriggers == null ? new List<AbstractTrigger>() : ptriggers;
-        trigger = toTrigger;
-        type = tType;
     }
 
     public bool checkViability()
     {
-        if (preReqs.Count == 0) return true;
+        if (preReqs.Count == 0)
+        {
+            canDo = true;
+            return true;
+        }
         bool retVal = true;
         foreach (AbstractTrigger t in preReqs)
         {
@@ -67,23 +58,9 @@ public class DialogueOption {
         return retVal;
     }
 
-    public bool checkViability(Item i)
+    public virtual void Enact()
     {
-        if(player == null)
-        {
-            player = GameObject.Find("Player").GetComponent<PlayerController>();
-            if(player == null)
-            {
-                Debug.LogError("Failed to find player");
-                return false;
-            }
-        }
-        Item item = player.Inventory.Find(x => x.Name == i.Name);//Lambda to find an item of the same type in Inventory.
-        bool retVal = item != null; //default(Item) == null
-        canDo = retVal;
-        return retVal;
+        Debug.Log("Nothing to do here.");
     }
 
-
-    public enum OptionType { Item,Trigger,Basic};
 }

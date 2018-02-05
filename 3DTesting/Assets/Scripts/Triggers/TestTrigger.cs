@@ -6,6 +6,8 @@ public class TestTrigger : AbstractTrigger{
 
     [SerializeField]
     Transform block;
+    [SerializeField]
+    float time = 1f;
 
     public override bool CheckTrigger()
     {
@@ -25,8 +27,14 @@ public class TestTrigger : AbstractTrigger{
         if (CheckTrigger())
         {
             activated = true;
-            StartCoroutine(LiftBlock(1));
+            StartCoroutine(LiftBlock(time));
         }
+    }
+
+    public void ForceTrigger() //For debug only
+    {
+        activated = true;
+        StartCoroutine(LiftBlock(time));
     }
 
     IEnumerator LiftBlock(float duration)
