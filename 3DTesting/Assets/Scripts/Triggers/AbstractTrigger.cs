@@ -51,7 +51,7 @@ public abstract class AbstractTrigger : MonoBehaviour {
         return false;
     }
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (!activated && !completed)
         {

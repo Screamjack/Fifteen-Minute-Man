@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class DialogueTree : MonoBehaviour {
     DialogueNode root;
+    DialogueNode curRoot;
 
     [SerializeField]
     AbstractTrigger toTrigger;
+    [SerializeField]
+    GameObject UI;
+
+    bool inTalk = true;
 
     void OnEnable()
     {
@@ -22,21 +27,59 @@ public class DialogueTree : MonoBehaviour {
         node3.SetupNode(new DialogueOption[] { link4 }, "Hopefully it opened");
 
         root = node1;
-        root.LoadChoices();
+        UI.SetActive(false);
     }
 
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        if (root == null) this.enabled = false;
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        Debug.Log("Pepsi");
+        if(other.gameObject.tag == "Player")
         {
-            if (root.RunOption(root.FindOption(0), ref root) == DialogueNode.LoadType.EndOfTree) return;
-            root.LoadChoices();
+            inTalk = true;
+            StartCoroutine(Talking());
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
+
+    }
+    void OnTriggerExit(Collider other)
+    {
+        Debug.Log("BEpis");
+        if (other.gameObject.tag == "Player")
         {
-            if(root.RunOption(root.FindOption(1), ref root) == DialogueNode.LoadType.EndOfTree) return;
-            root.LoadChoices();
+            inTalk = false;
         }
+
+    }
+
+    IEnumerator Talking()
+    {
+        curRoot = root;
+        UI.SetActive(true);
+        curRoot.LoadChoices(UI);
+        while (inTalk)
+        {
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                if (curRoot.RunOption(curRoot.FindOption(0), ref curRoot) == DialogueNode.LoadType.EndOfTree)
+                {
+                    inTalk = false;
+                    break;
+                }
+                curRoot.LoadChoices(UI);
+
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (curRoot.RunOption(curRoot.FindOption(1), ref curRoot) == DialogueNode.LoadType.EndOfTree)
+                {
+                    inTalk = false;
+                    break;
+                }
+                curRoot.LoadChoices(UI);
+
+            }
+            yield return null;
+        }
+        UI.SetActive(false);
     }
 }

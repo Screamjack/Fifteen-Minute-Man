@@ -24,7 +24,7 @@ public class TestTrigger : AbstractTrigger{
 
     public override void ActivateTrigger()
     {
-        if (CheckTrigger())
+        if (CheckTrigger() && !completed)
         {
             activated = true;
             StartCoroutine(LiftBlock(time));
