@@ -14,9 +14,11 @@ public class DialogueNode {
     DialogueOption[] choices;
     List<Item> items; //Items in order of dialogue.    
 
+
     public void SetupNode(DialogueOption[] options, string talk)
     {
         choices = options;
+
         this.talk = talk;
     }
 
@@ -28,34 +30,87 @@ public class DialogueNode {
  *              DIALOGUE BODY
  *                  BODY TEXT   (Dump talk here)  
  *              OPTIONS BODY
- *                  OPTION TEXT (Iterate rebuttals here) (Might be buttons instead of number optiinos)
+ *                  1           Option
+ *                  2           Texts
+ *                  3
+ *                  4
+ *                  B1         Option
+ *                  B2         Buttons
+ *                  B3
+ *                  B4
  * 
  */
         Text dText = UI.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-        Text rText = UI.transform.GetChild(1).GetChild(0).GetComponent<Text>();
-        if(dText == null || rText == null)
+        GameObject rebuttals = UI.transform.GetChild(1).gameObject;
+
+        if (dText == null || rebuttals == null)
         {
             Debug.LogError("Either dialogue text box or rebuttal text box are missing.");
             return;
         }
+
         dText.text = talk;
-        rText.text = "";
-        int index = 0;
-        int i = 1;
-        foreach(DialogueOption d in choices)
+
+        for (int i = 0; i < 4; i++) //Reset the buttons
         {
-            if(d.checkViability())
+            rebuttals.transform.GetChild(i).GetChild(0).GetComponent<Button>().onClick.RemoveAllListeners();
+        }
+        
+        //int index = 0;
+        //foreach (DialogueOption d in choices) //Load all active choices
+        //{
+        //    if (d.checkViability())
+        //    {
+        //        rebuttals.transform.GetChild(index).GetComponent<Text>().text = d.Rebuttal;
+        //        switch(index) //Because I don't know how delegates work...
+        //        {
+        //            case 0:
+        //                rebuttals.transform.GetChild(index).GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { DialogueTree.CurrentTree.Advance(0); });
+        //                break;
+        //            case 1:
+        //                rebuttals.transform.GetChild(index).GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { DialogueTree.CurrentTree.Advance(1); });
+        //                break;
+        //            case 2:
+        //                rebuttals.transform.GetChild(index).GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { DialogueTree.CurrentTree.Advance(2); });
+        //                break;
+        //            case 3:
+        //                rebuttals.transform.GetChild(index).GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { DialogueTree.CurrentTree.Advance(0); });
+        //                break;
+        //        }
+        //        index++;
+        //    }
+        //}
+        //for (int i = index; i < 4; i++) //Clear out the rest
+        //{
+        //    rebuttals.transform.GetChild(i).GetComponent<Text>().text = "";
+        //}
+
+        for(int i = 0; i < 4; i++)
+        {
+            if(i < choices.Length && choices[i].checkViability())
             {
-                rText.text += i.ToString() + ": " + d.Rebuttal + "\n";
-                index++;
-                i++;
+                rebuttals.transform.GetChild(i).GetComponent<Text>().text = choices[i].Rebuttal;
+                switch (i) //Because I don't know how delegates work...
+                {
+                    case 0:
+                        Debug.Log("0");
+                        rebuttals.transform.GetChild(i).GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { DialogueTree.CurrentTree.Advance(0); });
+                        break;
+                    case 1:
+                        rebuttals.transform.GetChild(i).GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { DialogueTree.CurrentTree.Advance(1); });
+                        break;
+                    case 2:
+                        rebuttals.transform.GetChild(i).GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { DialogueTree.CurrentTree.Advance(2); });
+                        break;
+                    case 3:
+                        rebuttals.transform.GetChild(i).GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { DialogueTree.CurrentTree.Advance(3); });
+                        break;
+                }
             }
             else
-            {
-                rText.text += "XXX " + i.ToString() + ": " + d.Rebuttal + "\n";
-                i++;
-            }
+                rebuttals.transform.GetChild(i).GetComponent<Text>().text = "";
         }
+
     }
 
     public LoadType RunOption(DialogueOption selected,ref DialogueNode current)
@@ -94,7 +149,6 @@ public class DialogueNode {
         }
         return ret;
     }
-
 
     public enum LoadType
     {
