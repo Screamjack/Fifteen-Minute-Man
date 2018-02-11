@@ -7,6 +7,8 @@ public class DialogueTree : MonoBehaviour {
     DialogueNode root;
     DialogueNode curRoot;
 
+    Animator anim;
+
     [SerializeField]
     AbstractTrigger toTrigger;
     [SerializeField]
@@ -24,6 +26,11 @@ public class DialogueTree : MonoBehaviour {
     }
 
     bool inTalk = true;
+
+    void Awake()
+    {
+        anim = UI.GetComponent<Animator>();
+    }
 
     void OnEnable()
     {
@@ -62,6 +69,7 @@ public class DialogueTree : MonoBehaviour {
 
     IEnumerator Talking()
     {
+        anim.SetTrigger("open");
         rm.SetLock(false);
         curRoot = root;
         UI.SetActive(true);
@@ -75,6 +83,11 @@ public class DialogueTree : MonoBehaviour {
             yield return null;
         }
         rm.SetLock(true);
+        anim.SetTrigger("close");
+    }
+
+    public void ShutOff()
+    {
         UI.SetActive(false);
     }
 

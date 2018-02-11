@@ -27,9 +27,7 @@ public class DialogueNode {
         /* UI FORM
  *         ROOT
  *          DIALOGUEBOX
- *              DIALOGUE BODY
- *                  BODY TEXT   (Dump talk here)  
- *              OPTIONS BODY
+ *            OPTIONS BODY
  *                  1           Option
  *                  2           Texts
  *                  3
@@ -38,18 +36,22 @@ public class DialogueNode {
  *                  B2         Buttons
  *                  B3
  *                  B4
+ *              DIALOGUE BODY
+ *                  BODY TEXT   (Dump talk here)  
  * 
  */
-        Text dText = UI.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-        GameObject rebuttals = UI.transform.GetChild(1).gameObject;
+        TextIntermediate bodyText = UI.transform.GetChild(1).GetChild(0).GetComponent<TextIntermediate>();
+        GameObject rebuttals = UI.transform.GetChild(0).gameObject;
 
-        if (dText == null || rebuttals == null)
+        if (bodyText == null || rebuttals == null)
         {
             Debug.LogError("Either dialogue text box or rebuttal text box are missing.");
             return;
         }
 
-        dText.text = talk;
+        if (bodyText.isWriting)
+            bodyText.StopWrite();
+        bodyText.Write(talk,1);
 
         for (int i = 0; i < 4; i++) //Reset the buttons
         {
