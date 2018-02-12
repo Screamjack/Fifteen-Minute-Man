@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: AkWwiseProjectData 1
+  m_EditorClassIdentifier: Assembly-CSharp-Editor::AkWwiseProjectData
+  CurrentPluginConfig: 
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}'
+    m_lastTimePsrt1: -1321955324
+    m_lastTimePart2: -1999282107
+    List:
+    - Name: cube_noise
+      Path: Default Work Unit\cube_noise
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: cube_noise
+        ObjectType: 3
+      ID: 1858278865
+      Guid: 61f9e474f957d946881cd1e28f5b4ef3
+      minDuration: 0
+      maxDuration: 0
+      maxAttenuation: 0
+    - Name: footstep
+      Path: Default Work Unit\footstep
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: footstep
+        ObjectType: 3
+      ID: 1866025847
+      Guid: f3cae8336eae37458e2a13b326fb2bb6
+      minDuration: 0
+      maxDuration: 0
+      maxAttenuation: 0
+    - Name: jump
+      Path: Default Work Unit\jump
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: jump
+        ObjectType: 3
+      ID: -461315959
+      Guid: a28327528aeb6648b18de07ff3cff6fa
+      minDuration: 0
+      maxDuration: 0
+      maxAttenuation: 0
+    - Name: land
+      Path: Default Work Unit\land
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: land
+        ObjectType: 3
+      ID: 674522502
+      Guid: db0831493de9824981532bf805ad1914
+      minDuration: 0
+      maxDuration: 0
+      maxAttenuation: 0
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{7CC787C4-A834-4070-8420-8DE55E36CBB6}'
+    m_lastTimePsrt1: -2134381298
+    m_lastTimePart2: -1999282098
+    List:
+    - Name: Reverb
+      Path: Default Work Unit\Master Audio Bus\Reverb
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: Reverb
+        ObjectType: 1
+      ID: 348963605
+      Guid: 549012c9178e1b48a7bf2252f0e2d098
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{5C012531-C6A2-4249-BD42-E62C619CC9C1}'
+    m_lastTimePsrt1: -492551277
+    m_lastTimePart2: -1999282923
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{A2673887-125A-4954-8F46-B7421F1B1AB7}'
+    m_lastTimePsrt1: -1529152798
+    m_lastTimePart2: -1999282675
+    List:
+    - Name: Footsteps
+      Path: Default Work Unit\Footsteps
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Footsteps
+        ObjectType: 11
+      ID: -1909339098
+      Guid: e31f882b00d1dd46bb7979acd855a760
+      values:
+      - Grass
+      - Hard
+      ValueIcons:
+      - ElementName: Grass
+        ObjectType: 10
+      - ElementName: Hard
+        ObjectType: 10
+      valueIDs: d92e3dfd8e8691d6
+      ValueGuids:
+      - bytes: 075dbc7cd5339744afdd38f4fd16b753
+      - bytes: 239da16d56db3c429edccaa18b7eb16d
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{0245D6B3-D0FC-4503-8497-D3194FD0EDF8}'
+    m_lastTimePsrt1: -1100907089
+    m_lastTimePart2: -1999282089
+    List:
+    - Name: Ambient
+      Path: Default Work Unit\Ambient
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Ambient
+        ObjectType: 7
+      ID: 77978275
+      Guid: e71e94eea2a62c4d8370bb847c1dc9c2
+    - Name: Footsteps
+      Path: Default Work Unit\Footsteps
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Footsteps
+        ObjectType: 7
+      ID: -1909339098
+      Guid: 130decf88e678d4992a8378d6b405f8d
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{8BFCCF38-7275-4927-A94B-0FC9645CB4EA}'
+    m_lastTimePsrt1: -491278820
+    m_lastTimePart2: -1999282923
+    List: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{D246A297-EF12-4D56-B645-B700B1092295}'
+    m_lastTimePsrt1: -491073673
+    m_lastTimePart2: -1999282923
+    List: []
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{9D386570-03FF-43F3-BF6A-3D61BFC469D8}'
+    m_lastTimePsrt1: -491383892
+    m_lastTimePart2: -1999282923
+    List: []
+  ExpandedItems: []
+  m_lastPopulateTimePsrt1: 0
+  m_lastPopulateTimePart2: 0
+  autoPopulateEnabled: 1
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95
+  callbackManagerBufferSize: 4
