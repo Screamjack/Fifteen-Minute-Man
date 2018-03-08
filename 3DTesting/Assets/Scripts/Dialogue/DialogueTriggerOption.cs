@@ -19,6 +19,11 @@ public class DialogueTriggerOption : DialogueOption {
         trigger = toTrigger;
         preReqs.AddRange(toTrigger.Requirements);
     }
+    public void SetTrigger(GameObject obj, string component)
+    {
+        trigger = obj.GetComponent(component) as AbstractTrigger;
+        preReqs.AddRange(trigger.Requirements);
+    }
 
     public override void Enact()
     {

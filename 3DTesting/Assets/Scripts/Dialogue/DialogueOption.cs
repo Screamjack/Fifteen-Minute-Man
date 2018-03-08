@@ -40,6 +40,15 @@ public class DialogueOption {
         preReqs = ptriggers == null ? new List<AbstractTrigger>() : ptriggers;
     }
 
+    public void SetNext(DialogueNode next)
+    {
+        nextNode = next;
+    }
+    public void SetText(string t)
+    {
+        optionText = t;
+    }
+
     public bool checkViability()
     {
         if (preReqs.Count == 0)
