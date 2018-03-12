@@ -95,27 +95,64 @@ namespace DialogueWriter
                 switch(tokens[0].ToUpper())
                 {
                     case "PRINT": //Shows node information. 
-                        XmlNode speechNode = null;
-                        Console.WriteLine("");
-                        Console.WriteLine("CURRENT NODE: " + currentItem.Name);
-                        foreach (XmlAttribute x in currentItem.Attributes)
+                        //Console.WriteLine("");
+                        //Console.WriteLine("CURRENT NODE: " + currentItem.Name);
+                        //foreach (XmlAttribute x in currentItem.Attributes)
+                        //{
+                        //    Console.WriteLine("ATTRIBUTE:  " + x.Name.PadRight(20)+ " | VALUE: " + x.Value);
+                        //}
+                        //if(currentItem.ParentNode != null)
+                        //    Console.WriteLine("PARENT: " + currentItem.ParentNode.Name);
+                        //foreach (XmlNode x in currentItem.ChildNodes)
+                        //{
+                        //    if (x.Name != SPEECH)
+                        //        Console.WriteLine("CHILD NODE: " + x.Name);
+                        //    else
+                        //        speechNode = x;
+                        //}
+                        //if(speechNode != null)
+                        //{
+                        //    Console.WriteLine("NODE TEXT: " + speechNode.InnerText);
+                        //}
+                        //Console.WriteLine("");
+                        if(currentItem.Name == "Dialogue")
                         {
-                            Console.WriteLine("ATTRIBUTE:  " + x.Name.PadRight(20)+ " | VALUE: " + x.Value);
+                            Console.WriteLine("");
+                            Console.WriteLine("CURRENT NODE: " + currentItem.Name);
+                            Console.WriteLine("SPEED: " + currentItem.Attributes[SPEED_ATTRIBUTE].Value);
+                            Console.WriteLine(currentItem.SelectSingleNode("Speech").InnerText);
+                            foreach(XmlNode child in currentItem.ChildNodes)
+                            {
+                                if(child.Name == OPTION)
+                                    Console.WriteLine("\tOPTION: " + child.SelectSingleNode("Speech").InnerText);
+                            }
+                            Console.WriteLine("");
                         }
-                        if(currentItem.ParentNode != null)
-                            Console.WriteLine("PARENT: " + currentItem.ParentNode.Name);
-                        foreach (XmlNode x in currentItem.ChildNodes)
+                        else if(currentItem.Name == "Option")
                         {
-                            if (x.Name != SPEECH)
-                                Console.WriteLine("CHILD NODE: " + x.Name);
-                            else
-                                speechNode = x;
+                            Console.WriteLine("");
+                            Console.WriteLine("OPTION");
+                            Console.WriteLine("TYPE: " + currentItem.Attributes[OPTION_TYPE_ATTRIBUTE].Value);
+                            if (currentItem.Attributes[OPTION_TYPE_ATTRIBUTE].Value == OPTION_TRIGGER)
+                            {
+                                Console.WriteLine("TRIGGER NAME: " + currentItem.Attributes[OPTION_TRIGGER].Value);
+                                Console.WriteLine("TRIGGER GAMEOBJECT: " + currentItem.Attributes[OPTION_GAMEOBJECT_ATTRIBUTE].Value);
+
+                            }
+                            Console.WriteLine("TEXT: " + currentItem.SelectSingleNode("Speech").InnerText);
+                            string endpoint = currentItem.ChildNodes.Count > 1 ? "This node is not an end node." : "This is an end node";
+                            Console.WriteLine(endpoint);
+                            Console.WriteLine("");
                         }
-                        if(speechNode != null)
+                        else
                         {
-                            Console.WriteLine("NODE TEXT: " + speechNode.InnerText);
+                            Console.WriteLine("");
+                            foreach(XmlAttribute a in currentItem.Attributes)
+                            {
+                                Console.WriteLine("ATTRIBUTE: " + a.Name + " | VALUE: " + a.Value);
+                            }
+                            Console.WriteLine("");
                         }
-                        Console.WriteLine("");
                         break;
                     case "UP": //UP
                         if (currentItem.ParentNode != null && currentItem.ParentNode.Name != "#document")
@@ -169,6 +206,7 @@ namespace DialogueWriter
                                 else
                                 {
                                     XmlNode child = doc.CreateElement(OPTION);
+                                    XmlNode speechNode = doc.CreateElement(SPEECH);
                                     XmlAttribute att1 = doc.CreateAttribute(OPTION_TYPE_ATTRIBUTE);
                                     XmlAttribute att2 = doc.CreateAttribute(TRIGGER_ATTRIBUTE);
                                     XmlAttribute att3 = doc.CreateAttribute(OPTION_NUMBER);
@@ -182,6 +220,7 @@ namespace DialogueWriter
                                     child.Attributes.Append(att3);
                                     child.Attributes.Append(att4);
                                     currentItem.AppendChild(child);
+                                    child.AppendChild(speechNode);
                                     currentItem = child;
                                     Console.WriteLine("Basic Option Node created. Pointer set to it.");
                                     unsaved = true;
@@ -195,10 +234,12 @@ namespace DialogueWriter
                                 else
                                 {
                                     XmlNode child = doc.CreateElement(DIALOGUE);
+                                    XmlNode speechNode = doc.CreateElement(SPEECH);
                                     XmlAttribute att1 = doc.CreateAttribute(SPEED_ATTRIBUTE);
                                     att1.Value = SPEED_DEFAULT;
                                     child.Attributes.Append(att1);
                                     currentItem.AppendChild(child);
+                                    child.AppendChild(speechNode);
                                     currentItem = child;
                                     Console.WriteLine("Basic Dialogue Node created. Pointer set to it.");
                                     unsaved = true;
