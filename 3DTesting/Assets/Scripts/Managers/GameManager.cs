@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    GameManager manager;
+    public static GameManager manager;
     GameObject loaderUI;
+    GameObject uiMenu;
+    bool isOpen = false;
+    public bool menuOpen
+    {
+        get { return isOpen; }
+    }
 
-    List<Item> inventory;
+    Inventory inventory;
     [SerializeField]
     int inventorysize = 10;
 
@@ -19,46 +25,36 @@ public class GameManager : MonoBehaviour {
         if (manager != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-
-        inventory = new List<Item>();
+        uiMenu = GameObject.Find("PopMenu");
+        uiMenu.SetActive(false);
+        inventory = new Inventory(inventorysize);
     }
 
-    public bool FindItem(Item i)
+    void Update()
     {
-        bool retVal = false;
-        foreach(Item item in inventory)
+        if(Input.GetKeyDown(KeyCode.P))
         {
-            if (item.ID == i.ID)
-            {
-                retVal = true;
-                break;
-            }
+            ToggleMenu();
         }
-        return retVal;
     }
 
-    public void TakeItem(Item i)
+    void ToggleMenu()
     {
-        if (FindItem(i))
+        RotationMaster rm = GameObject.Find("Target").GetComponent<RotationMaster>();
+        if(uiMenu.activeInHierarchy)
         {
-            inventory.Remove(i);
-            Destroy(i.gameObject);
-        }
-        else Debug.Log("No item found");
-    }
-
-    public bool GiveItem(Item i)
-    {
-        if(inventory.Count >= inventorysize)
-        {
-            Debug.Log("Inventory Full");
-            return false;
+            uiMenu.SetActive(false);
+            isOpen = false;
+            rm.SetLock(true);
         }
         else
         {
-            inventory.Add(i);
-            return true;
+            uiMenu.SetActive(true);
+            isOpen = true;
+            rm.SetLock(false);
         }
     }
+
+
 
 }
