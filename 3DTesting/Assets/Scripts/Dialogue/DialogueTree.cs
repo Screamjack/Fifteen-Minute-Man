@@ -30,6 +30,7 @@ public class DialogueTree : MonoBehaviour {
     }
 
     bool inTalk = true;
+    bool talkable = false;
 
     void Awake()
     {
@@ -140,9 +141,7 @@ public class DialogueTree : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
-            inTalk = true;
-            currentTree = this;
-            StartCoroutine(Talking());
+            talkable = true;
         }
 
     }
@@ -150,7 +149,18 @@ public class DialogueTree : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
+            talkable = false;
             inTalk = false;
+        }
+    }
+
+    public void StartTalking()
+    {
+        if (talkable)
+        {
+            inTalk = true;
+            currentTree = this;
+            StartCoroutine(Talking());
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public sealed class Inventory{
 
     int size;
-    int Size
+    public int Size
     {
         get { return size; }
     }
@@ -21,7 +21,7 @@ public sealed class Inventory{
     /// </summary>
     /// <param name="size">Default 10. How many items can the inventory hold?</param>
     /// <param name="items">Default empty list. The actual list that will store items</param>
-    public Inventory(int size = 10, List<Item> items = null)
+    public Inventory(int size = 8, List<Item> items = null)
     {
         if (items == null)
             inventory = new List<Item>();
@@ -64,6 +64,7 @@ public sealed class Inventory{
         }
         else
         {
+            Debug.Log("Given an item: Item count = " + InventoryList.Count);
             inventory.Add(i);
             return true;
         }

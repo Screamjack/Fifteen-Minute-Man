@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
 
+    [SerializeField]
     string id;
     public string ID
     {
@@ -12,6 +13,21 @@ public class Item : MonoBehaviour {
             return id;
         }
     }
+
+    [SerializeField]
+    string flavorText;
+    public string FlavorText
+    {
+        get { return flavorText; }
+    }
+
+    [SerializeField]
+    Sprite icon;
+    public Sprite Icon
+    {
+        get { return icon; }
+    }
+
 
     public override bool Equals(object other)
     {

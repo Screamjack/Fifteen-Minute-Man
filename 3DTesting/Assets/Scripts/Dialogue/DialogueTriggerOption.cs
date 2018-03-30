@@ -14,7 +14,7 @@ public class DialogueTriggerOption : DialogueOption {
     {
         trigger = null;
     }
-    public DialogueTriggerOption(string text,DialogueNode next, List<AbstractTrigger> ptriggers = null,AbstractTrigger toTrigger = null) : base(text,next,ptriggers)
+    public DialogueTriggerOption(string text,DialogueNode next, List<string> ptriggers = null,AbstractTrigger toTrigger = null) : base(text,next,ptriggers)
     {
         trigger = toTrigger;
         preReqs.AddRange(toTrigger.Requirements);

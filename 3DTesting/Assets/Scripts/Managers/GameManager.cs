@@ -15,8 +15,14 @@ public class GameManager : MonoBehaviour {
     }
 
     Inventory inventory;
+    public Inventory GameInventory
+    {
+        get { return inventory; }
+    }
     [SerializeField]
     int inventorysize = 10;
+
+    public List<string> flags;
 
     void Awake()
     {
@@ -28,30 +34,52 @@ public class GameManager : MonoBehaviour {
         uiMenu = GameObject.Find("PopMenu");
         uiMenu.SetActive(false);
         inventory = new Inventory(inventorysize);
+        flags = new List<string>();
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            ToggleMenu();
+            ToggleMenu(0);
+        }
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            ToggleMenu(1);
         }
     }
 
-    void ToggleMenu()
+    void ToggleMenu(int index)
     {
         RotationMaster rm = GameObject.Find("Target").GetComponent<RotationMaster>();
-        if(uiMenu.activeInHierarchy)
+        if (index == 0)
         {
-            uiMenu.SetActive(false);
-            isOpen = false;
-            rm.SetLock(true);
+            if (uiMenu.activeInHierarchy)
+            {
+                uiMenu.SetActive(false);
+                isOpen = false;
+                rm.SetLock(true);
+            }
+            else
+            {
+                uiMenu.SetActive(true);
+                isOpen = true;
+                rm.SetLock(false);
+            }
         }
-        else
+        else if (index ==1)
         {
-            uiMenu.SetActive(true);
-            isOpen = true;
-            rm.SetLock(false);
+            InventoryUIHook inventoryUI = GameObject.Find("Inventory").GetComponent<InventoryUIHook>();
+            if (inventoryUI.gameObject.activeInHierarchy)
+            {
+                inventoryUI.Toggle();
+                rm.SetLock(true);
+            }
+            else
+            {
+                inventoryUI.Toggle();
+                rm.SetLock(false);
+            }
         }
     }
 
