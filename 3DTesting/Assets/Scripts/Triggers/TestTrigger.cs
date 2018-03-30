@@ -9,18 +9,6 @@ public class TestTrigger : AbstractTrigger{
     [SerializeField]
     float time = 1f;
 
-    public override bool CheckTrigger()
-    {
-        if (preReqs.Count == 0) return true;
-        bool retVal = true;
-        foreach(AbstractTrigger t in preReqs)
-        {
-            if (!t.Completed)
-                retVal = false;
-        }
-        Debug.Log("Prereqs Done? " + retVal);
-        return retVal;
-    }
 
     public override void ActivateTrigger()
     {
@@ -45,6 +33,7 @@ public class TestTrigger : AbstractTrigger{
             yield return null;
         }
         completed = true;
+        SetFlag();
     }
 
 

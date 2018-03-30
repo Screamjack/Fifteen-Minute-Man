@@ -6,8 +6,8 @@ public class DialogueOption {
 
     protected static PlayerController player;
 
-    protected List<AbstractTrigger> preReqs;
-    public List<AbstractTrigger> Requirements
+    protected List<string> preReqs;
+    public List<string> Requirements
     {
         get { return preReqs; }
     }
@@ -30,14 +30,23 @@ public class DialogueOption {
     public DialogueOption()
     {
         optionText = "YOU FUCKED UP THE DIALOGUE MY DUDE";
-        preReqs = new List<AbstractTrigger>();
+        preReqs = new List<string>();
         canDo = false;
     }
-    public DialogueOption(string text,DialogueNode next = null,List<AbstractTrigger> ptriggers = null)
+    public DialogueOption(string text,DialogueNode next = null,List<string> ptriggers = null)
     {
         optionText = text;
         nextNode = next;
-        preReqs = ptriggers == null ? new List<AbstractTrigger>() : ptriggers;
+        preReqs = ptriggers == null ? new List<string>() : ptriggers;
+    }
+
+    public void SetNext(DialogueNode next)
+    {
+        nextNode = next;
+    }
+    public void SetText(string t)
+    {
+        optionText = t;
     }
 
     public bool checkViability()
@@ -48,12 +57,14 @@ public class DialogueOption {
             return true;
         }
         bool retVal = true;
-        foreach (AbstractTrigger t in preReqs)
+        GameManager.manager.flags.ToString();
+        foreach (string t in preReqs)
         {
-            if (!t.Completed)
+            bool isDone = GameManager.manager.flags.Contains(t);
+            Debug.Log(t + "?: " + isDone);
+            if (!isDone)
                 retVal = false;
         }
-        Debug.Log("Prereqs Done? " + retVal);
         canDo = retVal;
         return retVal;
     }

@@ -21,6 +21,14 @@ public class DialogueNode {
 
         this.talk = talk;
     }
+    public void setTalk(string talk)
+    {
+        this.talk = talk;
+    }
+    public void setOptions(DialogueOption [] options)
+    {
+        choices = options;
+    }
 
     public void LoadChoices(GameObject UI = null)   //TODO: Hook this into a UI.
     {

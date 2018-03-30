@@ -23,11 +23,13 @@ public abstract class AbstractTrigger : MonoBehaviour {
     }
 
     [SerializeField]
-    protected List<AbstractTrigger> preReqs;
+    protected List<string> preReqs;
+    [SerializeField]
+    string triggerFlag;
     /// <summary>
     /// All the previous triggers that must be completed to allow for this trigger to activate.
     /// </summary>
-    public List<AbstractTrigger> Requirements
+    public List<string> Requirements
     {
         get { return preReqs; }
     }
@@ -42,13 +44,29 @@ public abstract class AbstractTrigger : MonoBehaviour {
     }
 
     /// <summary>
+    /// Used to assign a flag to GameManager for checking if the trigger is done.
+    /// </summary>
+    public virtual void SetFlag()
+    {
+        GameManager.manager.flags.Add(triggerFlag);
+    }
+
+    /// <summary>
     /// A means of checking whether or not the trigger can be activated. 
     /// </summary>
     /// <returns>True if the trigger can be activated</returns>
     public virtual bool CheckTrigger()
     {
-        Debug.LogError("There is no default CheckTrigger method. Please override it.");
-        return false;
+        if (preReqs.Count == 0) return true;
+        bool retVal = true;
+        foreach(string s in preReqs)
+        {
+            if(!GameManager.manager.flags.Contains(s)) {
+                retVal = false;
+                break;
+            }
+        }
+        return retVal;
     }
 
     protected virtual void OnTriggerEnter(Collider other)

@@ -26,19 +26,6 @@ public class CameraTrigger : AbstractTrigger {
         rotationRealigner = Quaternion.identity; 
     }
 
-    public override bool CheckTrigger()
-    {
-        if (preReqs.Count == 0) return true;
-        bool retVal = true;
-        foreach (AbstractTrigger t in preReqs)
-        {
-            if (!t.Completed)
-                retVal = false;
-        }
-        Debug.Log("Prereqs Done? " + retVal);
-        return retVal;
-    }
-
     public override void ActivateTrigger()
     {
         CameraLocationInformation[] tempLocs = new CameraLocationInformation[cameraLocations.Count];
@@ -102,6 +89,7 @@ public class CameraTrigger : AbstractTrigger {
         Debug.Log(cam.position);
         cam.localRotation = rotationRealigner;
         completed = true;
+        SetFlag();
     }
 
 }

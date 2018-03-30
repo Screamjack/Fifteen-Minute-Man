@@ -1,0 +1,26 @@
+<Talker Container="MEME MAN">
+  <Dialogue Speed="3">
+    <Speech>This is a basic XML test document. It is used to create dialogue trees.</Speech>
+    <Option Type="Basic" TriggerName=" " Number="1" GameObject="">
+      <Speech>Basic dialogue option</Speech>
+      <Dialogue Speed="3">
+        <Speech>This type of option only progresses to the next dialogue node. </Speech>
+        <Option Type="Basic" TriggerName=" " Number="1" GameObject="">
+          <Speech>END</Speech>
+        </Option>
+      </Dialogue>
+    </Option>
+    <Option Type="Trigger" TriggerName="TestTrigger" Number="2" GameObject="TriggerCube">
+      <Speech>Open Door</Speech>
+      <Dialogue Speed="3">
+        <Speech>The door nearby should have opened now. </Speech>
+        <Option Type="Basic" TriggerName=" " Number="1" GameObject="">
+          <Speech>END</Speech>
+        </Option>
+      </Dialogue>
+    </Option>
+    <Option Type="Trigger" TriggerName="ItemGiver" Number="3" GameObject="TestGiver">
+      <Speech>Give me an item</Speech>
+    </Option>
+  </Dialogue>
+</Talker>

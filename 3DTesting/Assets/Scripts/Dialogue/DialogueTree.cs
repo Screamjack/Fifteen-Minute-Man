@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +17,8 @@ public class DialogueTree : MonoBehaviour {
     GameObject UI;
     [SerializeField]
     RotationMaster rm;
+    [SerializeField]
+    string dialogueName;
 
     bool ticking = false;
 
@@ -26,6 +30,7 @@ public class DialogueTree : MonoBehaviour {
     }
 
     bool inTalk = true;
+    bool talkable = false;
 
     void Awake()
     {
@@ -34,11 +39,17 @@ public class DialogueTree : MonoBehaviour {
 
     void OnEnable()
     {
+        buildTree();
+        //defaultTreeStart();
+        UI.SetActive(false);
+    }
+
+    void defaultTreeStart() {
         DialogueNode node1 = new DialogueNode();//              1
         DialogueNode node2 = new DialogueNode();//          2       3
         DialogueNode node3 = new DialogueNode();//
-        DialogueOption link1 = new DialogueOption("testing things",node2);
-        DialogueTriggerOption link2 = new DialogueTriggerOption("Open door",node3, null, toTrigger);
+        DialogueOption link1 = new DialogueOption("testing things", node2);
+        DialogueTriggerOption link2 = new DialogueTriggerOption("Open door", node3, null, toTrigger);
         DialogueOption link3 = new DialogueOption("End it");
         DialogueOption link4 = new DialogueOption("Thanks boi");
         node1.SetupNode(new DialogueOption[] { link1, link2 }, "Hello there, my boy. What do you need?");
@@ -46,16 +57,91 @@ public class DialogueTree : MonoBehaviour {
         node3.SetupNode(new DialogueOption[] { link4 }, "Hopefully it opened");
 
         root = node1;
-        UI.SetActive(false);
+    }
+
+    void buildTree()
+    {
+        TextAsset xmlDoc = Resources.Load(dialogueName) as TextAsset;
+        XmlDocument doc = new XmlDocument();
+        doc.LoadXml(xmlDoc.text);
+
+        XmlNode first = doc.DocumentElement;
+        first = first.ChildNodes[0];
+        root = new DialogueNode();
+
+        List<DialogueOption> options = new List<DialogueOption>();
+        XmlNode speech = first.SelectSingleNode("Speech");
+        root.setTalk(speech.InnerText);
+
+        foreach(XmlNode x in first.ChildNodes) //Root run is a little weird and is split out here. 
+        {
+            if (x.Name == "Option")
+            {
+                if(x.Attributes["Type"].Value == "Trigger")
+                {
+                    DialogueTriggerOption option = new DialogueTriggerOption();
+                    option.SetText(x.SelectSingleNode("Speech").InnerText);
+                    option.SetTrigger(GameObject.Find(x.Attributes["GameObject"].Value),x.Attributes["TriggerName"].Value);
+                    if (x.ChildNodes.Count > 1)
+                        option.SetNext(recurse(x));
+                    options.Add(option);
+                }
+                else if(x.Attributes["Type"].Value == "Basic")
+                {
+                    DialogueOption option = new DialogueOption();
+                    option.SetText(x.SelectSingleNode("Speech").InnerText);
+                    if (x.ChildNodes.Count > 1)
+                        option.SetNext(recurse(x));
+                    options.Add(option);
+                }
+            }
+        }
+        root.setOptions(options.ToArray());
+    }
+    /// <summary>
+    /// Recursively builds a dialogue tree from an XML tree. 
+    /// </summary>
+    /// <param name="xmlCur">The current XML node to parse from. The start is a little odd, so look at how it is used above.</param>
+    /// <returns>The Dialogue node to connect to an Option.</returns>
+    DialogueNode recurse(XmlNode xmlCur) //Cooking up some FRESH SPAGHETTI
+    {
+        Debug.Log("Recursing");
+        List<DialogueOption> options = new List<DialogueOption>();
+        XmlNode thisDialogue = xmlCur.SelectSingleNode("Dialogue");
+        DialogueNode n = new DialogueNode();
+        n.setTalk(thisDialogue.SelectSingleNode("Speech").InnerText);
+        foreach (XmlNode x in thisDialogue.ChildNodes)
+        {
+            if (x.Name == "Option")
+            {
+                if (x.Attributes["Type"].Value == "Trigger")
+                {
+                    DialogueTriggerOption option = new DialogueTriggerOption();
+                    option.SetText(x.SelectSingleNode("Speech").InnerText);
+                    option.SetTrigger(GameObject.Find(x.Attributes["GameObject"].Value), x.Attributes["TriggerName"].Value);
+                    if (x.ChildNodes.Count > 1)
+                        option.SetNext(recurse(x));
+                    options.Add(option);
+                }
+                else if (x.Attributes["Type"].Value == "Basic")
+                {
+                    DialogueOption option = new DialogueOption();
+                    option.SetText(x.SelectSingleNode("Speech").InnerText);
+                    if (x.ChildNodes.Count > 1)
+                        option.SetNext(recurse(x));
+                    options.Add(option);
+                }
+            }
+        }
+        n.setOptions(options.ToArray());
+        return n;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
-            inTalk = true;
-            currentTree = this;
-            StartCoroutine(Talking());
+            talkable = true;
         }
 
     }
@@ -63,7 +149,18 @@ public class DialogueTree : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
+            talkable = false;
             inTalk = false;
+        }
+    }
+
+    public void StartTalking()
+    {
+        if (talkable)
+        {
+            inTalk = true;
+            currentTree = this;
+            StartCoroutine(Talking());
         }
     }
 
