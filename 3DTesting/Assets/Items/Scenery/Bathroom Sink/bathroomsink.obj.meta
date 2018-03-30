@@ -13,6 +13,7 @@ ModelImporter:
     2300000: bathroomsink
     3300000: bathroomsink
     4300000: bathroomsink
+    6400000: bathroomsink
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -45,7 +46,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

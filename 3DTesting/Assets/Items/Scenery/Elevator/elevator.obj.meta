@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 7012278f2ff93d344b24ec37ac40ebcc
-timeCreated: 1521245223
+guid: 340b023f118a8924c9b1a2067ccc1697
+timeCreated: 1521319934
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: apartmentroom
+    100000: elevator
     100002: //RootNode
-    400000: apartmentroom
+    400000: elevator
     400002: //RootNode
-    2100000: apartmentroomMat
-    2300000: apartmentroom
-    3300000: apartmentroom
-    4300000: apartmentroom
-    6400000: apartmentroom
+    2100000: elevatorMat
+    2300000: elevator
+    3300000: elevator
+    4300000: elevator
+    6400000: elevator
   externalObjects: {}
   materials:
     importMaterials: 1
