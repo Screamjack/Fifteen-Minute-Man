@@ -104,7 +104,7 @@ public class AkSpatialAudioListener : AkSpatialAudioBase
 
     public static AkAudioListener TheSpatialAudioListener
     {
-        get { return s_SpatialAudioListener.AkAudioListener; }
+        get { return s_SpatialAudioListener != null ? s_SpatialAudioListener.AkAudioListener : null; }
     }
 
     public static SpatialAudioListenerList SpatialAudioListeners { get { return spatialAudioListeners; } }

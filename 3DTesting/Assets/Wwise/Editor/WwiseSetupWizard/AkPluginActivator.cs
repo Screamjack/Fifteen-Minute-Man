@@ -1,12 +1,11 @@
 ﻿#if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System;
-using System.IO;
 using System.Xml;
 using System.Xml.XPath;
+using UnityEditor;
+using UnityEngine;
 
 [InitializeOnLoad]
 public class AkPluginActivator
@@ -107,7 +106,7 @@ public class AkPluginActivator
 			}
 			else if (AssetPath.Contains("Factory.h"))
 			{
-				FactoriesHeaderFilenames.Add(Path.GetFileName(AssetPath));
+				FactoriesHeaderFilenames.Add(System.IO.Path.GetFileName(AssetPath));
 			}
 		}
 
@@ -150,8 +149,8 @@ void *_pluginName_##_fp = (void*)&_pluginName_##Registration;
 
 			try
 			{
-				string FullPath = Path.Combine(Application.dataPath, WwisePluginFolder + RelativePath);
-				File.WriteAllText(FullPath, CppText);
+				string FullPath = System.IO.Path.Combine(Application.dataPath, WwisePluginFolder + RelativePath);
+				System.IO.File.WriteAllText(FullPath, CppText);
 				FactoriesHeaderFilenames.Clear();
 			}
 			catch (Exception e)
@@ -220,8 +219,10 @@ void *_pluginName_##_fp = (void*)&_pluginName_##Registration;
 			case BuildTarget.XboxOne:
 				return "XboxOne";
 
+#if UNITY_5_6_OR_NEWER
 			case BuildTarget.Switch:
 				return "Switch";
+#endif
 		}
 
 		return target.ToString();
@@ -404,7 +405,7 @@ void *_pluginName_##_fp = (void*)&_pluginName_##Registration;
 			bool bActivate = true;
 			if (pluginConfig == "DSP")
 			{
-				if (!IsPluginUsed(pluginPlatform, Path.GetFileNameWithoutExtension(pluginImporter.assetPath)))
+				if (!IsPluginUsed(pluginPlatform, System.IO.Path.GetFileNameWithoutExtension(pluginImporter.assetPath)))
 					bActivate = false;
 				else if (staticPluginRegistration != null)
 					staticPluginRegistration.TryAddLibrary(pluginImporter.assetPath);
@@ -486,7 +487,7 @@ void *_pluginName_##_fp = (void*)&_pluginName_##Registration;
 					if (!s_PerPlatformPlugins.ContainsKey(pluginPlatform))
 						continue;
 
-					bActivate = IsPluginUsed(pluginPlatform, Path.GetFileNameWithoutExtension(pluginImporter.assetPath));
+					bActivate = IsPluginUsed(pluginPlatform, System.IO.Path.GetFileNameWithoutExtension(pluginImporter.assetPath));
 				}
 				else
 					bActivate = pluginConfig == EditorConfiguration;
@@ -604,7 +605,7 @@ void *_pluginName_##_fp = (void*)&_pluginName_##Registration;
 		//Gather all GeneratedSoundBanks folder from the project
 		IDictionary<string, string> allPaths = AkUtilities.GetAllBankPaths();
 		bool bNeedRefresh = false;
-		string projectPath = Path.GetDirectoryName(AkUtilities.GetFullPath(Application.dataPath, WwiseSettings.LoadSettings().WwiseProjectPath));
+		string projectPath = System.IO.Path.GetDirectoryName(AkUtilities.GetFullPath(Application.dataPath, WwiseSettings.LoadSettings().WwiseProjectPath));
 
 		var pfMap = AkUtilities.GetPlatformMapping();
 
@@ -623,19 +624,19 @@ void *_pluginName_##_fp = (void*)&_pluginName_##Registration;
 				string pluginFile = "";
 				try
 				{
-					pluginFile = Path.Combine(projectPath, Path.Combine(bankPath, "PluginInfo.xml"));
-					pluginFile = pluginFile.Replace('/', Path.DirectorySeparatorChar);
-					if (!File.Exists(pluginFile))
+					pluginFile = System.IO.Path.Combine(projectPath, System.IO.Path.Combine(bankPath, "PluginInfo.xml"));
+					pluginFile = pluginFile.Replace('/', System.IO.Path.DirectorySeparatorChar);
+					if (!System.IO.File.Exists(pluginFile))
 					{
 						//Try in StreamingAssets too.
-						pluginFile = Path.Combine(Path.Combine(AkBasePathGetter.GetFullSoundBankPath(), customPF), "PluginInfo.xml");
-						if (!File.Exists(pluginFile))
+						pluginFile = System.IO.Path.Combine(System.IO.Path.Combine(AkBasePathGetter.GetFullSoundBankPath(), customPF), "PluginInfo.xml");
+						if (!System.IO.File.Exists(pluginFile))
 							continue;
 					}
 					fullPaths.Add(pluginFile);
 
-					DateTime t = File.GetLastWriteTime(pluginFile);
-					DateTime lastTime = DateTime.MinValue;
+					var t = System.IO.File.GetLastWriteTime(pluginFile);
+					var lastTime = DateTime.MinValue;
 					s_LastParsed.TryGetValue(customPF, out lastTime);
 					if (lastTime < t)
 					{
@@ -728,23 +729,22 @@ void *_pluginName_##_fp = (void*)&_pluginName_##Registration;
 
 	private static HashSet<string> ParsePluginsXML(string platform, List<string> in_pluginFiles)
 	{
-		HashSet<string> newDlls = new HashSet<string>();
+		var newDlls = new HashSet<string>();
 
 		foreach (string pluginFile in in_pluginFiles)
 		{
-			if (!File.Exists(pluginFile))
+			if (!System.IO.File.Exists(pluginFile))
 				continue;
 
 			try
 			{
-				XmlDocument doc = new XmlDocument();
+				var doc = new XmlDocument();
 				doc.Load(pluginFile);
-				XPathNavigator Navigator = doc.CreateNavigator();
-
-				XPathNavigator pluginInfoNode = Navigator.SelectSingleNode("//PluginInfo");
+				var Navigator = doc.CreateNavigator();
+				var pluginInfoNode = Navigator.SelectSingleNode("//PluginInfo");
 				string boolMotion = pluginInfoNode.GetAttribute("Motion", "");
 
-				XPathNodeIterator it = Navigator.Select("//Plugin");
+				var it = Navigator.Select("//Plugin");
 
 				if (boolMotion == "true")
 					newDlls.Add("AkMotion");

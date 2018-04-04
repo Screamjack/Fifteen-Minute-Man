@@ -89,8 +89,8 @@ MonoBehaviour:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{5C012531-C6A2-4249-BD42-E62C619CC9C1}'
-    m_lastTimePsrt1: 1911732614
-    m_lastTimePart2: -1999282728
+    m_lastTimePsrt1: -492551277
+    m_lastTimePart2: -1999282923
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -149,28 +149,24 @@ MonoBehaviour:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{8BFCCF38-7275-4927-A94B-0FC9645CB4EA}'
-    m_lastTimePsrt1: 1910013671
-    m_lastTimePart2: -1999282728
+    m_lastTimePsrt1: -491278820
+    m_lastTimePart2: -1999282923
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{D246A297-EF12-4D56-B645-B700B1092295}'
-    m_lastTimePsrt1: 1911732614
-    m_lastTimePart2: -1999282728
+    m_lastTimePsrt1: -491073673
+    m_lastTimePart2: -1999282923
     List: []
   AcousticTextureWwu:
   - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{9D386570-03FF-43F3-BF6A-3D61BFC469D8}'
-    m_lastTimePsrt1: 1911732614
-    m_lastTimePart2: -1999282728
+    m_lastTimePsrt1: -491383892
+    m_lastTimePart2: -1999282923
     List: []
-  ExpandedItems:
-  - /3DTesting_WwiseProject
-  - /3DTesting_WwiseProject/Switches
-  - /3DTesting_WwiseProject/Switches/Default Work Unit
-  - /3DTesting_WwiseProject/Switches/Default Work Unit/Footsteps
+  ExpandedItems: []
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1
