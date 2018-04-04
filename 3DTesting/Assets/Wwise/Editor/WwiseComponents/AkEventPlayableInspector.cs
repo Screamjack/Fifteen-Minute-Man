@@ -18,16 +18,12 @@ using System;
 [CustomEditor(typeof(AkEventPlayable))]
 public class AkEventPlayableInspector : Editor
 {
-    SerializedProperty[] m_guidProperty;
-    SerializedProperty[] m_IDProperty;
     AkEventPlayable m_AkEventPlayable;
 
     SerializedProperty akEvent;
     SerializedProperty overrideTrackEmitterObject;
     SerializedProperty emitterObjectRef;
     SerializedProperty retriggerEvent;
-
-    private Rect m_pickerPos = new Rect();
 
     public void OnEnable()
     {
@@ -36,14 +32,6 @@ public class AkEventPlayableInspector : Editor
         overrideTrackEmitterObject = serializedObject.FindProperty("overrideTrackEmitterObject");
         emitterObjectRef           = serializedObject.FindProperty("emitterObjectRef");
         retriggerEvent             = serializedObject.FindProperty("retriggerEvent");
-
-        m_IDProperty = new SerializedProperty[1];
-        m_IDProperty[0] = akEvent.FindPropertyRelative("ID");
-        m_guidProperty = new SerializedProperty[1];
-        m_guidProperty[0] = akEvent.FindPropertyRelative("valueGuid.Array");
-
-        if (m_IDProperty[0].intValue == AkSoundEngine.AK_INVALID_UNIQUE_ID)
-            EditorApplication.delayCall += DelayCreateCall;
     }
 
     public override void OnInspectorGUI()
@@ -74,12 +62,6 @@ public class AkEventPlayableInspector : Editor
         GUILayout.EndVertical();
 
         serializedObject.ApplyModifiedProperties();
-
-        var currentEvent = UnityEngine.Event.current;
-        if (currentEvent.type == EventType.Repaint)
-        {
-            m_pickerPos = AkUtilities.GetLastRectAbsolute(false);
-    }
     }
 
     public string GetEventName(Guid in_guid)
@@ -96,10 +78,6 @@ public class AkEventPlayableInspector : Editor
         return string.Empty;
     }
 
-    protected void DelayCreateCall()
-    {
-        AkWwiseComponentPicker.Create(AkWwiseProjectData.WwiseObjectType.EVENT, m_guidProperty, m_IDProperty, akEvent.serializedObject, m_pickerPos);
-    }
 }
 
 #endif //UNITY_2017_1_OR_NEWER

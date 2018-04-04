@@ -22,7 +22,7 @@ public class AkSpatialAudioEmitter : AkSpatialAudioBase
     /// The gain [0, 1] applied to the reflect auxiliary bus.
     public float reflectionsAuxBusGain = 1;
 
-    /// A heuristic to stop the computation of reflections. Should be no longer (and possibly shorter for less CPU usage) than the maximum attenuation of the sound emitter.
+    /// The maximum path length a sound path can have from the emitter to the listener after reflecting on surfaces.
     public float reflectionMaxPathLength = 1000;
 
     [Header("Rooms")]
@@ -66,8 +66,8 @@ public class AkSpatialAudioEmitter : AkSpatialAudioBase
     private const uint kMaxPropagationPaths = 16;
     private AkSoundPathInfoArray indirectPathInfoArray = new AkSoundPathInfoArray((int)kMaxIndirectPaths);
     private AkPropagationPathInfoArray propagationPathInfoArray = new AkPropagationPathInfoArray((int)kMaxPropagationPaths);
-    private AkSoundPropagationPathParams indirectPathsParams = new AkSoundPropagationPathParams();
-    private AkSoundPropagationPathParams soundPropagationPathsParams = new AkSoundPropagationPathParams();
+    private PathsParams indirectPathsParams = new PathsParams();
+    private PathsParams soundPropagationPathsParams = new PathsParams();
 
     private Color32 colorLightBlue = new Color32(157, 235, 243, 255);
     private Color32 colorDarkBlue = new Color32(24, 96, 103, 255);
@@ -91,7 +91,7 @@ public class AkSpatialAudioEmitter : AkSpatialAudioBase
 
     void OnDrawGizmos()
     {
-        if(Application.isPlaying && AkSoundEngine.IsInitialized())
+        if(Application.isPlaying)
         {
             if (drawFirstOrderReflections || drawSecondOrderReflections || drawHigherOrderReflections)
                 DebugDrawEarlyReflections();

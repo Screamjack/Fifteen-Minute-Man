@@ -22,7 +22,7 @@ using UnityEditor;
 static public class AkCallbackManager
 {
 	public delegate void EventCallback(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info);
-	public delegate void MonitoringCallback(AkMonitorErrorCode in_errorCode, AkMonitorErrorLevel in_errorLevel, uint in_playingID, ulong in_gameObjID, string in_msg);
+	public delegate void MonitoringCallback(AK.Monitor.ErrorCode in_errorCode, AK.Monitor.ErrorLevel in_errorLevel, uint in_playingID, ulong in_gameObjID, string in_msg);
 	public delegate void BankCallback(uint in_bankID, IntPtr in_InMemoryBankPtr, AKRESULT in_eLoadResult, uint in_memPoolId, object in_Cookie);
 
 	static AkEventCallbackInfo AkEventCallbackInfo = new AkEventCallbackInfo(IntPtr.Zero, false);
@@ -207,7 +207,7 @@ static public class AkCallbackManager
 		m_pNotifMem = (BufferSize > 0) ? Marshal.AllocHGlobal(BufferSize) : IntPtr.Zero;
 
 #if UNITY_EDITOR
-		AkCallbackSerializer.SetLocalOutput((uint)AkMonitorErrorLevel.ErrorLevel_All);
+		AkCallbackSerializer.SetLocalOutput((uint)AK.Monitor.ErrorLevel.ErrorLevel_All);
 #endif
 
 		return AkCallbackSerializer.Init(m_pNotifMem, (uint)BufferSize);
@@ -224,7 +224,7 @@ static public class AkCallbackManager
 	}
 
 	/// Call this to set a function to call whenever Wwise prints a message (warnings or errors).
-	static public void SetMonitoringCallback(AkMonitorErrorLevel in_Level, MonitoringCallback in_CB)
+	static public void SetMonitoringCallback(AK.Monitor.ErrorLevel in_Level, MonitoringCallback in_CB)
 	{
 		AkCallbackSerializer.SetLocalOutput(in_CB != null ? (uint)in_Level : 0);
 		m_MonitoringCB = in_CB;
@@ -305,7 +305,7 @@ static public class AkCallbackManager
 								msg += " (Instance ID: " + AkMonitoringCallbackInfo.gameObjID.ToString() + ")";
 							}
 
-							if (AkMonitoringCallbackInfo.errorLevel == AkMonitorErrorLevel.ErrorLevel_Error)
+							if (AkMonitoringCallbackInfo.errorLevel == AK.Monitor.ErrorLevel.ErrorLevel_Error)
 								Debug.LogError(msg);
 							else
 								Debug.Log(msg);

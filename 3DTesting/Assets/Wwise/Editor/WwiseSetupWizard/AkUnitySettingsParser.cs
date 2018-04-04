@@ -1,8 +1,11 @@
 #if UNITY_EDITOR
 
 using UnityEngine;
+using UnityEditor;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 // Note, this code was only written to parse the AudioManager.asset file.
 // It has been written to try to be as generic as possible, but might not 
@@ -15,14 +18,14 @@ public class AkUnitySettingsParser
         {
             string SettingsPath = Application.dataPath.Remove(Application.dataPath.LastIndexOf("/")) + "/ProjectSettings/" + ConfigFileName + ".asset";
 
-            System.IO.FileStream fs;
-            System.IO.BinaryReader br;
-            fs = System.IO.File.Open(SettingsPath, System.IO.FileMode.Open);
-            br = new System.IO.BinaryReader(fs);
+            FileStream fs;
+            BinaryReader br;
+            fs = File.Open(SettingsPath, FileMode.Open);
+            br = new BinaryReader(fs);
 
             // Read the unsigned int at offset 0x0C in the file. 
             // This contains the offset at which the setting's numerical values are stored.
-            br.BaseStream.Seek(0x0C, System.IO.SeekOrigin.Begin);
+            br.BaseStream.Seek(0x0C, SeekOrigin.Begin);
 
             // For some reason, the offset is Big Endian in the file.
             int SettingsOffset = GetBigEndianIntFromBinaryReader(br);
@@ -30,9 +33,9 @@ public class AkUnitySettingsParser
             // In the file, we start with 0x14 bytes, then a string containing the unity version, 
             // then 0x0C bytes, then a string containing the base class name, followed by a string containing "base".
             string tempStr;
-            br.BaseStream.Seek(0x14, System.IO.SeekOrigin.Begin);
+            br.BaseStream.Seek(0x14, SeekOrigin.Begin);
             tempStr = GetStringFromBinaryReader(br); // Unity Version
-            br.BaseStream.Seek(0x0C, System.IO.SeekOrigin.Current);
+            br.BaseStream.Seek(0x0C, SeekOrigin.Current);
             tempStr = GetStringFromBinaryReader(br); // Config file Name
             if (tempStr != ConfigFileName)
             {
@@ -48,7 +51,7 @@ public class AkUnitySettingsParser
             }
 
             // This string is then followed by 24 bytes
-            br.BaseStream.Seek(24, System.IO.SeekOrigin.Current);
+            br.BaseStream.Seek(24, SeekOrigin.Current);
 
             // We then have a series of String (type), String (variable name), and 24 bytes
             // We can use the type of the settings before the field we are looking for to
@@ -63,7 +66,7 @@ public class AkUnitySettingsParser
                     break;
                 }
 
-                br.BaseStream.Seek(24, System.IO.SeekOrigin.Current);
+                br.BaseStream.Seek(24, SeekOrigin.Current);
 
                 if (GetSizeofTypeByString(SettingType) == -1)
                 {
@@ -75,8 +78,8 @@ public class AkUnitySettingsParser
             }
 
             // Set the setting in the file
-            System.IO.BinaryWriter bw = new System.IO.BinaryWriter(fs);
-            bw.Seek(SettingsOffset, System.IO.SeekOrigin.Begin);
+            BinaryWriter bw = new BinaryWriter(fs);
+            bw.Seek(SettingsOffset, SeekOrigin.Begin);
             bw.Write(ValueToSet ? (byte)1 : (byte)0);
             bw.Close();
             fs.Close();
@@ -92,7 +95,7 @@ public class AkUnitySettingsParser
 	}
 	
 	// Read a big endian Int, and advances the BinaryReader's position
-	static int GetBigEndianIntFromBinaryReader(System.IO.BinaryReader br)
+	static int GetBigEndianIntFromBinaryReader(BinaryReader br)
 	{
 		byte[] tempBytes = new byte[4];
 		tempBytes = br.ReadBytes(4);
@@ -100,7 +103,7 @@ public class AkUnitySettingsParser
 	}
 	
 	// Reads a zero-terminated string at the BinaryReader's current position, and advances position
-	static string GetStringFromBinaryReader(System.IO.BinaryReader br)
+	static string GetStringFromBinaryReader(BinaryReader br)
 	{
         List<byte> list = new List<byte>();
 		

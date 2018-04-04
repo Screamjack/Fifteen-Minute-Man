@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Diagnostics;
+using System.IO;
 using System.Collections.Generic;
 using System;
 
@@ -19,10 +20,10 @@ public class AkUnityIntegrationBuilderBase
 
 	public AkUnityIntegrationBuilderBase()
 	{		
-		var unityProjectRoot = System.IO.Directory.GetCurrentDirectory();
-		m_assetsDir = System.IO.Path.Combine(unityProjectRoot, "Assets");
-		m_assetsPluginsDir = System.IO.Path.Combine(m_assetsDir, "Plugins");
-		m_buildScriptDir = System.IO.Path.Combine(System.IO.Path.Combine(System.IO.Path.Combine(m_assetsDir, "Wwise"), "AkSoundEngine"), "Common");
+		var unityProjectRoot = Directory.GetCurrentDirectory();
+		m_assetsDir = Path.Combine(unityProjectRoot, "Assets");
+		m_assetsPluginsDir = Path.Combine(m_assetsDir, "Plugins");
+		m_buildScriptDir = Path.Combine(Path.Combine(Path.Combine(m_assetsDir, "Wwise"), "AkSoundEngine"), "Common");
 		m_buildScriptFile = "BuildWwiseUnityIntegration.py";
 	}
 
@@ -35,8 +36,8 @@ public class AkUnityIntegrationBuilderBase
 		}
 
 		// Try to parse config to get Wwise location.
-		string configPath = System.IO.Path.Combine(m_buildScriptDir, "BuildWwiseUnityIntegration.json");
-		var fi = new System.IO.FileInfo(configPath);
+		string configPath = Path.Combine(m_buildScriptDir, "BuildWwiseUnityIntegration.json");
+		FileInfo fi = new FileInfo(configPath);
 		if ( fi.Exists )
 		{
 			string msg = string.Format("WwiseUnity: Found preference file: {0}. Use build variables defined in it.", configPath);
@@ -80,9 +81,9 @@ public class AkUnityIntegrationBuilderBase
 
 		EditorUtility.DisplayProgressBar(m_progTitle, progMsg, 0.5f);
 
-		using(var process = Process.Start(start))
+		using(Process process = Process.Start(start))
 		{
-			using(var reader = process.StandardOutput)
+			using(StreamReader reader = process.StandardOutput)
 			{
 		     	process.WaitForExit();
 
@@ -118,7 +119,7 @@ public class AkUnityIntegrationBuilderBase
 
 	protected virtual string GetProcessArgs(string config, string arch)
 	{
-		string scriptPath = System.IO.Path.Combine(m_buildScriptDir, m_buildScriptFile);
+		string scriptPath = Path.Combine(m_buildScriptDir, m_buildScriptFile);
 		string args = string.Format("\"{0}\" -p {1} -c {2}", scriptPath, m_platform, config);
 		if (arch != null)
 		{

@@ -6,6 +6,8 @@
 //////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
+using System.Collections.Generic;
+using System.IO;
 
 [AddComponentMenu("Wwise/AkTerminator")]
 [DisallowMultipleComponent]

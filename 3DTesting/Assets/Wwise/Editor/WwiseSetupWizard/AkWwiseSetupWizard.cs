@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Callbacks;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -166,18 +167,18 @@ public class WwiseSetupWizard
         }
     }
 
-    private static void MigrateCurrentScene(System.IO.FileInfo[] files, int migrateStart, int migrateStop)
+    private static void MigrateCurrentScene(FileInfo[] files, int migrateStart, int migrateStop)
     {
 		var objectTypeMap = new Dictionary<Type, UnityEngine.Object[]>();
 
 		foreach (var file in files)
 		{
-			string className = System.IO.Path.GetFileNameWithoutExtension(file.Name);
+			string className = Path.GetFileNameWithoutExtension(file.Name);
 
 			// Since monobehaviour scripts need to have the same name as the class it contains, we can use it to get the type of the object.
 			Type objectType = Type.GetType(className + ", Assembly-CSharp");
 
-			if (objectType != null && objectType.IsSubclassOf(typeof(UnityEngine.Object)))
+			if (objectType.IsSubclassOf(typeof(UnityEngine.Object)))
 			{
 				// Get all objects in the scene with the specified type.
 				UnityEngine.Object[] objects = UnityEngine.Object.FindObjectsOfType(objectType);
@@ -239,8 +240,9 @@ public class WwiseSetupWizard
         // Get the name of the currently opened scene.
         string currentScene = AkSceneUtils.GetCurrentScene().Replace('/', '\\');
 
-        var files = new System.IO.DirectoryInfo(Application.dataPath + "/Wwise/Deployment/Components").GetFiles("*.cs", System.IO.SearchOption.AllDirectories);
-        var  sceneInfo = new System.IO.DirectoryInfo(Application.dataPath).GetFiles("*.unity", System.IO.SearchOption.AllDirectories);
+        FileInfo[] files = new DirectoryInfo(Application.dataPath + "/Wwise/Deployment/Components").GetFiles("*.cs", SearchOption.AllDirectories);
+
+        FileInfo[] sceneInfo = new DirectoryInfo(Application.dataPath).GetFiles("*.unity", SearchOption.AllDirectories);
         string[] scenes = new string[sceneInfo.Length];
 
         AkSceneUtils.CreateNewScene();
@@ -272,7 +274,7 @@ public class WwiseSetupWizard
         // TODO: Moving one folder up is not nice at all. How to find the current project path?
         try
         {
-			System.IO.File.Delete(Application.dataPath + "/../.WwiseLauncherLockFile");
+            File.Delete(Application.dataPath + "/../.WwiseLauncherLockFile");
         }
         catch (Exception)
         {
@@ -303,9 +305,9 @@ public class WwiseSetupWizard
 
         // 0. Make sure the soundbank directory exists
         string sbPath = AkUtilities.GetFullPath(Application.streamingAssetsPath, Settings.SoundbankPath);
-		if (!System.IO.Directory.Exists(sbPath))
+		if (!Directory.Exists(sbPath))
         {
-			System.IO.Directory.CreateDirectory(sbPath);
+            Directory.CreateDirectory(sbPath);
         }
 
 		// 1. Disable built-in audio

@@ -34,13 +34,7 @@ public class AkBank : AkUnityEventHandler
 
 	protected override void Awake()
 	{
-#if UNITY_EDITOR
-        if (UnityEditor.BuildPipeline.isBuildingPlayer)
-        {
-            return;
-        }
-#endif
-        base.Awake ();
+		base.Awake ();
 
 		RegisterTriggers (unloadTriggerList, UnloadBank);
 		
@@ -85,10 +79,7 @@ public class AkBank : AkUnityEventHandler
 
 		if((unloadTriggerList.Contains(DESTROY_TRIGGER_ID)))
 		{
-#if UNITY_EDITOR
-            if (!UnityEditor.BuildPipeline.isBuildingPlayer)
-#endif
-                UnloadBank(null);
+			UnloadBank(null);
 		}
 	}
 }

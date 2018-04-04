@@ -20,6 +20,19 @@ namespace AK.Wwise.Editor
 		public abstract string UpdateIds(Guid[] in_guid);
 		public abstract void SetupSerializedProperties(SerializedProperty property);
 
+		private static Rect GetLastRectAbsolute()
+		{
+			// taken and modified from AkUtilities.GetLastRectAbsolute()
+			Type inspectorType = Assembly.GetAssembly(typeof(UnityEditor.Editor)).GetType("UnityEditor.InspectorWindow");
+
+			FieldInfo currentInspectorFieldInfo = inspectorType.GetField("s_CurrentInspectorWindow", BindingFlags.Public | BindingFlags.Static);
+			PropertyInfo positionPropInfo = inspectorType.GetProperty("position", BindingFlags.Public | BindingFlags.Instance);
+
+			Rect InspectorPosition = (Rect)positionPropInfo.GetValue(currentInspectorFieldInfo.GetValue(null), null);
+
+			Rect absolutePos = new Rect(InspectorPosition.x, InspectorPosition.y, InspectorPosition.width, 0);
+			return absolutePos;
+		}
 
 		private AkDragDropData GetAkDragDropData()
 		{
@@ -125,7 +138,7 @@ namespace AK.Wwise.Editor
 			if (currentEvent.type == EventType.Repaint && m_buttonWasPressed && m_pressedPosition.Equals(position))
 			{
 				m_serializedObject = property.serializedObject;
-				m_pickerPos = AkUtilities.GetLastRectAbsolute(false);
+				m_pickerPos = GetLastRectAbsolute();
 
 				EditorApplication.delayCall += DelayCreateCall;
 				m_buttonWasPressed = false;

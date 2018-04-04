@@ -25,8 +25,6 @@ public class AkInitializerInspector : Editor
     SerializedProperty m_streamingPoolSize;
 	SerializedProperty m_preparePoolSize;
 	SerializedProperty m_memoryCutoffThreshold;
-    SerializedProperty m_monitorPoolSize;
-    SerializedProperty m_monitorQueuePoolSize;
 	SerializedProperty m_callbackManagerBufferSize;
 	SerializedProperty m_engineLogging;
     SerializedProperty m_spatialAudioPoolSize;
@@ -44,8 +42,6 @@ public class AkInitializerInspector : Editor
         m_streamingPoolSize = serializedObject.FindProperty("streamingPoolSize");
 		m_preparePoolSize = serializedObject.FindProperty("preparePoolSize");
 		m_memoryCutoffThreshold = serializedObject.FindProperty("memoryCutoffThreshold");
-        m_monitorPoolSize = serializedObject.FindProperty("monitorPoolSize");
-        m_monitorQueuePoolSize = serializedObject.FindProperty("monitorQueuePoolSize");
 		m_callbackManagerBufferSize = serializedObject.FindProperty("callbackManagerBufferSize");
 		m_engineLogging = serializedObject.FindProperty("engineLogging");
         m_spatialAudioPoolSize = serializedObject.FindProperty("spatialAudioPoolSize");
@@ -65,9 +61,7 @@ public class AkInitializerInspector : Editor
         EditorGUILayout.PropertyField(m_streamingPoolSize, new GUIContent("Streaming Pool Size (KB)"));
 		EditorGUILayout.PropertyField(m_preparePoolSize, new GUIContent("Prepare Pool Size (KB)"));
 		EditorGUILayout.PropertyField(m_memoryCutoffThreshold, new GUIContent("Memory Cutoff Threshold"));
-        EditorGUILayout.PropertyField(m_monitorPoolSize, new GUIContent("Monitor Pool Size (KB)"));
-        EditorGUILayout.PropertyField(m_monitorQueuePoolSize, new GUIContent("Monitor Queue Pool Size (KB)"));
-        EditorGUILayout.PropertyField(m_callbackManagerBufferSize, new GUIContent("CallbackManager Buffer Size (KB)"));
+		EditorGUILayout.PropertyField(m_callbackManagerBufferSize, new GUIContent("CallbackManager Buffer Size (KB)"));
 		EditorGUILayout.PropertyField(m_engineLogging, new GUIContent("Enable Wwise engine logging"));
 		GUILayout.EndVertical();
 

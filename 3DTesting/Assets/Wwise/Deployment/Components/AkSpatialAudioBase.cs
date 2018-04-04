@@ -12,23 +12,23 @@ using System.Collections.Generic;
 
 public abstract class AkSpatialAudioBase : MonoBehaviour
 {
-    private AkRoom.PriorityList roomPriorityList = new AkRoom.PriorityList();
+    private AkGameObjRoomData m_roomData = new AkGameObjRoomData();
 
     protected void SetGameObjectInHighestPriorityRoom()
     {
-        ulong highestPriorityRoomID = roomPriorityList.GetHighestPriorityRoomID();
+        ulong highestPriorityRoomID = m_roomData.GetHighestPriorityRoomID();
         AkSoundEngine.SetGameObjectInRoom(gameObject, highestPriorityRoomID);
     }
 
     public void EnteredRoom(AkRoom room)
     {
-        roomPriorityList.Add(room);
+        m_roomData.AddAkRoom(room);
         SetGameObjectInHighestPriorityRoom();
     }
 
     public void ExitedRoom(AkRoom room)
     {
-        roomPriorityList.Remove(room);
+        m_roomData.RemoveAkRoom(room);
         SetGameObjectInHighestPriorityRoom();
     }
 
@@ -39,7 +39,9 @@ public abstract class AkSpatialAudioBase : MonoBehaviour
         {
             var room = collider.gameObject.GetComponent<AkRoom>();
             if (room != null)
-                roomPriorityList.Add(room);
+            {
+                m_roomData.AddAkRoom(room);
+            }
         }
         SetGameObjectInHighestPriorityRoom();
     }

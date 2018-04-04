@@ -7,10 +7,13 @@
 
 #if UNITY_2017_1_OR_NEWER
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using System.Xml;
+using System.IO;
 
 #if UNITY_EDITOR
 public class MinMaxEventDuration
@@ -31,9 +34,9 @@ public class MinMaxEventDuration
     {
         MinMaxEventDuration result = new MinMaxEventDuration();
         string FullSoundbankPath = AkBasePathGetter.GetPlatformBasePath();
-        string filename = System.IO.Path.Combine(FullSoundbankPath, "SoundbanksInfo.xml");
+        string filename = Path.Combine(FullSoundbankPath, "SoundbanksInfo.xml");
         float MaxDuration = 1000000.0f;
-        if (System.IO.File.Exists(filename))
+        if (File.Exists(filename))
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filename);

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using System;
+using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -92,18 +93,18 @@ public class AkWwisePostImportCallbackSetup
 
 		string filename = Application.dataPath + "/../.WwiseLauncherLockFile";
 
-		if (!System.IO.File.Exists(filename))
+		if (!File.Exists(filename))
 		{
 			return false;
 		}
 
-		string fileContent = System.IO.File.ReadAllText(filename);
+		string fileContent = File.ReadAllText(filename);
 
 		// Instantiate the regular expression object.
-		var r = new Regex("{\"migrateStart\":(\\d+),\"migrateStop\":(\\d+)(,\"returnToLauncher\":(true|false))?,.*}", RegexOptions.IgnoreCase);
+		Regex r = new Regex("{\"migrateStart\":(\\d+),\"migrateStop\":(\\d+)(,\"returnToLauncher\":(true|false))?,.*}", RegexOptions.IgnoreCase);
 
 		// Match the regular expression pattern against a text string.
-		var m = r.Match(fileContent);
+		Match m = r.Match(fileContent);
 
 		if (!m.Success ||
 			m.Groups.Count < 2 ||
@@ -129,7 +130,7 @@ public class AkWwisePostImportCallbackSetup
 	private static void RefreshCallback()
 	{
 		PostImportFunction();
-		if (System.IO.File.Exists(System.IO.Path.Combine(Application.dataPath, WwiseSettings.WwiseSettingsFilename)))
+		if (File.Exists(Path.Combine(Application.dataPath, WwiseSettings.WwiseSettingsFilename)))
 		{
 			AkPluginActivator.Update();
 			AkPluginActivator.ActivatePluginsForEditor();
@@ -148,7 +149,7 @@ public class AkWwisePostImportCallbackSetup
 
 		try
 		{
-			if (System.IO.File.Exists(Application.dataPath + System.IO.Path.DirectorySeparatorChar + WwiseSettings.WwiseSettingsFilename))
+			if (File.Exists(Application.dataPath + Path.DirectorySeparatorChar + WwiseSettings.WwiseSettingsFilename))
 			{
 				WwiseSetupWizard.Settings = WwiseSettings.LoadSettings();
 				AkWwiseProjectInfo.GetData();

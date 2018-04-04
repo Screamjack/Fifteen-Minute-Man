@@ -1,13 +1,14 @@
 #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.
 #if UNITY_EDITOR
 using System;
-using System.Collections.Generic;
-using System.Reflection;
+using System.IO;
 using System.Xml;
-using System.Xml.Serialization;
 using System.Xml.XPath;
+using System.Xml.Serialization;
 using UnityEditor;
 using UnityEngine;
+using System.Reflection;
+using System.Collections.Generic;
 
 [Serializable]
 public class WwiseSettings
@@ -36,15 +37,15 @@ public class WwiseSettings
 	{
 		try
 		{
-			var xmlDoc = new XmlDocument();
-			var xmlSerializer = new XmlSerializer(Settings.GetType());
-			using (var xmlStream = new System.IO.MemoryStream())
+			XmlDocument xmlDoc = new XmlDocument();
+			XmlSerializer xmlSerializer = new XmlSerializer(Settings.GetType());
+			using (MemoryStream xmlStream = new MemoryStream())
 			{
-				var streamWriter = new System.IO.StreamWriter( xmlStream, System.Text.Encoding.UTF8 );
+				StreamWriter streamWriter = new StreamWriter( xmlStream, System.Text.Encoding.UTF8 );
 				xmlSerializer.Serialize(streamWriter, Settings);
 				xmlStream.Position = 0;
 				xmlDoc.Load(xmlStream);
-				xmlDoc.Save(System.IO.Path.Combine(Application.dataPath, WwiseSettingsFilename));
+				xmlDoc.Save(Path.Combine(Application.dataPath, WwiseSettingsFilename));
 			}
 		}
 		catch (Exception)
@@ -62,17 +63,17 @@ public class WwiseSettings
 		WwiseSettings Settings = new WwiseSettings();
 		try
 		{
-			if (System.IO.File.Exists(System.IO.Path.Combine(Application.dataPath, WwiseSettingsFilename)))
+			if (File.Exists(Path.Combine(Application.dataPath, WwiseSettingsFilename)))
 			{
-				var xmlSerializer = new XmlSerializer(Settings.GetType());
-				var xmlFileStream = new System.IO.FileStream(Application.dataPath + "/" + WwiseSettingsFilename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+				XmlSerializer xmlSerializer = new XmlSerializer(Settings.GetType());
+				FileStream xmlFileStream = new FileStream(Application.dataPath + "/" + WwiseSettingsFilename, FileMode.Open, FileAccess.Read);
 				Settings = (WwiseSettings)xmlSerializer.Deserialize(xmlFileStream);
 				xmlFileStream.Close();
 			}
 			else
 			{
-				var projectDir = System.IO.Path.GetDirectoryName(Application.dataPath);
-				var foundWwiseProjects = System.IO.Directory.GetFiles(projectDir, "*.wproj", System.IO.SearchOption.AllDirectories);
+				string projectDir = Path.GetDirectoryName(Application.dataPath);
+				string[] foundWwiseProjects = Directory.GetFiles(projectDir, "*.wproj", SearchOption.AllDirectories);
 				
 				if (foundWwiseProjects.Length == 0)
 				{
@@ -150,7 +151,8 @@ public partial class AkUtilities
     {
         string output = "";
 
-        var process = new System.Diagnostics.Process();
+        System.Diagnostics.Process process = new System.Diagnostics.Process();
+
         process.StartInfo.FileName = command;
         process.StartInfo.UseShellExecute = false;
         process.StartInfo.RedirectStandardOutput = true;
@@ -158,8 +160,8 @@ public partial class AkUtilities
         process.StartInfo.Arguments = arguments;
         process.Start();
 
-		// Synchronously read the standard output of the spawned process. 
-		var reader = process.StandardOutput;
+        // Synchronously read the standard output of the spawned process. 
+        StreamReader reader = process.StandardOutput;
         output = reader.ReadToEnd();
 
         // Waiting for the process to exit directly in the UI thread. Similar cases are working that way too.
@@ -182,22 +184,22 @@ public partial class AkUtilities
 
         if (!String.IsNullOrEmpty(settings.WwiseInstallationPathWindows))
         {
-            result = System.IO.Path.Combine(settings.WwiseInstallationPathWindows, @"Authoring\x64\Release\bin\WwiseCLI.exe");
+            result = Path.Combine(settings.WwiseInstallationPathWindows, @"Authoring\x64\Release\bin\WwiseCLI.exe");
 
-            if (!System.IO.File.Exists(result))
+            if (!File.Exists(result))
             {
-                result = System.IO.Path.Combine(settings.WwiseInstallationPathWindows, @"Authoring\Win32\Release\bin\WwiseCLI.exe");
+                result = Path.Combine(settings.WwiseInstallationPathWindows, @"Authoring\Win32\Release\bin\WwiseCLI.exe");
             }
         }
 
 #elif UNITY_EDITOR_OSX
         if (!String.IsNullOrEmpty(settings.WwiseInstallationPathMac))
         {
-            result = System.IO.Path.Combine(settings.WwiseInstallationPathMac, "Contents/Tools/WwiseCLI.sh");
+            result = Path.Combine(settings.WwiseInstallationPathMac, "Contents/Tools/WwiseCLI.sh");
         }
 #endif
 
-		if (result != null && System.IO.File.Exists(result))
+        if (result != null && File.Exists(result))
         {
             return result;
         }
@@ -271,9 +273,9 @@ public partial class AkUtilities
     // Reads the user settings (not the project settings) to check if there is an override currently defined for the soundbank generation folders.
     public static bool IsSoundbankOverrideEnabled(string wwiseProjectPath)
     {
-        string userConfigFile = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(wwiseProjectPath), System.IO.Path.GetFileNameWithoutExtension(wwiseProjectPath) + "." + Environment.UserName + ".wsettings");
+        string userConfigFile = Path.Combine(Path.GetDirectoryName(wwiseProjectPath), Path.GetFileNameWithoutExtension(wwiseProjectPath) + "." + Environment.UserName + ".wsettings");
 
-        if (!System.IO.File.Exists(userConfigFile))
+        if (!File.Exists(userConfigFile))
         {
             return false;
         }
@@ -332,7 +334,7 @@ public partial class AkUtilities
                         if (s_ProjectBankPaths.TryGetValue(platform, out sbPath))
                         {
 #if UNITY_EDITOR_OSX
-                            sbPath = sbPath.Replace('\\', System.IO.Path.DirectorySeparatorChar);
+                            sbPath = sbPath.Replace('\\', Path.DirectorySeparatorChar);
 #endif
                             pathsList.Add(sbPath);
                             platformNamesList.Add(platform);
@@ -381,10 +383,10 @@ public partial class AkUtilities
             if (WwiseProjectPath.Length == 0)
                 return;
 
-            if (!System.IO.File.Exists(WwiseProjectPath))
+            if (!File.Exists(WwiseProjectPath))
                 return;
 
-            DateTime t = System.IO.File.GetLastWriteTime(WwiseProjectPath);
+            DateTime t = File.GetLastWriteTime(WwiseProjectPath);
             if (t <= s_LastBankPathUpdate)
                 return;
 
@@ -591,29 +593,29 @@ public partial class AkUtilities
 			return "";
 		}
 		
-		char wrongSeparatorChar = (System.IO.Path.DirectorySeparatorChar == '/') ? '\\' : '/';
+		char wrongSeparatorChar = (Path.DirectorySeparatorChar == '/') ? '\\' : '/';
 		
 		if( string.IsNullOrEmpty(RelativePath))
 		{
-			return BasePath.Replace(wrongSeparatorChar, System.IO.Path.DirectorySeparatorChar);
+			return BasePath.Replace(wrongSeparatorChar, Path.DirectorySeparatorChar);
 		}
 		
-		if (System.IO.Path.GetPathRoot(RelativePath) != "")
+		if (Path.GetPathRoot(RelativePath) != "")
 		{
-			return RelativePath.Replace(wrongSeparatorChar, System.IO.Path.DirectorySeparatorChar);
+			return RelativePath.Replace(wrongSeparatorChar, Path.DirectorySeparatorChar);
 		}
 		
-		tmpString = System.IO.Path.Combine(BasePath, RelativePath);
-		tmpString = System.IO.Path.GetFullPath(new Uri(tmpString).LocalPath);
+		tmpString = Path.Combine(BasePath, RelativePath);
+		tmpString = Path.GetFullPath(new Uri(tmpString).LocalPath);
 		
-		return tmpString.Replace(wrongSeparatorChar, System.IO.Path.DirectorySeparatorChar);
+		return tmpString.Replace(wrongSeparatorChar, Path.DirectorySeparatorChar);
 	}
 	
 	
 	public static bool DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
 	{
 		// Get the subdirectories for the specified directory.
-		var dir = new System.IO.DirectoryInfo(sourceDirName);
+		DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
 		if (!dir.Exists)
 		{
@@ -621,26 +623,29 @@ public partial class AkUtilities
 			return false;
 		}
 
-		var dirs = dir.GetDirectories();
+		DirectoryInfo[] dirs = dir.GetDirectories();
 
+		
 		// If the destination directory doesn't exist, create it. 
-		if (!System.IO.Directory.Exists(destDirName))
-			System.IO.Directory.CreateDirectory(destDirName);
+		if (!Directory.Exists(destDirName))
+		{
+			Directory.CreateDirectory(destDirName);
+		}
 		
 		// Get the files in the directory and copy them to the new location.
-		var files = dir.GetFiles();
-		foreach (var file in files)
+		FileInfo[] files = dir.GetFiles();
+		foreach (FileInfo file in files)
 		{
-			string temppath = System.IO.Path.Combine(destDirName, file.Name);
+			string temppath = Path.Combine(destDirName, file.Name);
 			file.CopyTo(temppath, true);
 		}
 		
 		// If copying subdirectories, copy them and their contents to new location. 
 		if (copySubDirs)
 		{
-			foreach (var subdir in dirs)
+			foreach (DirectoryInfo subdir in dirs)
 			{
-				string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
+				string temppath = Path.Combine(destDirName, subdir.Name);
 				DirectoryCopy(subdir.FullName, temppath, copySubDirs);
 			}
 		}
@@ -691,34 +696,29 @@ public partial class AkUtilities
 	/// 
 	///The inspector must be in repaint mode in order to get the correct position 
 	///Example => if(Event.current.type == EventType.Repaint) Rect pos = AkUtilities.GetLastRectAbsolute();
-	public static Rect GetLastRectAbsolute(bool applyScroll = true)
+	public static Rect GetLastRectAbsolute()
 	{ 
-		Type inspectorType = Assembly.GetAssembly(typeof(UnityEditor.Editor)).GetType("UnityEditor.InspectorWindow");
+		Type inspectorType = Assembly.GetAssembly(typeof(Editor)).GetType("UnityEditor.InspectorWindow");
 		
 		FieldInfo 		currentInspectorFieldInfo	= inspectorType.GetField("s_CurrentInspectorWindow", BindingFlags.Public | BindingFlags.Static);
+		FieldInfo 		scrollPosInfo				= inspectorType.GetField("m_ScrollPosition", BindingFlags.Public | BindingFlags.Instance);
 		PropertyInfo	positionPropInfo 			= inspectorType.GetProperty("position", BindingFlags.Public | BindingFlags.Instance);
-		Rect	        InspectorPosition	        = (Rect)positionPropInfo.GetValue(currentInspectorFieldInfo.GetValue(null), null);
 		
-        Rect absolutePos = new Rect(InspectorPosition.x, InspectorPosition.y, InspectorPosition.width, 0);
-
-        if (applyScroll)
-        {
-            FieldInfo scrollPosInfo = inspectorType.GetField("m_ScrollPosition", BindingFlags.Public | BindingFlags.Instance);
-            Vector2 scrollPos = (Vector2)scrollPosInfo.GetValue(currentInspectorFieldInfo.GetValue(null));
-
-            Rect relativePos = GUILayoutUtility.GetLastRect();
-
-            absolutePos = new Rect(InspectorPosition.x + relativePos.x - scrollPos.x,
-                                   InspectorPosition.y + relativePos.y - scrollPos.y,
-                                   relativePos.width,
-                                   relativePos.height
-                                  );
-        }
+		Rect	InspectorPosition	= (Rect)positionPropInfo.GetValue(currentInspectorFieldInfo.GetValue(null), null);
+		Vector2	scrollPos 			= (Vector2)scrollPosInfo.GetValue(currentInspectorFieldInfo.GetValue(null));
+		
+		Rect relativePos = GUILayoutUtility.GetLastRect();
+		
+		Rect absolutePos = new Rect	(	InspectorPosition.x + relativePos.x - scrollPos.x, 
+		                             	InspectorPosition.y + relativePos.y - scrollPos.y, 
+		                             	relativePos.width, 
+		                             	relativePos.height
+		                             );
 
 		return absolutePos;  
 	}
 
-    public static void RepaintInspector ()
+	public static void RepaintInspector ()
 	{
 		Type 		inspectorType		= Assembly.GetAssembly(typeof(Editor)).GetType("UnityEditor.InspectorWindow");
 		MethodInfo 	getAllInspectorInfo = inspectorType.GetMethod ("GetAllInspectorWindows", BindingFlags.Public | BindingFlags.Static);

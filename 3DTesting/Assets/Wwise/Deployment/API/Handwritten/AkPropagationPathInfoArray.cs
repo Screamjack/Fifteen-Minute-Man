@@ -12,12 +12,12 @@ using System.Runtime.InteropServices;
 
 public class AkPropagationPathInfoArray : IDisposable
 {
-    int SIZE_OF_STRUCTURE = AkSoundEnginePINVOKE.CSharp_AkPropagationPathInfoProxy_GetSizeOf();
+    int SIZE_OF_AKSOUNDPATHINFO = AkSoundEnginePINVOKE.CSharp_AkSoundPathInfoProxy_GetSizeOf();
 
     public AkPropagationPathInfoArray(int count)
     {
         m_Count = count;
-        m_Buffer = Marshal.AllocHGlobal(count * SIZE_OF_STRUCTURE);
+        m_Buffer = Marshal.AllocHGlobal(count * SIZE_OF_AKSOUNDPATHINFO);
     }
 
     ~AkPropagationPathInfoArray()
@@ -60,7 +60,7 @@ public class AkPropagationPathInfoArray : IDisposable
 
     IntPtr GetObjectPtr(int index)
     {
-        return (IntPtr)(m_Buffer.ToInt64() + SIZE_OF_STRUCTURE * index);
+        return (IntPtr)(m_Buffer.ToInt64() + SIZE_OF_AKSOUNDPATHINFO * index);
     }
 
     private IntPtr m_Buffer;

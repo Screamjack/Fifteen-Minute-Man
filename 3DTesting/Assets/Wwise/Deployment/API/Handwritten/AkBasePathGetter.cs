@@ -4,6 +4,9 @@
 // Copyright (c) 2012 Audiokinetic Inc. / All Rights Reserved
 //
 //////////////////////////////////////////////////////////////////////
+using System;
+using System.IO;
+using System.Reflection;
 using UnityEngine;
 
 public partial class AkBasePathGetter
@@ -63,7 +66,7 @@ public partial class AkBasePathGetter
 #endif
 
 		// Combine base path with platform sub-folder
-		string platformBasePath = System.IO.Path.Combine(GetFullSoundBankPath(), platformName);
+		string platformBasePath = Path.Combine(GetFullSoundBankPath(), platformName);
 		FixSlashes(ref platformBasePath);
 		return platformBasePath;
 	}
@@ -74,7 +77,7 @@ public partial class AkBasePathGetter
 #if UNITY_ANDROID && !UNITY_EDITOR
  		string fullBasePath = AkInitializer.GetBasePath();
 #else
-		string fullBasePath = System.IO.Path.Combine(Application.streamingAssetsPath, AkInitializer.GetBasePath());
+		string fullBasePath = Path.Combine(Application.streamingAssetsPath, AkInitializer.GetBasePath());
 #endif
 
 #if UNITY_SWITCH
@@ -91,10 +94,10 @@ public partial class AkBasePathGetter
 		WwiseSettings Settings = WwiseSettings.LoadSettings();
 		string WwiseProjectFullPath = AkUtilities.GetFullPath(Application.dataPath, Settings.WwiseProjectPath);
 		string SoundBankDest = AkUtilities.GetWwiseSoundBankDestinationFolder(platformName, WwiseProjectFullPath);
-		if (System.IO.Path.GetPathRoot(SoundBankDest) == "")
+		if (Path.GetPathRoot(SoundBankDest) == "")
 		{
 			// Path is relative, make it full
-			SoundBankDest = AkUtilities.GetFullPath(System.IO.Path.GetDirectoryName(WwiseProjectFullPath), SoundBankDest);
+			SoundBankDest = AkUtilities.GetFullPath(Path.GetDirectoryName(WwiseProjectFullPath), SoundBankDest);
 		}
 
 		if (string.IsNullOrEmpty(SoundBankDest))
@@ -106,8 +109,8 @@ public partial class AkBasePathGetter
 			try
 			{
 				// Verify if there are banks in there
-				var di = new System.IO.DirectoryInfo(SoundBankDest);
-				var foundBanks = di.GetFiles("*.bnk", System.IO.SearchOption.AllDirectories);
+				DirectoryInfo di = new DirectoryInfo(SoundBankDest);
+				FileInfo[] foundBanks = di.GetFiles("*.bnk", SearchOption.AllDirectories);
 				if (foundBanks.Length == 0)
 					SoundBankDest = string.Empty;
 				else if (!SoundBankDest.Contains(platformName))
@@ -140,7 +143,7 @@ public partial class AkBasePathGetter
 #if UNITY_WSA
 		char separatorChar = '\\';
 #else
-		char separatorChar = System.IO.Path.DirectorySeparatorChar;
+		char separatorChar = Path.DirectorySeparatorChar;
 #endif // UNITY_WSA
 		char badChar = separatorChar == '\\' ? '/' : '\\';
 		FixSlashes(ref path, separatorChar, badChar, true);
@@ -151,8 +154,8 @@ public partial class AkBasePathGetter
 		string basePathToSet = GetPlatformBasePath();
 		bool InitBnkFound = true;
 #if UNITY_EDITOR || !UNITY_ANDROID // Can't use File.Exists on Android, assume banks are there
-		string InitBankPath = System.IO.Path.Combine(basePathToSet, "Init.bnk");
-		if (!System.IO.File.Exists(InitBankPath))
+		string InitBankPath = Path.Combine(basePathToSet, "Init.bnk");
+		if (!File.Exists(InitBankPath))
 		{
 			InitBnkFound = false;
 		}

@@ -31,13 +31,6 @@ public abstract class AkUnityEventHandler : MonoBehaviour
 
 	protected virtual void Awake()
 	{
-#if UNITY_EDITOR
-        if (UnityEditor.BuildPipeline.isBuildingPlayer)
-        {
-            return;
-        }
-#endif
-
         RegisterTriggers(triggerList, HandleEvent);
 
 		//Call the Handle event function if registered to the Awake Trigger
@@ -71,10 +64,7 @@ public abstract class AkUnityEventHandler : MonoBehaviour
 		
 		if (triggerList.Contains(DESTROY_TRIGGER_ID))
 		{
-#if UNITY_EDITOR
-            if (!UnityEditor.BuildPipeline.isBuildingPlayer)
-#endif
-            HandleEvent(null);
+			HandleEvent(null);
 		}
 		
 		didDestroy = true;

@@ -7,20 +7,24 @@
 
 using UnityEngine;
 using UnityEditor;
+using System;
 using System.Linq;
+using System.IO;
+using System.Collections;
+using System.Reflection;
 using System.Collections.Generic;
+
+public enum AttenuationSphereOptions
+{
+	Dont_Show,
+	Current_Event_Only,
+	All_Events
+}
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(AkAmbient))]
 public class AkAmbientInspector : AkEventInspector
 {
-	public enum AttenuationSphereOptions
-	{
-		Dont_Show,
-		Current_Event_Only,
-		All_Events
-	}
-
 	AkAmbient m_AkAmbient;
 	SerializedProperty multiPositionType;
 	bool hideDefaultHandle = false;
