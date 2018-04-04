@@ -14,13 +14,14 @@ public class AkRoomPortal : AkUnityEventHandler
     public const int MAX_ROOMS_PER_PORTAL = 2;
 
     /// The front and back rooms connected by the portal.
-	/// The first room is on the negative side of the portal(opposite to the direction of the local Z axis)
+    /// The first room is on the negative side of the portal(opposite to the direction of the local Z axis)
     /// The second room is on the positive side of the portal.
     public AkRoom[] rooms = new AkRoom[MAX_ROOMS_PER_PORTAL];
+    private ulong frontRoomID = AkRoom.INVALID_ROOM_ID;
+    private ulong backRoomID = AkRoom.INVALID_ROOM_ID;
 
     private AkTransform portalTransform = new AkTransform();
     private AkVector extent = new AkVector();
-    private ulong[] roomIDs = new ulong[MAX_ROOMS_PER_PORTAL];
 
     /// Access the portal's ID
     public ulong GetID() { return (ulong)GetInstanceID(); }
@@ -40,25 +41,23 @@ public class AkRoomPortal : AkUnityEventHandler
         extent.Y = collider.size.y * transform.localScale.y / 2;
         extent.Z = collider.size.z * transform.localScale.z / 2;
 
-        for (int i = 0; i < rooms.Length; i++)
-            roomIDs[i] = (rooms[i] == null) ? AkRoom.INVALID_ROOM_ID : rooms[i].GetID();
-
-        base.Awake();
+        frontRoomID = (rooms[1] == null) ? AkRoom.INVALID_ROOM_ID : rooms[1].GetID();
+        backRoomID = (rooms[0] == null) ? AkRoom.INVALID_ROOM_ID : rooms[0].GetID();
 
         RegisterTriggers(closePortalTriggerList, ClosePortal);
 
-        //Call the UnloadBank function if registered to the Awake Trigger
+        base.Awake();
+
+        //Call the ClosePortal function if registered to the Awake Trigger
         if ((closePortalTriggerList.Contains(AWAKE_TRIGGER_ID)))
-        {
             ClosePortal(null);
-        }
     }
 
     protected override void Start()
     {
         base.Start();
 
-        //Call the UnloadBank function if registered to the Start Trigger
+        //Call the ClosePortal function if registered to the Start Trigger
         if ((closePortalTriggerList.Contains(START_TRIGGER_ID)))
             ClosePortal(null);
     }
@@ -81,7 +80,7 @@ public class AkRoomPortal : AkUnityEventHandler
 
         UnregisterTriggers(closePortalTriggerList, ClosePortal);
 
-        if ((closePortalTriggerList.Contains(DESTROY_TRIGGER_ID)))
+        if (closePortalTriggerList.Contains(DESTROY_TRIGGER_ID))
             ClosePortal(null);
     }
 
@@ -97,15 +96,81 @@ public class AkRoomPortal : AkUnityEventHandler
 
     private void ActivatePortal(bool active)
     {
-        if (roomIDs[0] != roomIDs[1])
-            AkSoundEngine.SetRoomPortal(GetID(), portalTransform, extent, active, roomIDs[1], roomIDs[0]);
+        if (!enabled)
+            return;
+
+        if (frontRoomID != backRoomID)
+            AkSoundEngine.SetRoomPortal(GetID(), portalTransform, extent, active, frontRoomID, backRoomID);
         else
             Debug.LogError(name + " is not placed/oriented correctly");
+    }
+
+    public void FindOverlappingRooms(AkRoom.PriorityList[] roomList)
+    {
+        BoxCollider portalCollider = gameObject.GetComponent<BoxCollider>();
+        if (portalCollider == null)
+            return;
+
+        // compute halfExtents and divide the local z extent by 2
+        Vector3 halfExtents = new Vector3(
+            portalCollider.size.x * transform.localScale.x / 2,
+            portalCollider.size.y * transform.localScale.y / 2,
+            portalCollider.size.z * transform.localScale.z / 4);
+
+        // move the center backward
+        FillRoomList(Vector3.forward * -0.25f, halfExtents, roomList[0]);
+
+        // move the center forward
+        FillRoomList(Vector3.forward * 0.25f, halfExtents, roomList[1]);
+    }
+
+    void FillRoomList(Vector3 center, Vector3 halfExtents, AkRoom.PriorityList list)
+    {
+        list.rooms.Clear();
+
+        center = transform.TransformPoint(center);
+
+        Collider[] colliders = Physics.OverlapBox(center, halfExtents, transform.rotation);
+
+        foreach (var collider in colliders)
+        {
+            var room = collider.gameObject.GetComponent<AkRoom>();
+            if (room != null && !list.Contains(room))
+                list.Add(room);
+        }
+    }
+
+    public void SetFrontRoom(AkRoom room)
+    {
+        rooms[1] = room;
+        frontRoomID = (rooms[1] == null) ? AkRoom.INVALID_ROOM_ID : rooms[1].GetID();
+    }
+
+    public void SetBackRoom(AkRoom room)
+    {
+        rooms[0] = room;
+        backRoomID = (rooms[0] == null) ? AkRoom.INVALID_ROOM_ID : rooms[0].GetID();
+    }
+
+    public void UpdateOverlappingRooms()
+    {
+        AkRoom.PriorityList[] roomList = new AkRoom.PriorityList[] { new AkRoom.PriorityList(), new AkRoom.PriorityList() };
+
+        FindOverlappingRooms(roomList);
+        for (int i = 0; i < 2; i++)
+            if (!roomList[i].Contains(rooms[i]))
+                rooms[i] = roomList[i].GetHighestPriorityRoom();
+
+        frontRoomID = (rooms[1] == null) ? AkRoom.INVALID_ROOM_ID : rooms[1].GetID();
+        backRoomID = (rooms[0] == null) ? AkRoom.INVALID_ROOM_ID : rooms[0].GetID();
     }
 
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
+        if (!enabled)
+            return;
+
         Gizmos.matrix = transform.localToWorldMatrix;
 
         Vector3 centreOffset = Vector3.zero;
@@ -149,20 +214,6 @@ public class AkRoomPortal : AkUnityEventHandler
             Gizmos.DrawLine(CornerCenterPos[i] + centreOffset, CornerCenterPos[(i+1)%4] + centreOffset);
         }
     }
-
-    ///This enables us to detect intersections between portals and rooms in the editor 
-    [Serializable]
-    public class RoomListWrapper
-    {
-        public List<AkRoom> list = new List<AkRoom>();
-    }
-
-    //Unity can't serialize an array of list so we wrap the list in a serializable class 
-    public RoomListWrapper[] roomList = new RoomListWrapper[]
-    {
-        new RoomListWrapper(),	//All rooms on the negative side of each portal(opposite to the direction of the chosen axis)
-		new RoomListWrapper()	//All rooms on the positive side of each portal(same direction as the chosen axis)
-	};
 #endif
 }
 #endif // #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.

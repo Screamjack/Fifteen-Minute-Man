@@ -79,6 +79,34 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="BGM_apartmentroom" ID="{7A8E127E-E0EC-4069-B78F-79B5A0AD1049}">
+					<ChildrenList>
+						<Action Name="" ID="{7869BDFF-8AEF-4E55-BCAA-64383A000188}" ShortID="217839194">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="apartmentroom" ID="{F7312FB2-6812-4972-ACFC-CCC35FD88D41}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="BGM_apartmenthallway" ID="{CC05F2E6-6D94-4BC2-B996-F6102235E84F}">
+					<ChildrenList>
+						<Action Name="" ID="{694CE934-8134-4CC4-BA2F-D66B02C5C06C}" ShortID="706772586">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="apartmenthallway" ID="{EE8BED9F-4C63-40F3-8250-0548D88BBA63}" WorkUnitID="{7CE88E83-7361-4296-B7F6-88F00E016341}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

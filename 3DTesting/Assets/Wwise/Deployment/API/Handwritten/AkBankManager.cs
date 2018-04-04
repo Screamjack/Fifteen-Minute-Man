@@ -183,7 +183,7 @@ public static class AkBankManager
 		public override void UnloadBank()
 		{
 			if (decodeBank && !saveDecodedBank)
-				AkSoundEngine.PrepareBank(AK.SoundEngine.PreparationType.Preparation_Unload, m_BankID);
+				AkSoundEngine.PrepareBank(AkPreparationType.Preparation_Unload, m_BankID);
 			else
 				base.UnloadBank();
 		}

@@ -19,7 +19,7 @@ namespace AK.Wwise
 
 		public virtual bool IsValid()
 		{
-			return ID != 0;
+			return ID != AkSoundEngine.AK_INVALID_UNIQUE_ID;
 		}
 
 		public bool Validate()

@@ -1,9 +1,11 @@
-﻿#if UNITY_EDITOR
+﻿#if UNITY_EDITOR && UNITY_5_6_OR_NEWER
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Build;
+#if UNITY_2018_1_OR_NEWER
+using UnityEditor.Build.Reporting;
+#endif
 
 public partial class AkBuildPreprocessor : IPreprocessBuild, IPostprocessBuild
 {
@@ -69,7 +71,7 @@ public partial class AkBuildPreprocessor : IPreprocessBuild, IPostprocessBuild
 
 	private static bool SetDestinationPath(string platformName, ref string destinationFolder)
 	{
-		destinationFolder = Path.Combine(AkBasePathGetter.GetFullSoundBankPath(), platformName);
+		destinationFolder = System.IO.Path.Combine(AkBasePathGetter.GetFullSoundBankPath(), platformName);
 		return !string.IsNullOrEmpty(destinationFolder);
 	}
 
@@ -115,13 +117,21 @@ public partial class AkBuildPreprocessor : IPreprocessBuild, IPostprocessBuild
 	{
 		if (!string.IsNullOrEmpty(destinationFolder))
 		{
-			Directory.Delete(destinationFolder, true);
+			System.IO.Directory.Delete(destinationFolder, true);
 			Debug.Log("WwiseUnity: Deleting streaming assets folder <" + destinationFolder + ">");
 		}
 	}
 
-	public void OnPreprocessBuild(BuildTarget target, string path)
+
+#if UNITY_2018_1_OR_NEWER
+    public void OnPreprocessBuild(BuildReport report)
+    {
+        BuildTarget target = report.summary.platform;
+        string path = report.summary.outputPath;
+#else
+    public void OnPreprocessBuild(BuildTarget target, string path)
 	{
+#endif
 		if (WwiseSetupWizard.Settings.CopySoundBanksAsPreBuildStep)
 		{
 			string platformName = GetPlatformName(target);
@@ -136,11 +146,18 @@ public partial class AkBuildPreprocessor : IPreprocessBuild, IPostprocessBuild
 		AkPluginActivator.ActivatePluginsForDeployment(target, true);
 	}
 
-	public void OnPostprocessBuild(BuildTarget target, string path)
+#if UNITY_2018_1_OR_NEWER
+    public void OnPostprocessBuild(BuildReport report)
+    {
+        BuildTarget target = report.summary.platform;
+#else
+    public void OnPostprocessBuild(BuildTarget target, string path)
 	{
+#endif
 		AkPluginActivator.ActivatePluginsForDeployment(target, false);
 		DeleteSoundbanks(destinationSoundBankFolder);
 		destinationSoundBankFolder = string.Empty;
 	}
+
 }
-#endif
+#endif // #if UNITY_EDITOR && UNITY_5_6_OR_NEWER

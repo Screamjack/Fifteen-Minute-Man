@@ -1,16 +1,16 @@
 #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.
 using UnityEngine;
-using System.IO;
 using System.Threading;
 
 #if UNITY_EDITOR
+using System;
 using UnityEditor;
 #endif
 
 public class AkSoundEngineController
 {
 	#region Public Data Members
-	public readonly static string s_DefaultBasePath = Path.Combine("Audio", "GeneratedSoundBanks");
+	public readonly static string s_DefaultBasePath = System.IO.Path.Combine("Audio", "GeneratedSoundBanks");
 	public static string s_Language = "English(US)";
 	public static int s_DefaultPoolSize = 4096;
 	public static int s_LowerPoolSize = 2048;
@@ -66,9 +66,9 @@ public class AkSoundEngineController
 	{
 #if (UNITY_ANDROID || UNITY_IOS || UNITY_SWITCH) && !UNITY_EDITOR
 		// This is for platforms that only have a specific file location for persistent data.
-		return Path.Combine(Application.persistentDataPath, GetDecodedBankFolder());
+		return System.IO.Path.Combine(Application.persistentDataPath, GetDecodedBankFolder());
 #else
-		return Path.Combine(AkBasePathGetter.GetPlatformBasePath(), GetDecodedBankFolder());
+		return System.IO.Path.Combine(AkBasePathGetter.GetPlatformBasePath(), GetDecodedBankFolder());
 #endif
 	}
 
@@ -86,6 +86,12 @@ public class AkSoundEngineController
 
 	public void Init(AkInitializer akInitializer)
 	{
+#if UNITY_EDITOR
+		string[] arguments = Environment.GetCommandLineArgs();
+		if (Array.IndexOf(arguments, "-nographics") >= 0 && Array.IndexOf(arguments, "-wwiseEnableWithNoGraphics") < 0)
+			return;
+#endif
+
 		engineLogging = akInitializer.engineLogging;
 
 		AkLogger.Instance.Init();
@@ -95,7 +101,7 @@ public class AkSoundEngineController
 		if (AkSoundEngine.IsInitialized())
 		{
 #if UNITY_EDITOR
-			if (Application.isPlaying)
+			if (Application.isPlaying || BuildPipeline.isBuildingPlayer)
 			{
 				AkSoundEngine.ClearBanks();
 				AkBankManager.Reset();
@@ -145,7 +151,7 @@ public class AkSoundEngineController
 		initSettings.uMonitorPoolSize = (uint)akInitializer.monitorPoolSize * 1024;
 		initSettings.uMonitorQueuePoolSize = (uint)akInitializer.monitorQueuePoolSize * 1024;
 #if (!UNITY_ANDROID && !UNITY_WSA) || UNITY_EDITOR // Exclude WSA. It only needs the name of the DLL, and no path.
-		initSettings.szPluginDLLPath = Path.Combine(Application.dataPath, "Plugins" + Path.DirectorySeparatorChar);
+		initSettings.szPluginDLLPath = System.IO.Path.Combine(Application.dataPath, "Plugins" + System.IO.Path.DirectorySeparatorChar);
 #endif
 
 		AkPlatformInitSettings platformSettings = new AkPlatformInitSettings();
@@ -204,7 +210,7 @@ public class AkSoundEngineController
 #if !UNITY_SWITCH
 		// Calling Application.persistentDataPath crashes Switch
 		// AkSoundEngine.AddBasePath is currently only implemented for iOS and Android; No-op for all other platforms.
-		AkSoundEngine.AddBasePath(Application.persistentDataPath + Path.DirectorySeparatorChar);
+		AkSoundEngine.AddBasePath(Application.persistentDataPath + System.IO.Path.DirectorySeparatorChar);
 		// Adding decoded bank path last to ensure that it is the first one used when writing decoded banks.
 		AkSoundEngine.AddBasePath(decodedBankFullPath);
 #endif

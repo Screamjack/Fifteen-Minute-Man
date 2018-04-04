@@ -19,6 +19,14 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
+				<SoundBank Name="Background_Music" ID="{EC233DE1-A0B9-41CD-AEEA-7AF8D8D57895}">
+					<ObjectInclusionList>
+						<ObjectRef Name="BGM_apartmentroom" ID="{7A8E127E-E0EC-4069-B78F-79B5A0AD1049}" WorkUnitID="{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="BGM_apartmenthallway" ID="{CC05F2E6-6D94-4BC2-B996-F6102235E84F}" WorkUnitID="{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundBanks>

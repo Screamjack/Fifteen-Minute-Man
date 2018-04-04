@@ -9,20 +9,65 @@ using System.Collections.Generic;
 /// @details 
 public class AkRoom : MonoBehaviour
 {
-    public class AkRoom_CompareByPriority : IComparer<AkRoom>
+    public class PriorityList
     {
-        public virtual int Compare(AkRoom a, AkRoom b)
-        {
-            int result = a.priority.CompareTo(b.priority);
+        /// Contains all active rooms sorted by priority.
+        public List<AkRoom> rooms = new List<AkRoom>();
 
-            if (result == 0 && a != b)
-                return 1;
-            else
-                return result;
+        private class CompareByPriority : IComparer<AkRoom>
+        {
+            public virtual int Compare(AkRoom a, AkRoom b)
+            {
+                int result = a.priority.CompareTo(b.priority);
+
+                if (result == 0 && a != b)
+                    return 1;
+                else
+                    return -result; // inverted to have highest priority first
+            }
+        }
+
+        private static CompareByPriority s_compareByPriority = new CompareByPriority();
+
+        public ulong GetHighestPriorityRoomID()
+        {
+            var room = GetHighestPriorityRoom();
+            return (room == null) ? AkRoom.INVALID_ROOM_ID : room.GetID();
+        }
+
+        public AkRoom GetHighestPriorityRoom()
+        {
+            if (rooms.Count == 0)
+            {
+                // we're outside
+                return null;
+            }
+
+            return rooms[0];
+        }
+
+        public void Add(AkRoom room)
+        {
+            int index = BinarySearch(room);
+            if (index < 0)
+                rooms.Insert(~index, room);
+        }
+
+        public void Remove(AkRoom room)
+        {
+            rooms.Remove(room);
+        }
+
+        public bool Contains(AkRoom room)
+        {
+            return BinarySearch(room) >= 0;
+        }
+
+        public int BinarySearch(AkRoom room)
+        {
+            return rooms.BinarySearch(room, s_compareByPriority);
         }
     }
-
-    static public AkRoom_CompareByPriority s_compareByPriority = new AkRoom_CompareByPriority();
 
     static public ulong INVALID_ROOM_ID = unchecked((ulong)-1.0f);
 
@@ -95,7 +140,7 @@ public class AkRoom : MonoBehaviour
 
     public static bool IsSpatialAudioEnabled
     {
-        get { return RoomCount > 0; }
+        get { return (AkSpatialAudioListener.TheSpatialAudioListener != null) && (RoomCount > 0); }
     }
 }
 #endif // #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.
