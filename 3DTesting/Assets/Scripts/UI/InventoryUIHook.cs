@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class InventoryUIHook : MonoBehaviour {
 
     Inventory mainInv;
+    Animator anim;
     [SerializeField]
     GameObject inv;
     bool open = false;
@@ -13,18 +14,20 @@ public class InventoryUIHook : MonoBehaviour {
     void Awake()
         {
         mainInv = GameManager.manager.GameInventory;
+        anim = gameObject.GetComponent<Animator>();
         inv.SetActive(false);
-        }
+    }
 
     public void Toggle()
     {
         if(open)
         {
-            inv.SetActive(false);
+            anim.SetTrigger("close");
             open = false;
         }
         else
         {
+            anim.SetTrigger("open");
             inv.SetActive(true);
             open = true;
             Refresh();
@@ -52,5 +55,11 @@ public class InventoryUIHook : MonoBehaviour {
                 Container.transform.GetChild(slot).gameObject.SetActive(false);
             }
         }
+    }
+
+    void StubShut()
+    {
+        AnimStub stub = transform.GetChild(0).GetComponent<AnimStub>();
+        stub.ShutOff();
     }
 }

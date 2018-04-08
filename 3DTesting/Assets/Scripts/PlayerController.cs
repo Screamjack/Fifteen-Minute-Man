@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour {
     public float runspeed = 2f;
     public int jumpMod = 250;
     public float rotateSpeed = 1f;
-    public float forceMod = 75;
 
     private float distancetoGround = 0.1f;
     private float moddedGroundDist;
@@ -97,11 +96,11 @@ public class PlayerController : MonoBehaviour {
             //Next check movement
             if (Input.GetKey(up))
             {
-                movement = running ? transform.forward * runspeed * forceMod : transform.forward * walkspeed * forceMod;
+                movement = running ? transform.forward * runspeed : transform.forward * walkspeed;
             }
             else if (Input.GetKey(down))
             {
-                movement = running ? -transform.forward * runspeed * forceMod : -transform.forward * walkspeed * forceMod;
+                movement = running ? -transform.forward * runspeed: -transform.forward * walkspeed;
             }
 
             if(Input.GetKey(left))
