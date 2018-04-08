@@ -22,15 +22,17 @@ public class PlayerController : MonoBehaviour {
     private bool grounded;
     private bool canMove = true;
     private Quaternion currentRotation;
-    private uint mask;
+
+    private KeyCode up = KeyCode.W;
+    private KeyCode down = KeyCode.S;
+    private KeyCode left = KeyCode.A;
+    private KeyCode right = KeyCode.D;
+    private KeyCode jump = KeyCode.Space;
+    private KeyCode run = KeyCode.LeftShift;
 
     private DialogueTree currentTalker;
 
-    private List<Item> inventory;
-    public List<Item> Inventory
-    {
-        get { return inventory; }
-    }
+    private RaycastHit groundedRay;
 
 	// Use this for initialization
     void Awake()
@@ -40,13 +42,8 @@ public class PlayerController : MonoBehaviour {
         currentRotation = Quaternion.identity;
     }
 	
-
-	// Update is called once per frame
-	void FixedUpdate () {
-        movement = Vector3.zero;
-
-        //Get talkable 
-        //TODO: Put this in its own thing.
+    void ManageTalker()
+    {
         Ray talkRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 point = talkRay.origin + (talkRay.direction);
         RaycastHit outHit;
@@ -59,91 +56,98 @@ public class PlayerController : MonoBehaviour {
 
         currentTalker = talker;
         Debug.Log(currentTalker);
-        if ( Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if(talker != null)
+            if (talker != null)
             {
                 talker.StartTalking();
             }
         }
+    }
+
+
+	// Update is called once per frame
+	void FixedUpdate () {
+        movement = Vector3.zero;
+        //Get talkable 
+        ManageTalker();
 
 
         //Movement
         if (canMove)
         {
-            if (Input.GetKey(KeyCode.W)) //Forward
+            //First check if running
+            if(Input.GetKey(run))
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if(!running)
                 {
-                    movement = transform.forward * runspeed * forceMod;
-                    if (!running)
-                    {
-                        anim.SetBool("running", true);
-                        running = true;
-                    }
+                    anim.SetBool("running", true);
+                    running = true;
+                }
+            }
+            else
+            {
+                if (running)
+                {
+                    anim.SetBool("running", false);
+                    running = false;
+                }
+            }
+
+            //Next check movement
+            if (Input.GetKey(up))
+            {
+                movement = running ? transform.forward * runspeed * forceMod : transform.forward * walkspeed * forceMod;
+            }
+            else if (Input.GetKey(down))
+            {
+                movement = running ? -transform.forward * runspeed * forceMod : -transform.forward * walkspeed * forceMod;
+            }
+
+            if(Input.GetKey(left))
+            {
+                currentRotation = Quaternion.Euler(currentRotation.eulerAngles - Vector3.up * rotateSpeed);
+
+                rb.MoveRotation(currentRotation);
+            }
+            else if (Input.GetKey(right))
+            {
+                currentRotation = Quaternion.Euler(currentRotation.eulerAngles + Vector3.up * rotateSpeed);
+
+                rb.MoveRotation(currentRotation);
+            }
+            rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+            //Next check grounding rules.
+            if (grounded)
+            {
+                if(rb.useGravity)
+                    rb.useGravity = false;
+                if(inAir)
+                {
+                    anim.SetBool("jump", false);
+                    canMove = false;
                 }
                 else
                 {
-                    movement = transform.forward * walkspeed * forceMod;
-                    if (running)
-                    {
-                        anim.SetBool("running", false);
-                        running = false;
-                    }
+                    rb.velocity = new Vector3(rb.velocity.x, Mathf.Clamp(rb.velocity.y,-999,0), rb.velocity.z);
                 }
-                rb.AddForce(movement);
+
+                if (Input.GetKey(KeyCode.Space) && canMove)
+                {
+                    rb.AddForce(Vector3.up * jumpMod, ForceMode.Acceleration);
+                    anim.SetBool("jump", true);
+                    anim.SetTrigger("jumpstart");
+                    inAir = true;
+                }
             }
-            else if(Input.GetKey(KeyCode.S))
+            else
             {
-                movement = -transform.forward * walkspeed * forceMod;
-                rb.AddForce(movement);
+                if (!rb.useGravity)
+                    rb.useGravity = true;
             }
 
-            if (Input.GetKey(KeyCode.D)) //Right
-            {
-                currentRotation = Quaternion.Euler(currentRotation.eulerAngles + Vector3.up * rotateSpeed);
-                rb.MoveRotation(currentRotation);
-            }
-            else if (Input.GetKey(KeyCode.A)) //Left
-            {
-                currentRotation = Quaternion.Euler(currentRotation.eulerAngles - Vector3.up * rotateSpeed);
-                rb.MoveRotation(currentRotation);
-            }
+         }
 
-            //Do some raycasting to prevent flypaper walls
-            Vector3 hMovement = rb.velocity;
-            hMovement.y = 0;
-            float distance = hMovement.magnitude;
-            hMovement.Normalize();
-            RaycastHit wallHit;
-            Debug.DrawRay(transform.position + new Vector3(0, 0.3f, 0), hMovement, Color.cyan);
-            if (rb.SweepTest(hMovement, out wallHit, distance))
-            {
-                rb.velocity = new Vector3(0, rb.velocity.y, 0);
-            }
-        }
-        if(grounded)
-        {
-            if (inAir)
-            {
-                anim.SetBool("jump", false);
-                canMove = false;
-            }
-
-            if (Input.GetKey(KeyCode.Space) && canMove)
-            {
-                rb.AddForce(Vector3.up * jumpMod, ForceMode.Acceleration);
-                anim.SetBool("jump", true);
-                anim.SetTrigger("jumpstart");
-                inAir = true;
-            }
-        } 
-        else if(!grounded && !inAir)
-        {
-            anim.SetBool("jump", true);
-            anim.SetTrigger("jumpstart");
-            inAir = true;
-        }
         anim.SetFloat("movement", movement.sqrMagnitude);
 	}
 
@@ -161,9 +165,10 @@ public class PlayerController : MonoBehaviour {
 
     void LateUpdate()
     {
-        moddedGroundDist = -rb.velocity.y + distancetoGround;
-        moddedGroundDist = Mathf.Clamp(moddedGroundDist, -distancetoGround * 2, distancetoGround - (distancetoGround * rb.velocity.y));
-        grounded = Physics.Raycast(transform.position + new Vector3(0, 0.05f, 0), Vector3.down, moddedGroundDist,~4); // ~4 is all but ignore raycast layer
+        //moddedGroundDist = -rb.velocity.y + distancetoGround;
+        moddedGroundDist = distancetoGround;
+        grounded = Physics.Raycast(transform.position + new Vector3(0, 0.05f, 0), Vector3.down,out groundedRay ,moddedGroundDist,~4); 
+        // ~4 is all but ignore raycast layer
         Debug.DrawRay(transform.position + new Vector3(0, 0.05f, 0), Vector3.down * moddedGroundDist, Color.red);
     }
 }
