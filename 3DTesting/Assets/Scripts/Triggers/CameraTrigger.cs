@@ -40,6 +40,7 @@ public class CameraTrigger : AbstractTrigger {
         int i = 0;
         CameraLocationInformation current = null;
         Vector3 velocityref = Vector3.zero;
+        GameManager.manager.PlayerCanMove = false;
         while(i <= locs.Length)  //Part 1: Lerp to locations
         {
             if(!isLerping && !isStalling)
@@ -90,6 +91,7 @@ public class CameraTrigger : AbstractTrigger {
         cam.localRotation = rotationRealigner;
         completed = true;
         SetFlag();
+        GameManager.manager.PlayerCanMove = true;
     }
 
 }

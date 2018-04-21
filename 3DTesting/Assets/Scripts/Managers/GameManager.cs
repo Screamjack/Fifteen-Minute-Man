@@ -51,6 +51,13 @@ public class GameManager : MonoBehaviour {
         set { tickTheClock = value; }
     }
 
+    private bool playerCanMove = true;
+    public bool PlayerCanMove
+    {
+        get { return playerCanMove; }
+        set { playerCanMove = value; }
+    }
+
     void Awake()
     {
         if (manager == null) //Singleton

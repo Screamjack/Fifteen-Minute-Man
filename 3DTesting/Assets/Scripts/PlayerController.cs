@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour {
     private bool running = false;
     private bool inAir = false;
     private bool grounded;
-    private bool canMove = true;
     private Quaternion currentRotation;
 
     private KeyCode up = KeyCode.W;
@@ -73,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 
 
         //Movement
-        if (canMove)
+        if (GameManager.manager.PlayerCanMove)
         {
             //First check if running
             if(Input.GetKey(run))
@@ -124,14 +123,14 @@ public class PlayerController : MonoBehaviour {
                 if(inAir)
                 {
                     anim.SetBool("jump", false);
-                    canMove = false;
+                    GameManager.manager.PlayerCanMove = false;
                 }
                 else
                 {
                     rb.velocity = new Vector3(rb.velocity.x, Mathf.Clamp(rb.velocity.y,-999,0), rb.velocity.z);
                 }
 
-                if (Input.GetKey(KeyCode.Space) && canMove)
+                if (Input.GetKey(KeyCode.Space) && GameManager.manager.PlayerCanMove)
                 {
                     rb.AddForce(Vector3.up * jumpMod, ForceMode.Acceleration);
                     anim.SetBool("jump", true);
@@ -153,12 +152,12 @@ public class PlayerController : MonoBehaviour {
     IEnumerator EndJump()
     {
         yield return new WaitForSeconds(0.53f); //Stupid fucking magic numbers because imported animations are awful.
-        canMove = true;
+        GameManager.manager.PlayerCanMove = true;
         inAir = false;
     }
     public void AnimationEndJump()
     {
-        canMove = true;
+        GameManager.manager.PlayerCanMove = true;
         inAir = false;
     }
 
