@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 public class SceneTransitioner : MonoBehaviour {
 
     [SerializeField]
-    Scene nextScene;
+    string nextScene;
 
     static GameObject LoadingUI;
     bool loading = false;
 
     void Awake()
     {
-        if (LoadingUI == null)
-            LoadingUI = transform.Find("loadingScreen").gameObject;
+        //if (LoadingUI == null)
+        //    LoadingUI = transform.Find("loadingScreen").gameObject;   
     }
 
     void OnTriggerEnter(Collider other)
@@ -32,7 +32,8 @@ public class SceneTransitioner : MonoBehaviour {
     IEnumerator LoadNextScene()
     {
         loading = true;
-        AsyncOperation loader = SceneManager.LoadSceneAsync(nextScene.buildIndex);
+        GameManager.manager.TickTheClock = false;
+        AsyncOperation loader = SceneManager.LoadSceneAsync(nextScene);
 
         while(!loader.isDone)
         {

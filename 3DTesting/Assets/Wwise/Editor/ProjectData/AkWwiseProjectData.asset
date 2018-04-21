@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{BF2F1069-2CF5-4EAE-8B5B-95868E0B8971}'
-    m_lastTimePsrt1: 1745152236
-    m_lastTimePart2: -1999267237
+    m_lastTimePsrt1: -1236376062
+    m_lastTimePart2: -1999266408
     List:
     - Name: cube_noise
       Path: Default Work Unit\cube_noise
@@ -30,7 +30,7 @@ MonoBehaviour:
       Guid: 61f9e474f957d946881cd1e28f5b4ef3
       minDuration: 0
       maxDuration: 0
-      maxAttenuation: 0
+      maxAttenuation: 3
     - Name: footstep
       Path: Default Work Unit\footstep
       PathAndIcons:
@@ -124,8 +124,8 @@ MonoBehaviour:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{0245D6B3-D0FC-4503-8497-D3194FD0EDF8}'
-    m_lastTimePsrt1: 1745327508
-    m_lastTimePart2: -1999267237
+    m_lastTimePsrt1: -1236280996
+    m_lastTimePart2: -1999266408
     List:
     - Name: Ambient
       Path: Default Work Unit\Ambient
@@ -166,11 +166,7 @@ MonoBehaviour:
     m_lastTimePsrt1: 1911732614
     m_lastTimePart2: -1999282728
     List: []
-  ExpandedItems:
-  - /3DTesting_WwiseProject
-  - /3DTesting_WwiseProject/Switches
-  - /3DTesting_WwiseProject/Switches/Default Work Unit
-  - /3DTesting_WwiseProject/Switches/Default Work Unit/Footsteps
+  ExpandedItems: []
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1

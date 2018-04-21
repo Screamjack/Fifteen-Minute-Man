@@ -174,13 +174,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224311613115482066}
+  - component: {fileID: 114033711204161238}
   m_Layer: 5
   m_Name: Clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1256194006633524
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1502058284636552
 GameObject:
   m_ObjectHideFlags: 1
@@ -703,6 +704,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114033711204161238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1222964576791632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e12eb040a2e2b4486f1ee6bc28f07c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114038615772728890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1003,7 +1015,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 99:99:99
+  m_Text: 
 --- !u!114 &114265139729672422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2561,9 +2573,9 @@ RectTransform:
   m_Father: {fileID: 224846167786516288}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 200, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -40}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224539819880369456

@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    [SerializeField]
+    private int inventorysize = 10;
+
     public static GameManager manager;
-    GameObject loaderUI;
     GameObject uiMenu;
+    GameObject popMenu;
+    Timer clock;
     bool isOpen = false;
     public bool menuOpen
     {
@@ -19,10 +23,33 @@ public class GameManager : MonoBehaviour {
     {
         get { return inventory; }
     }
-    [SerializeField]
-    int inventorysize = 10;
 
     public List<string> flags;
+
+    private bool isPlaying = false;
+    public bool IsPlayer
+    {
+        get { return isPlaying; }
+    }
+
+    private string scenario;
+    public string Scenario
+    {
+        get { return scenario; }
+    }
+
+    int seconds;
+    public int Seconds
+    {
+        get { return seconds; }
+    }
+
+    private bool tickTheClock;
+    public bool TickTheClock
+    {
+        get { return tickTheClock; }
+        set { tickTheClock = value; }
+    }
 
     void Awake()
     {
@@ -31,10 +58,14 @@ public class GameManager : MonoBehaviour {
         if (manager != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-        uiMenu = GameObject.Find("PopMenu");
-        uiMenu.SetActive(false);
+        uiMenu = GameObject.Find("UI Canvas");
+        popMenu = uiMenu.transform.GetChild(3).gameObject;
+        popMenu.SetActive(false);
+        uiMenu.transform.GetChild(1).gameObject.SetActive(false);
+        clock = uiMenu.transform.GetChild(1).GetComponent<Timer>();
         inventory = new Inventory(inventorysize);
         flags = new List<string>();
+        seconds = 900; // 15 minutes
     }
 
     void Update()
@@ -47,6 +78,10 @@ public class GameManager : MonoBehaviour {
         {
             ToggleMenu(1);
         }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            StartItAll("test");
+        }
     }
 
     void ToggleMenu(int index)
@@ -54,20 +89,20 @@ public class GameManager : MonoBehaviour {
         RotationMaster rm = GameObject.Find("Target").GetComponent<RotationMaster>();
         if (index == 0)
         {
-            if (uiMenu.activeInHierarchy)
+            if (popMenu.activeInHierarchy)
             {
-                uiMenu.SetActive(false);
+                popMenu.SetActive(false);
                 isOpen = false;
                 rm.SetLock(true);
             }
             else
             {
-                uiMenu.SetActive(true);
+                popMenu.SetActive(true);
                 isOpen = true;
                 rm.SetLock(false);
             }
         }
-        else if (index ==1)
+        else if (index == 1)
         {
             InventoryUIHook inventoryUI = GameObject.Find("Inventory").GetComponent<InventoryUIHook>();
             if (inventoryUI.gameObject.activeInHierarchy)
@@ -83,6 +118,44 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void StartItAll(string s)
+    {
+        Debug.Log("IT'S HAPPENING");
+        isPlaying = true;
+        scenario = s;
+        uiMenu.transform.GetChild(1).gameObject.SetActive(true);
+        tickTheClock = true;
+        StartCoroutine(ClockTick());
 
+        Debug.Log(scenario);
+    }
+
+    public void RecollectInformation()
+    {
+        uiMenu = GameObject.Find("UI Canvas");
+        popMenu = uiMenu.transform.GetChild(3).gameObject;
+        popMenu.SetActive(false);
+        uiMenu.transform.GetChild(1).gameObject.SetActive(false);
+        clock = uiMenu.transform.GetChild(1).GetComponent<Timer>();
+    }
+
+    IEnumerator ClockTick()
+    {
+        while(seconds > 0)
+        {
+            if(tickTheClock)
+            {
+                seconds -= 1;
+                clock.UpdateUI(seconds);
+                Debug.Log(seconds);
+                yield return new WaitForSeconds(1);
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+        Debug.Log("It's over, m8");
+    }
 
 }
