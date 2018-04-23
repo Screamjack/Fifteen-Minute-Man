@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneOpeningManager : MonoBehaviour {
+public class SceneOpeningManager : MonoBehaviour
+{
 
     [SerializeField]
-    GameObject[] scenariosets;
+    List<GameObject> scenariosets;
 
-void Awake()
+    [SerializeField]
+    AbstractTrigger openingTrigger;
+
+    void Start()
     {
         string scenario = GameManager.manager.Scenario;
         GameManager.manager.TickTheClock = true;
@@ -15,7 +19,13 @@ void Awake()
         GameManager.manager.RecollectInformation();
 
         Debug.Log("scenario " + scenario);
-        Debug.Log(GameObject.Find(scenario));
+        GameObject scenarioObject = scenariosets.Find(x => x.name.ToLower() == scenario);
+        Debug.Log(scenarioObject);
+        scenarioObject.SetActive(true);
+        if(openingTrigger != null)
+        {
+            openingTrigger.ActivateTrigger();
+        }
 
     }
 

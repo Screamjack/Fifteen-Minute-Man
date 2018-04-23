@@ -5,7 +5,7 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueTree : MonoBehaviour {
+public class DialogueTree : Interactable {
     DialogueNode root;
     DialogueNode curRoot;
 
@@ -154,6 +154,11 @@ public class DialogueTree : MonoBehaviour {
             talkable = false;
             inTalk = false;
         }
+    }
+
+    public override void Enact()
+    {
+        StartTalking();
     }
 
     public void StartTalking()

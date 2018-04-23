@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class AbstractTrigger : MonoBehaviour {
 
+    [SerializeField]
+    private bool collidable = false;
+
     protected bool completed;
     /// <summary>
     /// Has the trigger been completed?
@@ -14,6 +17,10 @@ public abstract class AbstractTrigger : MonoBehaviour {
     }
 
     protected bool activated;
+    public bool Activated
+    {
+        get { return activated; }
+    }
     /// <summary>
     /// Is the trigger currently running? Useful for triggers that run over time as opposed to instant triggers.
     /// </summary>
@@ -71,6 +78,7 @@ public abstract class AbstractTrigger : MonoBehaviour {
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+        if (other.tag != "Player" || !collidable) return;
         if (!activated && !completed)
         {
             ActivateTrigger();

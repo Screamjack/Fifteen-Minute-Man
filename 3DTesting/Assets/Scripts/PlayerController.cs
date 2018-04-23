@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour {
     public int jumpMod = 250;
     public float rotateSpeed = 1f;
 
+    [SerializeField]
+    private float itemInteractDistance = 2f;
+
     private float distancetoGround = 0.1f;
     private float moddedGroundDist;
     private bool running = false;
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour {
     private KeyCode right = KeyCode.D;
     private KeyCode jump = KeyCode.Space;
     private KeyCode run = KeyCode.LeftShift;
+    private KeyCode interact = KeyCode.E;
 
     private DialogueTree currentTalker;
 
@@ -46,19 +50,17 @@ public class PlayerController : MonoBehaviour {
         Vector3 point = talkRay.origin + (talkRay.direction);
         RaycastHit outHit;
         Physics.Raycast(talkRay.origin, talkRay.direction, out outHit);
-        DialogueTree talker = null;
+        Interactable interactee = null;
         if (outHit.collider != null)
         {
-            talker = outHit.collider.gameObject.GetComponent<DialogueTree>();
-        }
-
-        currentTalker = talker;
-        Debug.Log(currentTalker);
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (talker != null)
+            interactee = outHit.collider.gameObject.GetComponent<Interactable>();
+            if(interactee != null)
             {
-                talker.StartTalking();
+                if (interactee.GetType() == typeof(ItemInteractable) && outHit.distance > itemInteractDistance) return;
+                if (Input.GetKeyDown(interact))
+                {
+                    interactee.Enact();
+                }
             }
         }
     }

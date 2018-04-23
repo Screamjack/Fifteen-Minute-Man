@@ -139,10 +139,11 @@ public class GameManager : MonoBehaviour {
 
     public void RecollectInformation()
     {
+        Debug.Log("RECOLLECTING");
         uiMenu = GameObject.Find("UI Canvas");
         popMenu = uiMenu.transform.GetChild(3).gameObject;
         popMenu.SetActive(false);
-        uiMenu.transform.GetChild(1).gameObject.SetActive(false);
+        uiMenu.transform.GetChild(1).gameObject.SetActive(true);
         clock = uiMenu.transform.GetChild(1).GetComponent<Timer>();
     }
 
@@ -154,7 +155,6 @@ public class GameManager : MonoBehaviour {
             {
                 seconds -= 1;
                 clock.UpdateUI(seconds);
-                Debug.Log(seconds);
                 yield return new WaitForSeconds(1);
             }
             else

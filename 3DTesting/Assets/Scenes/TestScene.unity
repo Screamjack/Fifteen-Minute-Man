@@ -2427,7 +2427,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 14650b25614a82242bdf2bfbabb8cde6, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 14650b25614a82242bdf2bfbabb8cde6, type: 3}
       propertyPath: m_Controller
@@ -2958,17 +2958,17 @@ Prefab:
     - target: {fileID: 224530492511537226, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224530492511537226, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224530492511537226, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 224530492511537226, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}

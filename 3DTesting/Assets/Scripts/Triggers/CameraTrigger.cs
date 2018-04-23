@@ -9,8 +9,8 @@ public class CameraTrigger : AbstractTrigger {
 
     bool isLerping = false;
     bool isStalling = false;
-    static Transform cam;
-    static Transform camPriorParent;
+    Transform cam;
+    Transform camPriorParent;
     Vector3 realigner;
     Quaternion rotationRealigner;
     float epsilon = 0.01f;
@@ -28,6 +28,7 @@ public class CameraTrigger : AbstractTrigger {
 
     public override void ActivateTrigger()
     {
+        activated = true;
         CameraLocationInformation[] tempLocs = new CameraLocationInformation[cameraLocations.Count];
         cameraLocations.CopyTo(tempLocs);
         cam.GetComponent<RotationMaster>().enabled = false;
