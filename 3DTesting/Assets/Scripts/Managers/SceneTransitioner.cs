@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransitioner : MonoBehaviour {
+public class SceneTransitioner : AbstractTrigger {
 
     [SerializeField]
     string nextScene;
@@ -17,13 +17,19 @@ public class SceneTransitioner : MonoBehaviour {
         //    LoadingUI = transform.Find("loadingScreen").gameObject;   
     }
 
-    void OnTriggerEnter(Collider other)
+    public override void ActivateTrigger()
     {
-        if(other.gameObject.tag == "Player" && !loading)
-        {
-            other.GetComponent<PlayerController>().enabled = false;
-            StartCoroutine(LoadNextScene());
-        }
+        GameObject.Find("Character").GetComponent<PlayerController>().enabled = false;
+        StartCoroutine(LoadNextScene());
+    }
+
+    public override bool CheckTrigger()
+    {
+        return true;
+    }
+
+    public override void SetFlag()
+    {
     }
 
     /// <summary>

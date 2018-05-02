@@ -7,10 +7,16 @@ public class ItemInteractable : Interactable {
     [SerializeField]
     AbstractTrigger trigger;
 
+    [SerializeField]
+    bool force = false;
+
     public override void Enact()
     {
-        if (!trigger.Completed && !trigger.Activated)
+        if (force)
             trigger.ActivateTrigger();
+        else
+            if (!trigger.Completed && !trigger.Activated)
+                trigger.ActivateTrigger();
     }
 }
     

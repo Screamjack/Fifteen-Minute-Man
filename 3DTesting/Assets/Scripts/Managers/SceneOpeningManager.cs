@@ -16,7 +16,7 @@ public class SceneOpeningManager : MonoBehaviour
         string scenario = GameManager.manager.Scenario;
         GameManager.manager.TickTheClock = true;
 
-        GameManager.manager.RecollectInformation();
+        //GameManager.manager.RecollectInformation();
 
         Debug.Log("scenario " + scenario);
         GameObject scenarioObject = scenariosets.Find(x => x.name.ToLower() == scenario);

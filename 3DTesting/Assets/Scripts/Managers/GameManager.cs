@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     private int inventorysize = 10;
 
     public static GameManager manager;
+
+
     GameObject uiMenu;
     GameObject popMenu;
     Timer clock;
@@ -61,11 +63,18 @@ public class GameManager : MonoBehaviour {
     void Awake()
     {
         if (manager == null) //Singleton
+        {
+            Debug.Log("New Manager");
             manager = this;
+        }
         if (manager != this)
+        {
+            Debug.Log("Not the singleton");
             Destroy(gameObject);
+        }
+
         DontDestroyOnLoad(gameObject);
-        uiMenu = GameObject.Find("UI Canvas");
+        uiMenu = UISingleton.UI.gameObject;
         popMenu = uiMenu.transform.GetChild(3).gameObject;
         popMenu.SetActive(false);
         uiMenu.transform.GetChild(1).gameObject.SetActive(false);
@@ -137,16 +146,6 @@ public class GameManager : MonoBehaviour {
         Debug.Log(scenario);
     }
 
-    public void RecollectInformation()
-    {
-        Debug.Log("RECOLLECTING");
-        uiMenu = GameObject.Find("UI Canvas");
-        popMenu = uiMenu.transform.GetChild(3).gameObject;
-        popMenu.SetActive(false);
-        uiMenu.transform.GetChild(1).gameObject.SetActive(true);
-        clock = uiMenu.transform.GetChild(1).GetComponent<Timer>();
-    }
-
     IEnumerator ClockTick()
     {
         while(seconds > 0)
@@ -155,6 +154,7 @@ public class GameManager : MonoBehaviour {
             {
                 seconds -= 1;
                 clock.UpdateUI(seconds);
+                Debug.Log(seconds + clock.ToString());
                 yield return new WaitForSeconds(1);
             }
             else

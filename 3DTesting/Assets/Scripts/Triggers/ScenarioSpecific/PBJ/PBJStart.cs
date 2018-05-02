@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartTrigger : CameraTrigger {
+public class PBJStart : CameraTrigger {
 
     private bool started = false;
     private bool prepped = false;
