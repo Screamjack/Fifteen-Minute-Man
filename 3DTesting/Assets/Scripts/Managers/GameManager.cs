@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
     public List<string> flags;
 
     private bool isPlaying = false;
-    public bool IsPlayer
+    public bool IsPlaying
     {
         get { return isPlaying; }
     }

@@ -28,6 +28,7 @@ public class CameraTrigger : AbstractTrigger {
 
     public override void ActivateTrigger()
     {
+        if (!CheckTrigger()) return;
         activated = true;
         CameraLocationInformation[] tempLocs = new CameraLocationInformation[cameraLocations.Count];
         cameraLocations.CopyTo(tempLocs);

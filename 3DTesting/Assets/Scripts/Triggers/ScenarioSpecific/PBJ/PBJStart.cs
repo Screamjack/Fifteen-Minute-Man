@@ -27,5 +27,10 @@ public class PBJStart : CameraTrigger {
         }
     }
 
+    public override bool CheckTrigger()
+    {
+        if (GameManager.manager.IsPlaying) return false;
+        return base.CheckTrigger();
+    }
 
 }

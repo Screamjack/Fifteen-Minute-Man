@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour {
     public float rotateSpeed = 1f;
 
     [SerializeField]
-    private float itemInteractDistance = 2f;
+    private float itemInteractDistance = 1.5f;
+    [SerializeField]
+    private float talkInteractDistance = 5f;
 
     private float distancetoGround = 0.1f;
     private float moddedGroundDist;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour {
     private DialogueTree currentTalker;
 
     private RaycastHit groundedRay;
+    private GameObject eventCue;
 
 	// Use this for initialization
     void Awake()
@@ -42,6 +45,8 @@ public class PlayerController : MonoBehaviour {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         currentRotation = Quaternion.identity;
+
+        eventCue = GameObject.Find("EventCue");
     }
 	
     void ManageTalker()
@@ -56,15 +61,36 @@ public class PlayerController : MonoBehaviour {
             interactee = outHit.collider.gameObject.GetComponent<Interactable>();
             if(interactee != null)
             {
-                if (interactee.GetType() == typeof(ItemInteractable) && outHit.distance > itemInteractDistance) return;
+                if ((interactee.GetType() == typeof(ItemInteractable) && outHit.distance > itemInteractDistance) || (interactee.GetType() == typeof(DialogueTree) && outHit.distance > talkInteractDistance))
+                {
+                    ShowEvent(false);
+                    return;
+                }
+                ShowEvent(true);
                 if (Input.GetKeyDown(interact))
                 {
                     interactee.Enact();
                 }
             }
+            else
+            {
+                ShowEvent(false);
+            }
         }
     }
 
+
+    void ShowEvent(bool active)
+    {
+        if(eventCue.activeInHierarchy && !active)
+        {
+            eventCue.SetActive(false);
+        }
+        else if(!eventCue.activeInHierarchy && active)
+        {
+            eventCue.SetActive(true);
+        }
+    }
 
 	// Update is called once per frame
 	void FixedUpdate () {

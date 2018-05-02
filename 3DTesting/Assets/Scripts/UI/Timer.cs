@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour {
 
     void Awake()
     {
-        clockText = transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        clockText = transform.GetChild(0).GetChild(1).GetComponent<Text>();
     }
 
     public void UpdateUI(int seconds)

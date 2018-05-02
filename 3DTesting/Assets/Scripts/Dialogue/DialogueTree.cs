@@ -31,7 +31,6 @@ public class DialogueTree : Interactable {
     }
 
     bool inTalk = true;
-    bool talkable = false;
 
     void Awake()
     {
@@ -139,23 +138,6 @@ public class DialogueTree : Interactable {
         return n;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            talkable = true;
-        }
-
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            talkable = false;
-            inTalk = false;
-        }
-    }
-
     public override void Enact()
     {
         StartTalking();
@@ -163,12 +145,10 @@ public class DialogueTree : Interactable {
 
     public void StartTalking()
     {
-        if (talkable)
-        {
-            inTalk = true;
-            currentTree = this;
-            StartCoroutine(Talking());
-        }
+        inTalk = true;
+        currentTree = this;
+        GameManager.manager.PlayerCanMove = false;
+        StartCoroutine(Talking());
     }
 
     IEnumerator Talking()
@@ -185,9 +165,14 @@ public class DialogueTree : Interactable {
                 Advance(0);
             else if (Input.GetKeyDown(KeyCode.Alpha2))
                 Advance(1);
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+                Advance(2);
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+                Advance(3);
             yield return null;
         }
         rm.SetLock(true);
+        GameManager.manager.PlayerCanMove = true;
         anim.SetTrigger("close");
     }
 
