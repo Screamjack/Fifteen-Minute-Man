@@ -7,6 +7,8 @@ public class SceneTransitioner : AbstractTrigger {
 
     [SerializeField]
     string nextScene;
+    [SerializeField]
+    int toIndex;
 
     static GameObject LoadingUI;
     bool loading = false;
@@ -20,6 +22,7 @@ public class SceneTransitioner : AbstractTrigger {
     public override void ActivateTrigger()
     {
         GameObject.Find("Character").GetComponent<PlayerController>().enabled = false;
+        DoorMaster.Master.SetLDI(toIndex);
         StartCoroutine(LoadNextScene());
     }
 

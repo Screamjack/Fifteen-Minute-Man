@@ -14,6 +14,8 @@ public class SceneOpeningManager : MonoBehaviour
     void Start()
     {
         string scenario = GameManager.manager.Scenario;
+        Transform player = GameObject.Find("Character").transform;
+        DoorMaster.Master.AdjustPlayer(ref player);
         GameManager.manager.TickTheClock = true;
 
         //GameManager.manager.RecollectInformation();

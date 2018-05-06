@@ -1716,6 +1716,27 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62534de9a34f6e84ebf4be879ada9015, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &617033031 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1341372989355842, guid: 62534de9a34f6e84ebf4be879ada9015,
+    type: 2}
+  m_PrefabInternal: {fileID: 617033030}
+--- !u!114 &617033032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 617033031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d40a1915012904a8f9c8fdcb3db315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locations:
+  - {x: 0.8, y: 0.04, z: -1.64}
+  - {x: 0, y: 0.27, z: -8}
+  - {x: 0, y: 0, z: 0}
+  angles: 00000000000000000e010000
 --- !u!1 &629565137 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 77d287cf8613489479ca4dde4119d669, type: 3}
@@ -2003,6 +2024,7 @@ MonoBehaviour:
   preReqs: []
   triggerFlag: 
   nextScene: ApartmentHallway
+  toIndex: 0
 --- !u!4 &727954043 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 5f7b7f88e76b1c9409e5d43d6be204a8, type: 3}
