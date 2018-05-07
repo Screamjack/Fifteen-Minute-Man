@@ -15,11 +15,28 @@ public class WalkingMovement : MonoBehaviour {
 
     bool running;
 
+    [SerializeField]
+    bool isConstruction = false;
+    [SerializeField]
+    GameObject manhole;
+
+    Animator anim;
+
     IEnumerator RunToPoint()
     {
+        if(isConstruction)
+        {
+            anim.SetBool("carrying", true);
+            anim.SetFloat("movement", 1);
+        }
         running = true;
         for(int i = 0; i < points.Length; i++)
         {
+            if(i == 1 && isConstruction)
+            {
+                manhole.SetActive(true);
+                anim.SetBool("carrying", false);
+            }
             WalkPoint w = points[i];
             while (Vector3.Distance(transform.position, w.ToPoint.position) > epsilon)
             {
@@ -39,6 +56,12 @@ public class WalkingMovement : MonoBehaviour {
     {
         if(!running)
             StartCoroutine(RunToPoint());
+    }
+
+    void Awake()
+    {
+        if (isConstruction)
+            anim = GetComponent<Animator>();
     }
 
     void Start()
