@@ -173,6 +173,7 @@ public class DialogueTree : Interactable {
         }
         rm.SetLock(true);
         GameManager.manager.PlayerCanMove = true;
+        currentTree = null;
         anim.SetTrigger("close");
     }
 

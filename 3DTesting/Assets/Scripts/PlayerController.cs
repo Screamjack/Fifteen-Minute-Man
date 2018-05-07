@@ -61,11 +61,12 @@ public class PlayerController : MonoBehaviour {
             interactee = outHit.collider.gameObject.GetComponent<Interactable>();
             if(interactee != null)
             {
-                if ((interactee.GetType() == typeof(ItemInteractable) && outHit.distance > itemInteractDistance) || (interactee.GetType() == typeof(DialogueTree) && outHit.distance > talkInteractDistance))
+                if ((interactee.GetType() == typeof(ItemInteractable) && outHit.distance > itemInteractDistance) || (interactee.GetType() == typeof(DialogueTree) && outHit.distance > talkInteractDistance) || DialogueTree.CurrentTree != null)
                 {
                     ShowEvent(false);
                     return;
                 }
+
                 ShowEvent(true);
                 if (Input.GetKeyDown(interact))
                 {

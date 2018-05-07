@@ -34,6 +34,7 @@ public class CameraControllerAlt : MonoBehaviour
     private void Awake()
     {
         GetComponent<Camera>().transform.parent = target;
+        transform.position = transform.parent.transform.position;
     }
 
     public void AdjustDistance(float additive)
@@ -57,7 +58,7 @@ public class CameraControllerAlt : MonoBehaviour
             // clamp wanted position to hit position
             wantedPosition.x = hit.point.x;
             wantedPosition.z = hit.point.z;
-            wantedPosition.y = Mathf.Lerp(hit.point.y, wantedPosition.y, Time.deltaTime * damping);
+            // wantedPosition.y = Mathf.Lerp(hit.point.y, wantedPosition.y, Time.deltaTime * damping);
         }
 
         transform.position = Vector3.Lerp(transform.position, wantedPosition, Time.deltaTime * damping);

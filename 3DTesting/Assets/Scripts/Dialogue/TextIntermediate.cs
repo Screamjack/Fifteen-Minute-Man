@@ -9,6 +9,11 @@ public class TextIntermediate : MonoBehaviour {
     {
         get { return writing; }
     }
+    bool allowDump = false;
+    public bool AllowDump
+    {
+        get { return allowDump; }
+    }
     Text body;
     public Text Body
     {
@@ -62,18 +67,24 @@ public class TextIntermediate : MonoBehaviour {
     {
         body.text = writingString;
         writing = false;
+        Debug.Log("Dumped the text string into body");
     }
 
     void Update()
     {
         if (!writing || index >= writingString.Length) return;
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && allowDump)
             DumpWrite();
+        else if (!Input.anyKey)
+            allowDump = true;
+        else
+            allowDump = false;
         if (bufferFrames >= framesPerCharacter)
         {
             body.text += writingString[index];
             index++;
             bufferFrames = 0;
+            Debug.Log(body.text);
         }
         else
             bufferFrames++;
