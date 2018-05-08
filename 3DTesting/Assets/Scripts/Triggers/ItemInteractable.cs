@@ -15,7 +15,7 @@ public class ItemInteractable : Interactable {
         if (force)
             trigger.ActivateTrigger();
         else
-            if (!trigger.Completed && !trigger.Activated)
+            if (!trigger.Completed)
                 trigger.ActivateTrigger();
     }
 }

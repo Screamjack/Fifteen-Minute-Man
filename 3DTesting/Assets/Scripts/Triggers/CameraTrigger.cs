@@ -21,9 +21,14 @@ public class CameraTrigger : AbstractTrigger {
             cam = Camera.main.transform.parent;
         if(camPriorParent == null)
             camPriorParent = cam.parent;
-        Debug.Log(cam);
+        Debug.Log("INIT CAM");
         realigner = new Vector3(0, 0.3f, 0);
         rotationRealigner = Quaternion.identity; 
+    }
+
+    public void forceInit()
+    {
+        Start();
     }
 
     public override void ActivateTrigger()

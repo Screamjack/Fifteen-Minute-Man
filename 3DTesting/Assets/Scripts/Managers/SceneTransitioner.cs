@@ -21,14 +21,10 @@ public class SceneTransitioner : AbstractTrigger {
 
     public override void ActivateTrigger()
     {
+        if (!CheckTrigger()) return;
         GameObject.Find("Character").GetComponent<PlayerController>().enabled = false;
         DoorMaster.Master.SetLDI(toIndex);
         StartCoroutine(LoadNextScene());
-    }
-
-    public override bool CheckTrigger()
-    {
-        return true;
     }
 
     public override void SetFlag()

@@ -1137,6 +1137,8 @@ MonoBehaviour:
   - {fileID: 1623084293}
   WalkSpeed: 1
   epsilon: 0.05
+  isConstruction: 0
+  manhole: {fileID: 0}
 --- !u!4 &425454932
 Transform:
   m_ObjectHideFlags: 0
@@ -1266,7 +1268,7 @@ Prefab:
     - target: {fileID: 224616169433517426, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 224616169433517426, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
@@ -1291,7 +1293,7 @@ Prefab:
     - target: {fileID: 224412553072780544, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -164
       objectReference: {fileID: 0}
     - target: {fileID: 224412553072780544, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
@@ -1556,27 +1558,27 @@ Prefab:
     - target: {fileID: 224530492511537226, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224530492511537226, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224530492511537226, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224530492511537226, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 764
       objectReference: {fileID: 0}
     - target: {fileID: 224846167786516288, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 804
       objectReference: {fileID: 0}
     - target: {fileID: 224530492511537226, guid: 884da47b51580504a84d9aa0dec3548b,
         type: 2}
