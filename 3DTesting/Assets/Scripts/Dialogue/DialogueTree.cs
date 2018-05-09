@@ -195,7 +195,8 @@ public class DialogueTree : Interactable {
 
         else
         {
-            playerAnim.SetTrigger("talk");
+            if(animate)
+                playerAnim.SetTrigger("talk");
             curRoot.LoadChoices(UI);
         }
 

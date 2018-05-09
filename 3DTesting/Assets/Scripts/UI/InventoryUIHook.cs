@@ -37,7 +37,6 @@ public class InventoryUIHook : MonoBehaviour {
     void Refresh()
     {
         GameObject Container = inv.transform.GetChild(1).gameObject;
-        Debug.Log(Container.name);
         int index = 0;
         for(int slot = 0; slot < Container.transform.childCount; slot++)
         {
@@ -45,7 +44,7 @@ public class InventoryUIHook : MonoBehaviour {
             if(index < mainInv.InventoryList.Count)
             {
                 Container.transform.GetChild(slot).gameObject.SetActive(true);
-                Container.transform.GetChild(slot).GetComponent<Image>().sprite = mainInv.InventoryList[index].Icon;
+                Container.transform.GetChild(slot).GetChild(0).GetComponent<Image>().sprite = mainInv.InventoryList[index].Icon;
 
                 index += 1;
                 //Do item info
