@@ -156,7 +156,8 @@ public class DialogueTree : Interactable {
     IEnumerator Talking()
     {
         anim.SetTrigger("open");
-        playerAnim.SetTrigger("talk");
+        if(playerAnim)
+            playerAnim.SetTrigger("talk");
         rm.SetLock(false);
         curRoot = root;
         UI.SetActive(true);
