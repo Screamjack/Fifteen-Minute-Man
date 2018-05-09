@@ -56,6 +56,7 @@ public abstract class AbstractTrigger : MonoBehaviour {
     public virtual void SetFlag()
     {
         GameManager.manager.flags.Add(triggerFlag);
+        Debug.Log("Added Flag " + triggerFlag);
     }
 
     /// <summary>

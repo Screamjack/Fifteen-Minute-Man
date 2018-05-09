@@ -10,6 +10,7 @@ public class ItemGiver : AbstractTrigger {
     public override void ActivateTrigger()
     {
         GameManager.manager.GameInventory.GiveItem(i);
+        SetFlag();
     }
 
 

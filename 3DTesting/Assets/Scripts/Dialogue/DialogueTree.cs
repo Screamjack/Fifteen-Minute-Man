@@ -14,12 +14,13 @@ public class DialogueTree : Interactable {
 
     [SerializeField]
     AbstractTrigger toTrigger;
-    [SerializeField]
     GameObject UI;
     [SerializeField]
     RotationMaster rm;
     [SerializeField]
     string dialogueName;
+    [SerializeField]
+    bool animate;
 
     bool ticking = false;
 
@@ -34,6 +35,7 @@ public class DialogueTree : Interactable {
 
     void Awake()
     {
+        UI = UISingleton.UI.transform.GetChild(0).gameObject;
         anim = UI.GetComponent<Animator>();
         playerAnim = GetComponent<Animator>();
     }
