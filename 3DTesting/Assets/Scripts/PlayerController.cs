@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         currentRotation = Quaternion.identity;
 
-        eventCue = GameObject.Find("EventCue");
+        eventCue = UISingleton.UI.transform.GetChild(5).gameObject;
     }
 	
     void ManageTalker()
