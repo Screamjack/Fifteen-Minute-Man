@@ -1,0 +1,8 @@
+<Talker Container="Manhole">
+  <Dialogue Speed="3">
+    <Speech>This is the manhole cover the sandwich jumped down. You can't move it with your bare hands though.</Speech>
+    <Option Type="Basic" TriggerName=" " Number="1" GameObject="">
+      <Speech>Leave it for now.</Speech>
+    </Option>
+  </Dialogue>
+</Talker>

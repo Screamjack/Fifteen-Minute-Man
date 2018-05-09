@@ -5,12 +5,18 @@
       <Speech>I'm 27.</Speech>
       <Dialogue Speed="3">
         <Speech>And after all that time, not a lick of manners. Beat it, kid.</Speech>
+		<Option Type="Basic" TriggerName=" " Number="4" GameObject="">
+			<Speech>Whatever, old timer.</Speech>
+		</Option>
       </Dialogue>
     </Option>
     <Option Type="Basic" TriggerName=" " Number="2" GameObject="">
-      <Speech>It's May, isn't it a little warm for a trenchcoat?</Speech>
+      <Speech>Isn't it a bit warm for a trenchcoat?</Speech>
       <Dialogue Speed="3">
         <Speech>You see anyone else comin up to me and critiquing my fashion? Scram.</Speech>
+		<Option Type="Basic" TriggerName=" " Number="4" GameObject="">
+			<Speech>If you say so.</Speech>
+		</Option>
       </Dialogue>
     </Option>
     <Option Type="Basic" TriggerName=" " Number="3" GameObject="">

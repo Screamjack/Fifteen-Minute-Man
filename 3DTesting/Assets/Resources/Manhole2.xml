@@ -1,0 +1,14 @@
+<Talker Container="Manhole">
+  <Dialogue Speed="3">
+    <Speech>This is the manhole cover the sandwich jumped down. You can't move it with your bare hands though.</Speech>
+    <Option Type="Basic" TriggerName=" " Number="1" GameObject="">
+      <Speech>USE CROWBAR</Speech>
+	  <Dialogue Speed="3">
+		<Speech>You've managed to get it loose with the crowbar. Only one way to go now.</Speech>
+		<Option Type="Trigger" TriggerName="SceneTransitioner" Number="1" GameObject="SewerTransitioner">
+			<Speech>Go down.</Speech>
+		</Option>
+	  </Dialogue>
+    </Option>
+  </Dialogue>
+</Talker>
