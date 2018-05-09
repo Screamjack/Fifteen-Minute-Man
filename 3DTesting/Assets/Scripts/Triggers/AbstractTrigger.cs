@@ -70,6 +70,7 @@ public abstract class AbstractTrigger : MonoBehaviour {
         {
             if(!GameManager.manager.flags.Contains(s)) {
                 retVal = false;
+                Debug.Log("Failed to ensure trigger can run");
                 break;
             }
         }

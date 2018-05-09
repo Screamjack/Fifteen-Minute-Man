@@ -154,7 +154,6 @@ public class GameManager : MonoBehaviour {
             {
                 seconds -= 1;
                 clock.UpdateUI(seconds);
-                Debug.Log(seconds + clock.ToString());
                 yield return new WaitForSeconds(1);
             }
             else
