@@ -10,6 +10,9 @@ public class ItemInteractable : Interactable {
     [SerializeField]
     bool force = false;
 
+    [SerializeField]
+    bool destroyOnUse = false;
+
     public override void Enact()
     {
         if (force)
@@ -17,6 +20,9 @@ public class ItemInteractable : Interactable {
         else
             if (!trigger.Completed)
                 trigger.ActivateTrigger();
+
+        if (destroyOnUse)
+            Destroy(gameObject);
     }
 }
     
