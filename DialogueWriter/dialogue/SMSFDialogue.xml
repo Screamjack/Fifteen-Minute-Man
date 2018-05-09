@@ -1,0 +1,29 @@
+<Talker Container="SMSF">
+  <Dialogue Speed="3">
+    <Speech>How's it goin, kid? You come to take a look at my wares?</Speech>
+    <Option Type="Basic" TriggerName=" " Number="1" GameObject="">
+      <Speech>I'm 27.</Speech>
+      <Dialogue Speed="3">
+        <Speech>And after all that time, not a lick of manners. Beat it, kid.</Speech>
+      </Dialogue>
+    </Option>
+    <Option Type="Basic" TriggerName=" " Number="2" GameObject="">
+      <Speech>It's May, isn't it a little warm for a trenchcoat?</Speech>
+      <Dialogue Speed="3">
+        <Speech>You see anyone else comin up to me and critiquing my fashion? Scram.</Speech>
+      </Dialogue>
+    </Option>
+    <Option Type="Basic" TriggerName=" " Number="3" GameObject="">
+      <Speech>Well of course, why else would I have come over here?</Speech>
+      <Dialogue Speed="3">
+        <Speech>Perfect. Unfortunately, most of my assets have already been sold off, but I do have a lightly used crowbar on hand.</Speech>
+        <Option Type="Trigger" TriggerName="ItemGiver" Number="1" GameObject="smsfitemgiver">
+          <Speech>I'll take it.</Speech>
+        </Option>
+      </Dialogue>
+    </Option>
+    <Option Type="Basic" TriggerName=" " Number="4" GameObject="">
+      <Speech>I don't think so.</Speech>
+    </Option>
+  </Dialogue>
+</Talker>
