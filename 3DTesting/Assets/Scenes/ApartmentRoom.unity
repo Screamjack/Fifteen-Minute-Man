@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trigger: {fileID: 96535738}
   force: 0
+  destroyOnUse: 0
 --- !u!1001 &21341429
 Prefab:
   m_ObjectHideFlags: 0
@@ -2253,6 +2254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trigger: {fileID: 706878648}
   force: 1
+  destroyOnUse: 0
 --- !u!1001 &933939783
 Prefab:
   m_ObjectHideFlags: 0

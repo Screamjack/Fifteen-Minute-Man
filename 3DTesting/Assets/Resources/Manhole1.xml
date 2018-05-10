@@ -4,5 +4,8 @@
     <Option Type="Basic" TriggerName=" " Number="1" GameObject="">
       <Speech>Leave it for now.</Speech>
     </Option>
+	<Option Type="Trigger" TriggerName="SceneTransitioner" Number="1" GameObject="SewerTransitioner">
+      <Speech>USE CROWBAR and go down.</Speech>
+    </Option>
   </Dialogue>
 </Talker>
